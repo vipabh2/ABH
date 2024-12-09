@@ -1,5 +1,5 @@
-from JoKeRUB.Config import Config
-from JoKeRUB.plugins import mention
+from VIPABH.Config import Config
+from VIPABH.plugins import mention
 
 RAZAN = Config.TG_BOT_USERNAME
 # for alive
