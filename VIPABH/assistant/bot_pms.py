@@ -8,7 +8,7 @@ from telethon.errors import UserIsBlockedError
 from telethon.events import CallbackQuery, StopPropagation
 from telethon.utils import get_display_name
 
-from JoKeRUB import Config, l313l
+from VIPABH import Config, ABH
 
 from ..core import check_owner, pool
 from ..core.logger import logging
