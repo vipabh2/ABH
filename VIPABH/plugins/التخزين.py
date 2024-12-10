@@ -1,7 +1,7 @@
 import asyncio
 from telethon.tl.types import Message
-from JoKeRUB import l313l
-from JoKeRUB.core.logger import logging
+from VIPABH import ABH
+from VIPABH.core.logger import logging
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from ..Config import Config
 from ..core.managers import edit_delete
@@ -23,7 +23,7 @@ class LOG_CHATS:
 
 LOG_CHATS_ = LOG_CHATS()
 
-@l313l.ar_cmd(incoming=True, func=lambda e: e.is_private, edited=True, forword=None)
+@ABH.ar_cmd(incoming=True, func=lambda e: e.is_private, edited=True, forword=None)
 async def monito_p_m_s(event):
     if Config.PM_LOGGER_GROUP_ID == -100:
         return
@@ -78,7 +78,7 @@ async def monito_p_m_s(event):
             except Exception as e:
                 LOGS.warning(str(e))
 
-@l313l.ar_cmd(incoming=True, func=lambda e: e.mentioned, edited=False, forword=None)
+@ABH.ar_cmd(incoming=True, func=lambda e: e.mentioned, edited=False, forword=None)
 async def log_tagged_messages(event):
     hmm = await event.get_chat()
     from .afk import AFK_
@@ -121,7 +121,7 @@ async def log_tagged_messages(event):
 
 
 me = "me" 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="خاص(?:\s|$)([\s\S]*)",
     command=("خاص", plugin_category),
     info={
@@ -148,7 +148,7 @@ async def log(log_text):
     # await log_text.delete()
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تفعيل التخزين$",
     command=("تفعيل التخزين", plugin_category),
     info={
@@ -169,7 +169,7 @@ async def set_no_log_p_m(event):
             )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تعطيل التخزين$",
     command=("تعطيل التخزين", plugin_category),
     info={
@@ -190,7 +190,7 @@ async def set_no_log_p_m(event):
             )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تخزين الخاص (تفعيل|تعطيل)$",
     command=("تخزين الخاص", plugin_category),
     info={
@@ -228,7 +228,7 @@ async def set_pmlog(event):
         await event.edit("**- تخزين الخاص بالفعـل معطـل ✓**")
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تخزين الكروبات (تفعيل|تعطيل)$",
     command=("تخزين الكروبات", plugin_category),
     info={
