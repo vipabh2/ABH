@@ -44,7 +44,7 @@ async def _(event):  # sourcery no-metrics
     r = 0
   
     et = await edit_or_reply(event, "**⪼ البحث في قـوائم المشارڪين ..**")
-    async for i in event.client.iter_participants(event.chat_id):
+    async for i in event.ABH.iter_participants(event.chat_id):
         p += 1
         rights = ChatBannedRights(until_date=None, view_messages=True)
         if isinstance(i.status, UserStatusEmpty):
@@ -169,7 +169,7 @@ async def rm_deletedacc(show):
     del_status = "**⎉╎لا توجـد حـسابات محذوفـة في هـذه المجموعـة !**"
     if con != "تنظيف":
         event = await edit_or_reply(show, "**⎉╎جـارِ البحـث عـن الحسابـات المحذوفـة ⌯**")
-        async for user in show.client.iter_participants(show.chat_id):
+        async for user in show.ABH.iter_participants(show.chat_id):
             if user.deleted:
                 del_u += 1
                 await sleep(0.5)
@@ -186,10 +186,10 @@ async def rm_deletedacc(show):
     event = await edit_or_reply(show, "**⎉╎جـارِ حـذف الحسـابات المحذوفـة ⌯**")
     del_u = 0
     del_a = 0
-    async for user in show.client.iter_participants(show.chat_id):
+    async for user in show.ABH.iter_participants(show.chat_id):
         if user.deleted:
             try:
-                await show.client.kick_participant(show.chat_id, user.id)
+                await show.ABH.kick_participant(show.chat_id, user.id)
                 await sleep(0.5)
                 del_u += 1
             except ChatAdminRequiredError:
@@ -203,7 +203,7 @@ async def rm_deletedacc(show):
         del_status = f"**⎉╎تـم حـذف {del_u} الحسـابات المحذوفـة، ولڪـن لـم يتـم حذف الحسـابات المحذوفـة للمشرفيـن !**"
     await edit_delete(event, del_status, 5)
     if BOTLOG:
-        await show.client.send_message(
+        await show.ABH.send_message(
             BOTLOG_CHATID,
             f"**⎉╎تنظيف :**\
             \n⎉╎{del_status}\
