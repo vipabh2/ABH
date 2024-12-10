@@ -31,9 +31,9 @@ async def p_paste(message, extension=None):
             else f"https://pasty.lus.pm/{response['id']}.txt"
         )
         try:
-            from ...core.session import l313l
+            from ...core.session import ABH
 
-            await l313l.send_message(
+            await ABH.send_message(
                 Config.BOTLOG_CHATID,
                 f"**You have created a new paste in pasty bin.** Link to pasty is [here]({purl}). You can delete that paste by using this token `{response['deletionToken']}`",
             )
