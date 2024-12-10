@@ -6,14 +6,14 @@ import re
 import time
 from datetime import datetime
 
-from JoKeRUB.utils import sudo_cmd
+from VIPABH.utils import sudo_cmd
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl import types
 from telethon.utils import get_attributes
 from youtube_dl import YoutubeDL
 from urlextract import URLExtract
 from wget import download
-from JoKeRUB import l313l
+from VIPABH import ABH
 from youtube_dl.utils import (
     ContentTooShortError,
     DownloadError,
@@ -157,7 +157,7 @@ async def _get_file_name(path: pathlib.Path, full: bool = True) -> str:
     return str(path.absolute()) if full else path.stem + path.suffix
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تحميل ص(?: |$)(.*)",
     command=("تحميل ص", plugin_category),
     info={
@@ -225,7 +225,7 @@ async def download_audio(event):
     await catevent.delete()
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تحميل ف(?: |$)(.*)",
     command=("تحميل ف", plugin_category),
     info={
@@ -290,7 +290,7 @@ async def download_video(event):
     await event.delete()
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="يوت(?: |$)(\d*)? ?([\s\S]*)",
     command=("يوت", plugin_category),
     info={
@@ -328,7 +328,7 @@ async def yt_search(event):
     await edit_or_reply(video_q, reply_text)
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="انستا (.*)",
     command=("انستا", plugin_category),
     info={
@@ -377,10 +377,10 @@ async def kakashi(event):
     )
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 
-@l313l.on(admin_cmd(pattern="تيك توك(?: |$)(.*)"))
+@ABH.on(admin_cmd(pattern="تيك توك(?: |$)(.*)"))
 async def _(event):
     if event.fwd_from:
         return
