@@ -260,7 +260,6 @@ async def load_plugins(folder, extfolder=None):
             f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`',
         )
 
-#سورس الجوكر عمك
 async def aljoker_the_best(ABH, group_name):
     async for dialog in ABH.iter_dialogs():
         if dialog.is_group and dialog.title == group_name:
