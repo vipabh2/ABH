@@ -1,4 +1,3 @@
-# By JoKeRUB 2021-2023
 import asyncio
 import base64
 import re
@@ -6,7 +5,7 @@ from telethon.tl import functions, types
 from telethon.tl.functions.messages import GetStickerSetRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from telethon.utils import get_display_name
-from JoKeRUB import l313l
+from VIPABH import ABH
 from telethon import events
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
@@ -15,29 +14,29 @@ from ..helpers.utils import _catutils
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from . import BOTLOG, BOTLOG_CHATID
 yaAli = False
-client = l313l
+client = ABH
 Mukrr = Config.MUKRR_ET or "مكرر"
-async def spam_function(event, JoKeRUB, l313l, sleeptimem, sleeptimet, DelaySpam=False):
+async def spam_function(event, VIPABH, ABH, sleeptimem, sleeptimet, DelaySpam=False):
 
-    counter = int(l313l[0])
-    if len(l313l) == 2:
-        spam_message = str(l313l[1])
+    counter = int(ABH[0])
+    if len(ABH) == 2:
+        spam_message = str(ABH[1])
         for _ in range(counter):
             if gvarstatus("spamwork") is None:
                 return
             if event.reply_to_msg_id:
-                await JoKeRUB.reply(spam_message)
+                await VIPABH.reply(spam_message)
             else:
                 await event.client.send_message(event.chat_id, spam_message)
             await asyncio.sleep(sleeptimet)
-    elif event.reply_to_msg_id and JoKeRUB.media:
+    elif event.reply_to_msg_id and VIPABH.media:
         for _ in range(counter):
             if gvarstatus("spamwork") is None:
                 return
-            JoKeRUB = await event.client.send_file(
-                event.chat_id, JoKeRUB, caption=JoKeRUB.text
+            VIPABH = await event.client.send_file(
+                event.chat_id, VIPABH, caption=VIPABH.text
             )
-            await _catutils.unsavegif(event, JoKeRUB)
+            await _catutils.unsavegif(event, VIPABH)
             await asyncio.sleep(sleeptimem)
         if BOTLOG:
             if DelaySpam is not True:
@@ -66,11 +65,11 @@ async def spam_function(event, JoKeRUB, l313l, sleeptimem, sleeptimet, DelaySpam
                     + f"**⌔∮ تم تنفيذ التكرار الوقتي  بنجاح في ** {get_display_name(await event.get_chat())}(`{event.chat_id}`) **مع** {counter} **عدد المرات مع الرسالة أدناه مع التأخير** {sleeptimet} ** الثواني **",
                 )
 
-            JoKeRUB = await event.client.send_file(BOTLOG_CHATID, JoKeRUB)
-            await _catutils.unsavegif(event, JoKeRUB)
+            VIPABH = await event.client.send_file(BOTLOG_CHATID, VIPABH)
+            await _catutils.unsavegif(event, VIPABH)
         return
-    elif event.reply_to_msg_id and JoKeRUB.text:
-        spam_message = JoKeRUB.text
+    elif event.reply_to_msg_id and VIPABH.text:
+        spam_message = VIPABH.text
         for _ in range(counter):
             if gvarstatus("spamwork") is None:
                 return
@@ -111,12 +110,12 @@ async def spam_function(event, JoKeRUB, l313l, sleeptimem, sleeptimet, DelaySpam
             )
 
 
-@l313l.ar_cmd(pattern="كرر (.*)")
+@ABH.ar_cmd(pattern="كرر (.*)")
 async def spammer(event):
-    JoKeRUB = await event.get_reply_message()
-    l313l = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
+    VIPABH = await event.get_reply_message()
+    ABH = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
     try:
-        counter = int(l313l[0])
+        counter = int(ABH[0])
     except Exception:
         return await edit_delete(
             event, "⌔∮ يجي استخدام كتابة صحيحة الرجاء التاكد من الامر اولا ⚠️"
@@ -129,9 +128,9 @@ async def spammer(event):
         sleeptimem = 0.3
     await event.delete()
     addgvar("spamwork", True)
-    await spam_function(event, JoKeRUB, l313l, sleeptimem, sleeptimet)
+    await spam_function(event, VIPABH, ABH, sleeptimem, sleeptimet)
 
-@l313l.on(admin_cmd(pattern=f"{Mukrr}"))
+@ABH.on(admin_cmd(pattern=f"{Mukrr}"))
 async def spammer(event):
     reply = await event.get_reply_message()
     input_str = "".join(event.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -141,13 +140,13 @@ async def spammer(event):
         return await edit_delete(
             event, "⌔∮ يجب استخدام كتابة صحيحة الرجاء التاكد من الامر اولا ⚠️"
         )
-    l313l = input_str[1:]
+    ABH = input_str[1:]
     await event.delete()
     addgvar("spamwork", True)
-    await spam_function(event, reply, l313l, sleeptimem, sleeptimet, DelaySpam=True)
+    await spam_function(event, reply, ABH, sleeptimem, sleeptimet, DelaySpam=True)
 
 
-@l313l.ar_cmd(pattern="تكرار الملصق$")
+@ABH.ar_cmd(pattern="تكرار الملصق$")
 async def stickerpack_spam(event):
     reply = await event.get_reply_message()
     if not reply or media_type(reply) is None or media_type(reply) != "Sticker":
@@ -215,7 +214,7 @@ async def stickerpack_spam(event):
         await event.client.send_file(BOTLOG_CHATID, reqd_sticker_set.documents[0])
 
 
-@l313l.ar_cmd(pattern="سبام (.*)")
+@ABH.ar_cmd(pattern="سبام (.*)")
 async def tmeme(event):
     cspam = str("".join(event.text.split(maxsplit=1)[1:]))
     message = cspam.replace(" ", "")
@@ -240,7 +239,7 @@ async def tmeme(event):
             )
 
 
-@l313l.ar_cmd(pattern="وسبام (.*)")
+@ABH.ar_cmd(pattern="وسبام (.*)")
 async def tmeme(event):
     wspam = str("".join(event.text.split(maxsplit=1)[1:]))
     message = wspam.split()
@@ -265,23 +264,23 @@ async def tmeme(event):
             )
 
 
-@l313l.ar_cmd(pattern="ايقاف التكرار ?(.*)")
+@ABH.ar_cmd(pattern="ايقاف التكرار ?(.*)")
 async def stopspamrz(event):
     if gvarstatus("spamwork") is not None and gvarstatus("spamwork") == "true":
         delgvar("spamwork")
         return await edit_delete(event, "**⌔∮ تم بنجاح ايقاف التكرار **")
     return await edit_delete(event, "**⌔∮ عذرا لم يتم تفعيل التكرار بالاصل**")
 #جميع الاكواد ادناه تمت كتابتها من قبل مطورين الجوكر ممنوع السرقة !
-async def aljoker_nshr(l313l, sleeptimet, chat, message, seconds):
+async def aljoker_nshr(ABH, sleeptimet, chat, message, seconds):
     global yaAli
     yaAli = True
     while yaAli:
         if message.media:
-            sent_message = await l313l.send_file(chat, message.media, caption=message.text)
+            sent_message = await ABH.send_file(chat, message.media, caption=message.text)
         else:
-            sent_message = await l313l.send_message(chat, message.text)
+            sent_message = await ABH.send_message(chat, message.text)
         await asyncio.sleep(sleeptimet)
-@l313l.ar_cmd(pattern="نشر")
+@ABH.ar_cmd(pattern="نشر")
 async def Hussein(event):
     await event.delete()
     parameters = re.split(r'\s+', event.text.strip(), maxsplit=2)
@@ -291,38 +290,38 @@ async def Hussein(event):
         )
     seconds = int(parameters[1])
     chat_usernames = parameters[2].split()
-    l313l = event.client
+    ABH = event.client
     global yaAli
     yaAli = True
     message = await event.get_reply_message()
     for chat_username in chat_usernames:
         try:
-            chat = await l313l.get_entity(chat_username)
-            await aljoker_nshr(l313l, seconds, chat.id, message, seconds)  # تمرير قيمة seconds هنا لكل مجموعة
+            chat = await ABH.get_entity(chat_username)
+            await aljoker_nshr(ABH, seconds, chat.id, message, seconds)  # تمرير قيمة seconds هنا لكل مجموعة
         except Exception as e:
             await edit_delete(
                 event, f"⌔∮ لا يمكن العثور على المجموعة أو الدردشة {chat_username}: {str(e)}"
             )
         await asyncio.sleep(1)
     
-async def aljoker_allnshr(l313l, sleeptimet, message):
+async def aljoker_allnshr(ABH, sleeptimet, message):
     global yaAli
     yaAli = True
-    aljoker_chats = await l313l.get_dialogs()
+    aljoker_chats = await ABH.get_dialogs()
     while yaAli:
         for chat in aljoker_chats:
             if chat.is_group:
                 if chat.title != "مشتركين الجوكر • Team ALjoker":
                     try:
                         if message.media:
-                            await l313l.send_file(chat.id, message.media, caption=message.text)
+                            await ABH.send_file(chat.id, message.media, caption=message.text)
                         else:
-                            await l313l.send_message(chat.id, message.text)
+                            await ABH.send_message(chat.id, message.text)
                     except Exception as e:
                         print(f"Error in sending message to chat {chat.id}: {e}")
         await asyncio.sleep(sleeptimet)
 
-@l313l.ar_cmd(pattern="نشر_كروبات")
+@ABH.ar_cmd(pattern="نشر_كروبات")
 async def Hussein(event):
     await event.delete()
     seconds = "".join(event.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -333,28 +332,28 @@ async def Hussein(event):
         return await edit_delete(
             event, "⌔∮ يجب استخدام كتابة صحيحة الرجاء التاكد من الامر اولا ⚠️"
         )
-    l313l = event.client
+    ABH = event.client
     global yaAli
     yaAli = True
-    await aljoker_allnshr(l313l, sleeptimet, message)
+    await aljoker_allnshr(ABH, sleeptimet, message)
 super_groups = ["super", "سوبر"]
-async def aljoker_supernshr(l313l, sleeptimet, message):
+async def aljoker_supernshr(ABH, sleeptimet, message):
     global yaAli
     yaAli = True
-    aljoker_chats = await l313l.get_dialogs()
+    aljoker_chats = await ABH.get_dialogs()
     while yaAli:
         for chat in aljoker_chats:
             chat_title_lower = chat.title.lower()
             if chat.is_group and any(keyword in chat_title_lower for keyword in super_groups):
                 try:
                     if message.media:
-                        await l313l.send_file(chat.id, message.media, caption=message.text)
+                        await ABH.send_file(chat.id, message.media, caption=message.text)
                     else:
-                        await l313l.send_message(chat.id, message.text)
+                        await ABH.send_message(chat.id, message.text)
                 except Exception as e:
                     print(f"Error in sending message to chat {chat.id}: {e}")
         await asyncio.sleep(sleeptimet)
-@l313l.ar_cmd(pattern="سوبر")
+@ABH.ar_cmd(pattern="سوبر")
 async def Hussein(event):
     await event.delete()
     seconds = "".join(event.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -365,11 +364,11 @@ async def Hussein(event):
         return await edit_delete(
             event, "⌔∮ يجب استخدام كتابة صحيحة الرجاء التاكد من الامر اولا ⚠️"
         )
-    l313l = event.client
+    ABH = event.client
     global yaAli
     yaAli = True
-    await aljoker_supernshr(l313l, sleeptimet, message)
-@l313l.ar_cmd(pattern="ايقاف (النشر|نشر)")
+    await aljoker_supernshr(ABH, sleeptimet, message)
+@ABH.ar_cmd(pattern="ايقاف (النشر|نشر)")
 async def stop_aljoker(event):
     global yaAli
     yaAli = False
