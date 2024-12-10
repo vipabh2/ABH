@@ -1,12 +1,9 @@
-"""Check your internet speed powered by speedtest.net
-Syntax: .speedtest
-Available Options: image, file, text"""
 
 from time import time
 
 import speedtest
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.managers import edit_or_reply
 from ..helpers.utils import reply_id
@@ -24,7 +21,7 @@ def convert_from_bytes(size):
     return f"{round(size, 2)} {units[n]}"
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="سرعة النت(?:\s|$)([\s\S]*)",
     command=("سرعة النت", plugin_category),
     info={
