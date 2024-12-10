@@ -2,7 +2,7 @@
 
 import asyncio
 from telethon import events
-from JoKeRUB import l313l
+from VIPABH import ABH
 import random
 from ..core.managers import edit_or_reply
 from ..helpers.utils import _format
@@ -11,7 +11,7 @@ from . import ALIVE_NAME
 plugin_category = "fun"
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تهكير$",
     command=("تهكير", plugin_category),
     info={
@@ -56,7 +56,7 @@ async def _(event):
             "᯽︙ لم يتـم التعـرف على المستـخدم",
             parse_mode=_format.parse_pre,
         )
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تهكير2$",
     command=("تهكير2", plugin_category),
     info={
