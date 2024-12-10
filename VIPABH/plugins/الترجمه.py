@@ -2,15 +2,15 @@ from asyncio import sleep
 import requests
 import json
 import os
-from JoKeRUB.helpers.functions.functions import translate
-from JoKeRUB import l313l
+from VIPABH.helpers.functions.functions import translate
+from VIPABH import ABH
 from telethon import events, types
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import soft_deEmojify
 
 langs = {
-    'عربي': 'ar',
+    'ar': 'عربي',
     'فارسي': 'fa',
     'بلغاري': 'bg',
     'صيني مبسط': 'zh',
@@ -18,7 +18,7 @@ langs = {
     'كرواتي': 'hr',
     'دنماركي': 'da',
     'الماني': 'de',
-    'انجليزي': 'en',
+    'en': 'انجليزي',
     'فنلندي': 'fil',
     'فرنسي': 'fr',
     'يوناني': 'el',
@@ -47,7 +47,7 @@ async def gtrans(text, lan):
         return f"حدث خطأ \n{er}"
     return response
 
-@l313l.ar_cmd(pattern="event")
+@ABH.ar_cmd(pattern="event")
 async def Reda(event):
     if event.reply_to_msg_id:
         m = await event.get_reply_message()
@@ -56,7 +56,7 @@ async def Reda(event):
         await event.client.send_file(event.chat_id, "reply.txt")
         os.remove("reply.txt")
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="ترجمة ([\s\S]*)",
     command=("ترجمة", "tools"),
     info={
@@ -97,7 +97,7 @@ async def _(event):
         await edit_delete(event, f"**خطا:**\n`{exc}`", time=5)
 
 
-@l313l.ar_cmd(pattern="(الترجمة الفورية|الترجمه الفوريه|ايقاف الترجمة|ايقاف الترجمه)")
+@ABH.ar_cmd(pattern="(الترجمة الفورية|الترجمه الفوريه|ايقاف الترجمة|ايقاف الترجمه)")
 async def reda(event):
     if gvarstatus("transnow"):
         delgvar("transnow")
@@ -106,7 +106,7 @@ async def reda(event):
         addgvar("transnow", "Reda") 
         await edit_delete(event, "**᯽︙ تم تفعيل الترجمه الفورية**")
 
-@l313l.ar_cmd(pattern="لغة الترجمة")
+@ABH.ar_cmd(pattern="لغة الترجمة")
 async def Reda_is_Here(event):
     t = event.text.replace(".لغة الترجمة", "")
     t = t.replace(" ", "")
@@ -118,11 +118,11 @@ async def Reda_is_Here(event):
     await edit_delete(event, f"**᯽︙ تم تغير لغة الترجمة الى {lang} بنجاح ✓ **")
 
 # Reda
-@l313l.on(events.NewMessage(outgoing=True))
+@ABH.on(events.NewMessage(outgoing=True))
 async def reda(event):
     if gvarstatus("transnow"):
         if event.media or isinstance(event.media, types.MessageMediaDocument) or isinstance(event.media, types.MessageMediaInvoice):
-            print ("JoKeRUB")
+            print ("VIPABH")
         else:
             original_message = event.message.message
             translated_message = await gtrans(soft_deEmojify(original_message.strip()), gvarstatus("translang") or "en")
