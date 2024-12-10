@@ -11,9 +11,9 @@ from telethon.tl.types import (ChannelParticipantsAdmins,
                                    ChatBannedRights,
                                      MessageEntityMentionName,
                                        MessageMediaPhoto)
-from JoKeRUB.utils import admin_cmd
+from VIPABH.utils import admin_cmd
 from ..Config import Config
-from JoKeRUB import CMD_HELP, l313l
+from VIPABH import CMD_HELP, ABH
 up_admin = Config.UP_ET or "ارفع"
 down_admin = Config.DOWN_ET or "تزل"
 async def get_full_user(event):  
@@ -57,27 +57,27 @@ async def get_user_from_id(user, event):
         await event.edit(str(err))
         return None
     return user_obj
-@l313l.on(admin_cmd(pattern="{up_admin} ?(.*)"))
-async def gben(JoKeRUB):
-    dc = razan = JoKeRUB
+@ABH.on(admin_cmd(pattern="{up_admin} ?(.*)"))
+async def gben(VIPABH):
+    dc = razan = VIPABH
     i = 0
     sender = await dc.get_sender()
-    me = await JoKeRUB.client.get_me()
+    me = await VIPABH.client.get_me()
     await razan.edit("▾∮ يتم رفع المستخدم في جميع المجموعات")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
-    await JoKeRUB.get_chat()
-    if JoKeRUB.is_private:
-        user = JoKeRUB.chat
-        rank = JoKeRUB.pattern_match.group(1)
+    await VIPABH.get_chat()
+    if VIPABH.is_private:
+        user = VIPABH.chat
+        rank = VIPABH.pattern_match.group(1)
     else:
-        JoKeRUB.chat.title
+        VIPABH.chat.title
     try:
-        user, rank = await get_full_user(JoKeRUB)
+        user, rank = await get_full_user(VIPABH)
     except:
         pass
     if me == user:
-       l313l = await razan.edit("▾∮ لا استطيع رفع نفسي 🧸🤍،")
+       ABH = await razan.edit("▾∮ لا استطيع رفع نفسي 🧸🤍،")
        return
     try:
         if not rank:
@@ -86,7 +86,7 @@ async def gben(JoKeRUB):
         return await razan.edit(f"**▾∮ هنالك شي خطأ**")
     if user:
         telchanel = [d.entity.id
-                     for d in await JoKeRUB.client.get_dialogs()
+                     for d in await VIPABH.client.get_dialogs()
                      if (d.is_group or d.is_channel)
                      ]
         rgt = ChatAdminRights(add_admins=True,
@@ -97,7 +97,7 @@ async def gben(JoKeRUB):
                                    pin_messages=True)
         for x in telchanel:
           try:
-             await JoKeRUB.client(EditAdminRequest(x, user, rgt, rank))
+             await VIPABH.client(EditAdminRequest(x, user, rgt, rank))
              i += 1
              await razan.edit(f"**▾∮ يتم الرفع في **: `{i}` من المجموعات")
           except:
@@ -108,27 +108,27 @@ async def gben(JoKeRUB):
         f"**▾∮المستخدم [{user.first_name}](tg://user?id={user.id})\n▾∮ تم رفعه في : {i} من المجموعات**"
     )
 
-@l313l.on(admin_cmd(pattern="{down_admin} ?(.*)"))
-async def gben(JoKeRUB):
-    dc = razan = JoKeRUB
+@ABH.on(admin_cmd(pattern="{down_admin} ?(.*)"))
+async def gben(VIPABH):
+    dc = razan = VIPABH
     i = 0
     sender = await dc.get_sender()
-    me = await JoKeRUB.client.get_me()
+    me = await VIPABH.client.get_me()
     await razan.edit("**▾∮ يتم تنزيل الشخص من رتبة الاشراف في جميع الكروبات**")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
-    await JoKeRUB.get_chat()
-    if JoKeRUB.is_private:
-        user = JoKeRUB.chat
-        rank = JoKeRUB.pattern_match.group(1)
+    await VIPABH.get_chat()
+    if VIPABH.is_private:
+        user = VIPABH.chat
+        rank = VIPABH.pattern_match.group(1)
     else:
-        JoKeRUB.chat.title
+        VIPABH.chat.title
     try:
-        user, rank = await get_full_user(JoKeRUB)
+        user, rank = await get_full_user(VIPABH)
     except:
         pass
     if me == user:
-       l313l = await razan.edit("▾∮ لا استطيع تنزيل نفسي 🧸🤍")
+       ABH = await razan.edit("▾∮ لا استطيع تنزيل نفسي 🧸🤍")
        return
     try:
         if not rank:
@@ -137,7 +137,7 @@ async def gben(JoKeRUB):
         return await razan.edit(f"**▾∮ هنالك شي خطأ**")
     if user:
         telchanel = [d.entity.id
-                     for d in await JoKeRUB.client.get_dialogs()
+                     for d in await VIPABH.client.get_dialogs()
                      if (d.is_group or d.is_channel)
                      ]
         rgt = ChatAdminRights(add_admins=None,
@@ -148,7 +148,7 @@ async def gben(JoKeRUB):
                                    pin_messages=None)
         for x in telchanel:
           try:
-             await JoKeRUB.client(EditAdminRequest(x, user, rgt, rank))
+             await VIPABH.client(EditAdminRequest(x, user, rgt, rank))
              i += 1
              await razan.edit(f"**▾∮ يتم تنزيله في **: `{i}` من المجموعات")
           except:
