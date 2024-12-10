@@ -1,6 +1,4 @@
-#Fixes by Reda 
-#Made by hussein
-#-------------
+
 import asyncio
 import base64
 import io
@@ -29,7 +27,7 @@ from telethon.tl.types import (
     MessageMediaPhoto,
 )
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import animator, crop_and_divide
@@ -264,7 +262,7 @@ async def add_to_pack(
     return pack, packname
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="ملصق(?:\s|$)([\s\S]*)",
     command=("ملصق", plugin_category),
     info={
@@ -453,7 +451,7 @@ async def kang(args):  # sourcery no-metrics
                 )
 
 
-@l313l.on(admin_cmd(pattern="حزمة"))
+@ABH.on(admin_cmd(pattern="حزمة"))
 async def HuRepkg(_):
     Jep = await _.get_reply_message()
     if not Jep:
@@ -492,7 +490,7 @@ async def HuRepkg(_):
     await edit_or_reply(
         _, f"**- تم اخذ الحزمة بنجاح ✓ \nالحزمة  → [اضغط هنا](https://t.me/addstickers/{HuRe_Jep.set.short_name})**")
 
-@l313l.on(admin_cmd(pattern="حزمه"))
+@ABH.on(admin_cmd(pattern="حزمه"))
 async def HuRepkg(_):
     Jep = await _.get_reply_message()
     if not Jep:
@@ -552,7 +550,7 @@ async def HuRepkg(_):
         _,
         f"**- تم اخذ الحزمة بنجاح ✓ \nالحزمة  → [اضغط هنا](https://t.me/addstickers/{HuRe_Jep.set.short_name})**",
     )
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="معلومات_الملصق$",
     command=("معلومات_الملصق", plugin_category),
     info={
@@ -608,7 +606,7 @@ hash=0
     await catevent.edit(OUTPUT)
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الملصقات ?([\s\S]*)",
     command=("الملصقات", plugin_category),
     info={
