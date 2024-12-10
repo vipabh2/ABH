@@ -1,9 +1,8 @@
 import asyncio
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from JoKeRUB.utils import admin_cmd
+from VIPABH.utils import admin_cmd
 
-# تحويل النصوص إلى ملصقات باستخدام QuotLyBot
 @borg.on(admin_cmd(pattern="تحويل نص ?(.*)"))
 async def _(event):
     if event.fwd_from:
