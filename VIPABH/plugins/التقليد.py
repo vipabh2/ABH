@@ -12,7 +12,7 @@ from ..sql_helper.echo_sql import (
     remove_echos,
 )
 from . import (
-    l313l,
+    ABH,
     edit_delete,
     get_user_from_event,
 )
@@ -20,7 +20,7 @@ from . import (
 plugin_category = "fun"
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تقليد$",
     command=("تقليد", plugin_category),
     info={
@@ -60,7 +60,7 @@ async def echo(event):
         await edit_or_reply(catevent, "⌁︙تـم تفعـيل امـر التقليد علـى هذا الشـخص\n ⌁︙سـيتم تقليـد جميع رسائلـه هـنا")
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="مسح المقلدهم",
     command=("مسح المقلدهم", plugin_category),
     info={
@@ -89,7 +89,7 @@ async def echo(event):
         await edit_or_reply(event, "The user is not activated with echo")
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الغاء التقليد( -a)?",
     command=("الغاء التقليد", plugin_category),
     info={
@@ -135,7 +135,7 @@ async def echo(event):
             )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="المقلدهم( -a)?$",
     command=("المقلدهم", plugin_category),
     info={
@@ -199,7 +199,7 @@ async def echo(event):  # sourcery no-metrics
     await edit_or_reply(event, output_str)
 
 
-@l313l.ar_cmd(incoming=True, edited=False)
+@ABH.ar_cmd(incoming=True, edited=False)
 async def samereply(event):
     if is_echo(event.chat_id, event.sender_id) and (
         event.message.text or event.message.sticker
