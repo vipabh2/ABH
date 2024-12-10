@@ -11,7 +11,7 @@ from ..helpers.utils import _format
 
 
 @ABH.ar_cmd(
-    pattern="اكسباير ?([\s\S]*)",
+    pattern="اكسباير?([\s\S]*)",
     command=("اكسباير", plugin_category),
     info={
         "header": "To get breif summary of members in the group",
