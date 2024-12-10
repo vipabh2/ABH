@@ -1,4 +1,3 @@
-# JoKeRUB module for purging unneeded messages(usually spam or ot).
 import re
 from asyncio import sleep
 
@@ -15,7 +14,7 @@ from telethon.tl.types import (
     InputMessagesFilterVoice,
 )
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import reply_id
@@ -40,7 +39,7 @@ purgetype = {
 }
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="مسح(\s*| \d+)$",
     command=("مسح", plugin_category),
     info={
@@ -86,7 +85,7 @@ async def delete_it(event):
     elif not input_str:
         await event.delete()
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="م(\s*| \d+)$",
     command=("م", plugin_category),
     info={
@@ -133,7 +132,7 @@ async def delete_it(event):
         await event.delete()
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="مسح رسائلي$",
     command=("مسح رسائلي", plugin_category),
     info={
@@ -163,7 +162,7 @@ async def Hussein(event):
     await sleep(5)
     await smsg.delete()
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تنظيف(?:\s|$)([\s\S]*)",
     command=("تنظيف", plugin_category),
     info={
@@ -416,7 +415,7 @@ async def fastpurger(event):  # sourcery no-metrics
         )
     await sleep(5)
     await hi.delete()
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     # pattern="مشاركاتة(?:\s|$)([\s\S]*)",
     pattern="مشاركاتة (الكل)?(?:\s|$)([\s\S]*)",
     command=("مشاركاتة", plugin_category),
