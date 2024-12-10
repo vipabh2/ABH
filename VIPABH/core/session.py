@@ -4,7 +4,7 @@ from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from telethon.sessions import StringSession
 from telethon.errors import AccessTokenExpiredError, AccessTokenInvalidError
 from ..Config import Config
-from .alVIPABH import aljokerPyro
+from .aljokerUB import aljokerPyro
 from .client import HuReClient
 LOGS = logging.getLogger(" ")
 
