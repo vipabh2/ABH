@@ -15,7 +15,7 @@ from ..Config import Config
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import delete_conv
-from . import BOTLOG, BOTLOG_CHATID, zedub, reply_id
+from . import BOTLOG, BOTLOG_CHATID, ABH, reply_id
 
 LOGS = logging.getLogger(__name__)
 
@@ -157,7 +157,7 @@ async def ctg(event):
             await edit_or_reply(
                 zedevent, "**Error:** Trying to unblock & retry, wait a sec..."
             )
-            await zedub(unblock("chotamreaderbot"))
+            await ABH(unblock("chotamreaderbot"))
             msg_flag = await conv.send_message(urls[0])
         response = await conv.get_response()
         await event.client.send_read_acknowledge(conv.chat_id)
