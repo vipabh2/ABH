@@ -1,8 +1,8 @@
 import asyncio
 from datetime import datetime
 from telethon.tl import functions, types
-from JoKeRUB.helpers.functions.functions import translate 
-from JoKeRUB import CMD_HELP, l313l
+from VIPABH.helpers.functions.functions import translate 
+from VIPABH import CMD_HELP, ABH
 
 from ..Config import Config
 from ..core.logger import logging
@@ -34,7 +34,7 @@ class AFK:
 AFK_ = AFK()
 
 
-@l313l.ar_cmd(outgoing=True, edited=False)
+@ABH.ar_cmd(outgoing=True, edited=False)
 async def set_not_afk(event):
     if AFK_.afk_on is False:
         return
@@ -80,7 +80,7 @@ async def set_not_afk(event):
             )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     incoming=True, func=lambda e: bool(e.mentioned or e.is_private), edited=False
 )
 async def on_afk(event):  # sourcery no-metrics
@@ -165,7 +165,7 @@ async def on_afk(event):  # sourcery no-metrics
             )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="سليب(?:\s|$)([\s\S]*)",
     command=("سليب", plugin_category),
     info={
@@ -225,7 +225,7 @@ async def _(event):
                 )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="سليب_ميديا(?:\s|$)([\s\S]*)",
     command=("سليب_ميديا", plugin_category),
     info={
