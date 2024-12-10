@@ -3,7 +3,7 @@ import html
 
 from telethon.utils import get_display_name
 
-from . import zedub, BOTLOG_CHATID
+from . import ABH, BOTLOG_CHATID
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper import blacklist_sql as spl
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 
-@l313l.ar_cmd(incoming=True, groups_only=True)
+@ABH.ar_cmd(incoming=True, groups_only=True)
 async def on_new_message(event):
     name = event.raw_text
     snips = sql.get_chat_blacklist(event.chat_id)
@@ -36,7 +36,7 @@ async def on_new_message(event):
             break
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="منع(?:\s|$)([\s\S]*)",
     require_admin=True,
 )
@@ -54,7 +54,7 @@ async def _(event):
     )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الغاء منع(?:\s|$)([\s\S]*)",
     require_admin=True,
 )
@@ -72,7 +72,7 @@ async def _(event):
     )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="قائمة المنع$",
     require_admin=True,
 )
@@ -89,7 +89,7 @@ async def _(event):
 # =========================================التحذيرات================================================= #
 # ================================================================================================ #
 
-@l313l.ar_cmd(pattern="تحذير(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="تحذير(?:\s|$)([\s\S]*)")
 async def _(event):
     warn_reason = event.pattern_match.group(1)
     if not warn_reason:
@@ -122,7 +122,7 @@ async def _(event):
     await edit_or_reply(event, reply)
 
 
-@l313l.ar_cmd(pattern="التحذيرات")
+@ABH.ar_cmd(pattern="التحذيرات")
 async def _(event):
     reply_message = await event.get_reply_message()
     if not reply_message:
@@ -150,7 +150,7 @@ async def _(event):
     await event.edit(text)
 
 
-@l313l.ar_cmd(pattern="حذف التحذيرات(?: |$)(.*)")
+@ABH.ar_cmd(pattern="حذف التحذيرات(?: |$)(.*)")
 async def _(event):
     reply_message = await event.get_reply_message()
     sql.reset_warns(reply_message.sender_id, event.chat_id)
