@@ -8,7 +8,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChatBannedRights
 from telethon.utils import get_display_name
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _format
@@ -38,7 +38,7 @@ def remove_from_mute_list(user_id):
 
 #=================== الكـــــــــــــــتم  ===================  #
 
-@l313l.ar_cmd(pattern=f"كتم(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern=f"كتم(?:\s|$)([\s\S]*)")
 async def mutejep(event):
     if event.is_private:
         replied_user = await event.client.get_entity(event.chat_id)
@@ -46,7 +46,7 @@ async def mutejep(event):
             return await event.edit(
                 "**- هـذا المسـتخـدم مڪتـوم . . سـابقـاً **"
             )
-        if event.chat_id == l313l.uid:
+        if event.chat_id == ABH.uid:
             return await edit_delete(event, "**𖡛... . لمـاذا تࢪيـد كتم نفسـك؟  ...𖡛**")
         if event.chat_id == 1910015590:
             return await edit_delete(event, "** دي . . لا يمڪنني كتـم مطـور السـورس  ╰**")
@@ -90,7 +90,7 @@ async def mutejep(event):
             return await edit_or_reply(
                 event, "** أنـا لسـت مشـرف هنـا ؟!! .**"
             )
-        if user.id == l313l.uid:
+        if user.id == ABH.uid:
             return await edit_or_reply(event, "**𖡛... . لمـاذا تࢪيـد كتم نفسـك؟  ...𖡛**")
         if user.id == 1910015590:
             return await edit_or_reply(event, "** دي . . لا يمڪنني كتـم مطـور السـورس  ╰**")
@@ -145,14 +145,14 @@ async def mutejep(event):
                 f"**الشخـص :** [{user.first_name}](tg://user?id={user.id})\n"
                 f"**الدردشـه :** {get_display_name(await event.get_chat())}(`{event.chat_id}`)",
             )   
-@l313l.on(events.NewMessage)
+@ABH.on(events.NewMessage)
 async def handle_forwarded(event):
     if event.fwd_from:
         if is_muted(event.sender_id, event.chat_id):
             await event.delete()
 #=================== الغـــــــــــــاء الكـــــــــــــــتم  ===================  #
 
-@l313l.ar_cmd(pattern=f"(الغاء الكتم|الغاء كتم)(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern=f"(الغاء الكتم|الغاء كتم)(?:\s|$)([\s\S]*)")
 async def unmutejep(event):
     if event.is_private:
         replied_user = await event.client.get_entity(event.chat_id)
@@ -225,7 +225,7 @@ async def unmutejep(event):
                 f"**- الدردشــه :** {get_display_name(await event.get_chat())}(`{event.chat_id}`)",
             )
 
-@l313l.ar_cmd(pattern=r"قائمة المكتومين")
+@ABH.ar_cmd(pattern=r"قائمة المكتومين")
 async def show_muted_users(event):
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:
@@ -248,7 +248,7 @@ async def show_muted_users(event):
         await event.edit("**᯽︙ لا يوجد مستخدمين مكتومين حاليًا**")
 # ===================================== # 
 
-@l313l.ar_cmd(incoming=True)
+@ABH.ar_cmd(incoming=True)
 async def watcher(event):
     if is_muted(event.sender_id, "كتم_مؤقت"):
         await event.delete()
