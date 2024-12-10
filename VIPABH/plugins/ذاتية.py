@@ -1,9 +1,9 @@
-from JoKeRUB import l313l
+from VIPABH import ABH
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 import os
 import datetime
 from telethon import events
-from JoKeRUB import *
+from VIPABH import *
 Aljoker_Asbo3 = {
     'Monday': 'الاثنين',
     'Tuesday': 'الثلاثاء',
@@ -13,7 +13,7 @@ Aljoker_Asbo3 = {
     'Saturday': 'السبت',
     'Sunday': 'الأحد'
 }
-@l313l.on(admin_cmd(pattern="(جلب الصورة|جلب الصوره|ذاتيه|ذاتية)"))
+@ABH.on(admin_cmd(pattern="(جلب الصورة|جلب الصوره|ذاتيه|ذاتية)"))
 async def dato(event):
     if not event.is_reply:
         return await event.edit("..")
@@ -29,7 +29,7 @@ async def dato(event):
     )
     await event.delete()
 #By @jepthon For You 🌹
-@l313l.on(admin_cmd(pattern="(الذاتية تشغيل|ذاتية تشغيل)"))
+@ABH.on(admin_cmd(pattern="(الذاتية تشغيل|ذاتية تشغيل)"))
 async def reda(event):
     if gvarstatus ("savepicforme"):
         return await edit_delete(event, "**᯽︙حفظ الذاتيات مفعل وليس بحاجة للتفعيل مجدداً **")
@@ -37,7 +37,7 @@ async def reda(event):
         addgvar("savepicforme", "reda")
         await edit_delete(event, "**᯽︙تم تفعيل ميزة حفظ الذاتيات بنجاح ✓**")
  
-@l313l.on(admin_cmd(pattern="(الذاتية تعطيل|ذاتية تعطيل)"))
+@ABH.on(admin_cmd(pattern="(الذاتية تعطيل|ذاتية تعطيل)"))
 async def Reda_Is_Here(event):
     if gvarstatus ("savepicforme"):
         delgvar("savepicforme")
@@ -59,7 +59,7 @@ async def Hussein(event, caption):
         parse_mode="markdown"
     )
     os.remove(media)
-@l313l.on(events.NewMessage(func=lambda e: e.is_private and joker_unread_media(e) and e.sender_id != bot.uid))
+@ABH.on(events.NewMessage(func=lambda e: e.is_private and joker_unread_media(e) and e.sender_id != bot.uid))
 async def Reda(event):
     if gvarstatus("savepicforme"):
         caption = """**
