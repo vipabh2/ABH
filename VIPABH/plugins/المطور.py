@@ -11,7 +11,7 @@ from telethon.errors.rpcerrorlist import (
 )
 from telethon.events import CallbackQuery
 
-from JoKeRUB import StartTime, l313l, JEPVERSION
+from VIPABH import StartTime, ABH, JEPVERSION
 
 from ..Config import Config
 from ..core.managers import edit_or_reply
@@ -22,7 +22,7 @@ from . import mention
 
 plugin_category = "utils"
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="ابن هاشم$",
     command=("ابن هاشم", plugin_category),
     info={
@@ -55,12 +55,12 @@ async def amireallyalive(event):
         )
 progs = [1910015590]
 
-@l313l.on(events.NewMessage(incoming=True))
+@ABH.on(events.NewMessage(incoming=True))
 async def reda(event):
     if event.reply_to and event.sender_id in progs:
        reply_msg = await event.get_reply_message()
        owner_id = reply_msg.from_id.user_id
-       if owner_id == l313l.uid:
+       if owner_id == ABH.uid:
            if event.message.message == "حظر من السورس":
                await event.reply("**حاظر مطوري ، لقد تم حظره من استخدام السورس**")
                addgvar("blockedfrom", "yes")
