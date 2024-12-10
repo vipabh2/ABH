@@ -1,15 +1,12 @@
-#ترجمه فريق الجوكر على التيلكرام
 import json
 
 import requests
-#ترجمه فريق الجوكر على التيلكرام
 from ..sql_helper.globals import gvarstatus
-from . import l313l, edit_delete, edit_or_reply
+from . import ABH, edit_delete, edit_or_reply
 
 plugin_category = "extra"
 
-#ترجمه فريق الجوكر على التيلكرام
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="صلاة(?: |$)(.*)",
     command=("صلاة", plugin_category),
     info={
@@ -26,10 +23,10 @@ async def get_adzan(adzan):
     if request.status_code != 200:
         await edit_delete(
             adzan, f"** لم يـتم العثور على معلومات لـهذه المدينه {LOKASI}**\n يرجى كتابة اسم محافظتك وباللغه الانكليزي ", 5
-        ) #ترجمه فريق الجوكر على التيلكرام
+        )
         return
     result = json.loads(request.text)
-    l313lresult = f"<b>اوقـات صـلاه المـسلمين 👳‍♂️ </b>\
+    ABHresult = f"<b>اوقـات صـلاه المـسلمين 👳‍♂️ </b>\
             \n\n<b>المـدينة     : </b><i>{result['results']['location']['city']}</i>\
             \n<b>الـدولة  : </b><i>{result['results']['location']['country']}</i>\
             \n<b>التـاريخ     : </b><i>{result['results']['datetime'][0]['date']['gregorian']}</i>\
@@ -44,7 +41,7 @@ async def get_adzan(adzan):
             \n<b>العشـاء     : </b><i>{result['results']['datetime'][0]['times']['Isha']}</i>\
             \n<b>منتـصف الليل : </b><i>{result['results']['datetime'][0]['times']['Midnight']}</i>\
     "
-    await edit_or_reply(adzan, l313lresult, "html")
+    await edit_or_reply(adzan, ABHresult, "html")
 
 # Copyright (C) 2021 JoKeRUB TEAM
 # FILES WRITTEN BY  @lMl10l
