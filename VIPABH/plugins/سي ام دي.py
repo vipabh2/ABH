@@ -41,7 +41,7 @@ async def install(event):
         try:
             downloaded_file_name = await event.client.download_media(
                 await event.get_reply_message(),
-                "JoKeRUB/plugins/",
+                "VIPABH/plugins/",
             )
             if "(" not in downloaded_file_name:
                 path1 = Path(downloaded_file_name)
