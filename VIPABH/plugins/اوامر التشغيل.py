@@ -5,7 +5,7 @@ import re
 from asyncio.exceptions import CancelledError
 from time import sleep
 import asyncio
-from JoKeRUB import l313l
+from VIPABH import ABH
 from telethon import events
 from ..core.logger import logging
 from ..core.managers import edit_or_reply
@@ -40,7 +40,7 @@ async def aljoker_4ever():
         await _catutils.runcmd("rm -rf TempCat")
     if os.path.exists("jepvc"):
         await _catutils.runcmd("rm -rf jepvc")
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تحديث",
     command=("تحديث", plugin_category),
     info={
@@ -61,7 +61,7 @@ async def Hussein(event):
     await aljoker_4ever()
     await event.client.reload(joker)
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اطفاء$",
     command=("اطفاء", plugin_category),
     info={
@@ -80,7 +80,7 @@ async def _(event):
     else:
         sys.exit(0)
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="التحديثات (تشغيل|ايقاف)$",
     command=("التحديثات", plugin_category),
     info={
@@ -103,23 +103,23 @@ async def set_pmlog(event):
         addgvar("restartupdate", "turn-oned")
         return await edit_or_reply(event, "**⌔︙تـم تشغيل التـحديـثات بنجـاح ✓**")
     await edit_delete(event, "**᯽︙ تـم تشغيل التـحديـثات بالفعـل ❗️**")
-@l313l.on(events.NewMessage(incoming=True))
+@ABH.on(events.NewMessage(incoming=True))
 async def Hussein(event):
     if event.reply_to and event.sender_id in JOKRDEV:
         reply_msg = await event.get_reply_message()
         owner_id = reply_msg.from_id.user_id
-        if owner_id == l313l.uid:
+        if owner_id == ABH.uid:
             if event.message.message == "اعادة تشغيل":
                 joker = await event.reply("** ᯽︙ بالخدمة مطوري سيتم اعادة تشغيل السورس 😘..**")
                 await aljoker_4ever()
                 await event.client.reload(joker)
                     
-@l313l.on(events.NewMessage(incoming=True))
+@ABH.on(events.NewMessage(incoming=True))
 async def Hussein(event):
     if event.reply_to and event.sender_id in JOKRDEV:
         reply_msg = await event.get_reply_message()
         owner_id = reply_msg.from_id
-        if owner_id == l313l.uid:
+        if owner_id == ABH.uid:
             if event.message.message == "اطفاء":
                     await event.reply("**᯽︙ تدلل مولاي تم اطفاء السورس بواسطة تاج راسك 😁**")
                     if HEROKU_APP is not None:
