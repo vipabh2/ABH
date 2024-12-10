@@ -20,7 +20,7 @@ from telethon.tl.types import (
     MessageMediaPhoto,
 )
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
@@ -68,7 +68,7 @@ plugin_category = "admin"
 
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="(?:ت|تثبيت)( بالاشعار|$)",
     command=("تثبيت", plugin_category),
     info={
@@ -106,7 +106,7 @@ async def pin(event):
                 \nالـتثبيت: {is_silent}",
         )
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="(?:تت|الغاء التثبيت)( للكل|$)",
     command=("الغاء التثبيت", plugin_category),
     info={
@@ -152,7 +152,7 @@ async def pin(event):
                 \n⌔︙الدردشـه  🔖 : {event.chat.title}(`{event.chat_id}`)",
         )
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الاحداث( -ر)?(?: |$)(\d*)?",
     command=("الأحداث", plugin_category),
     info={
