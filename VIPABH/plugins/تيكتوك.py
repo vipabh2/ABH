@@ -12,17 +12,15 @@ import time
 from datetime import timedelta
 import math
 import base64
-from JoKeRUB import l313l 
-#from ..Config import Config
-#By Reda
-@l313l.ar_cmd(pattern="تك")
+from VIPABH import ABH 
+@ABH.ar_cmd(pattern="تيك")
 async def tiktok_dl(event):
     ms = event.message.message
     ms = ms.replace(".تك", "")
     if event:
             if ("https://tiktok.com/" in ms or "https://vm.tiktok.com/" in ms):
                 await event.message.delete()
-                a = await l313l.send_message(event.chat_id, 'يجري البحث عن الملف..')
+                a = await ABH.send_message(event.chat_id, 'يجري البحث عن الملف..')
                 link = ms.strip()
                 try:
                     response = requests.get(f"https://godownloader.com/api/tiktok-no-watermark-free?url={link}&key=godownloader.com")
@@ -54,7 +52,7 @@ async def tiktok_dl(event):
                 filesize_bytes = os.path.getsize(video_filename)
                 filesize = filesize_bytes / (1024 * 1024)
                 catid = await reply_id(event.message)
-                await l313l.send_file(
+                await ABH.send_file(
                    event.chat_id, f"{directory}/{filename}", reply_to=catid,     force_document=False,     caption=f"**الملف : ** {filename}\n**الحجم :**     {round(filesize, 1)} MB"
                  )
         
