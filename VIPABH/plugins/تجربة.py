@@ -2,13 +2,13 @@ import io
 import sys
 import traceback
 
-from . import zedub
+from . import ABH
 
 from ..helpers.utils import _format
 from . import *
 
 
-@zedub.zed_cmd(pattern="امر التجربه")
+@ABH.ar_cmd(pattern="امر التجربه")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -17,7 +17,7 @@ async def hi(event):
     )
 
 
-@zedub.zed_cmd(pattern="تجربه(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="تجربه(?:\s|$)([\s\S]*)")
 async def _(event):
     cmd = "".join(event.message.message.split(maxsplit=1)[1:])
     if not cmd:
