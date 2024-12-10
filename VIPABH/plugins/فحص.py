@@ -15,7 +15,7 @@ from telethon.errors.rpcerrorlist import (
 )
 from telethon.events import CallbackQuery
 
-from JoKeRUB import StartTime, l313l, JEPVERSION
+from VIPABH import StartTime, ABH, JEPVERSION
 from ..Config import Config
 from ..core.managers import edit_or_reply
 from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_time
@@ -34,7 +34,7 @@ else:
     with open(file_path, "w") as file:
         file.write(installation_time)
 
-@l313l.ar_cmd(pattern="فحص(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="فحص(?:\s|$)([\s\S]*)")
 async def amireallyalive(event):
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
@@ -46,8 +46,8 @@ async def amireallyalive(event):
     EMOJI = gvarstatus("ALIVE_EMOJI") or "⿻┊‌‎"
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**父[ 😎 ✓ ](t.me/K_4X1)父**"
     HuRe_IMG = gvarstatus("ALIVE_PIC") or Config.A_PIC
-    l313l_caption = gvarstatus("ALIVE_TEMPLATE") or temp
-    caption = l313l_caption.format(
+    ABH_caption = gvarstatus("ALIVE_TEMPLATE") or temp
+    caption = ABH_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
         EMOJI=EMOJI,
         mention=mention,
@@ -61,8 +61,8 @@ async def amireallyalive(event):
     )
     
     if HuRe_IMG:
-        JoKeRUB = [x for x in HuRe_IMG.split()]
-        PIC = random.choice(JoKeRUB)
+        VIPABH = [x for x in HuRe_IMG.split()]
+        PIC = random.choice(VIPABH)
         try:
             await event.client.send_file(
                 event.chat_id, PIC, caption=caption, reply_to=reply_to_id
