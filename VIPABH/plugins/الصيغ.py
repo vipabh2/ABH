@@ -11,7 +11,7 @@ from telethon.tl.functions.channels import GetFullChannelRequest
 from telethon.tl.types import InputPeerChannel
 from telethon.errors import ChannelPrivateError
 from telethon.utils import get_peer_id
-from JoKeRUB import l313l
+from VIPABH import ABH
 from telethon import types
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
@@ -35,7 +35,7 @@ PATH = os.path.join("./temp", "temp_vid.mp4")
 thumb_loc = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 cancel_process = False
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern=r"حفظ (.+)",
     command=("حفظ_المحتوى", plugin_category),
     info={
@@ -59,13 +59,13 @@ async def save_media(event):
             channel_id, message_id = re.search(r"t.me\/c\/(\d+)\/(\d+)", message_link).groups()
         else:
             channel_username, message_id = re.search(r"t.me\/([^\/]+)\/(\d+)", message_link).groups()
-            entity = await l313l.get_entity(channel_username)
+            entity = await ABH.get_entity(channel_username)
             channel_id = entity.id
     except Exception as e:
         return await event.edit(f"حدث خطأ أثناء الحصول على معرف القناة ومعرف الرسالة. الخطأ: {str(e)}")
 
     try:
-        message = await l313l.get_messages(int(channel_id), ids=int(message_id))
+        message = await ABH.get_messages(int(channel_id), ids=int(message_id))
         if not message:
             return await event.edit("رابط الرسالة غير صالح!")
 
@@ -79,11 +79,11 @@ async def save_media(event):
                 file_ext = message.document.attributes[0].file_name
             if not file_ext:
                 return await event.edit(f"الرسالة لا تحتوي على ملف قابل للحفظ!\n{message.message}")
-            await l313l.send_message(event.chat_id, file_ext)
+            await ABH.send_message(event.chat_id, file_ext)
             file_path = os.path.join(save_dir, f"media_{file_ext}")
-            await l313l.download_media(message, file=file_path)
+            await ABH.download_media(message, file=file_path)
 
-            await l313l.send_file('me', file=file_path, caption=message.text)
+            await ABH.send_file('me', file=file_path, caption=message.text)
 
             os.remove(file_path)
             await event.edit(f"تم حفظ الميديا بنجاح اذهب الى الرسائل المحفوظة!\n\nرابط الرسالة: {message_link}")
@@ -94,7 +94,7 @@ async def save_media(event):
 
 
     
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تحويل صورة$",
     command=("تحويل صورة", plugin_category),
     info={
@@ -122,7 +122,7 @@ async def _(event):
     )
     await output[0].delete()
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الغاء سيف$",
     command=("الغاء سيف", plugin_category),
     info={
@@ -137,13 +137,13 @@ async def Hussein(event):
     cancel_process = True
     await event.edit("تم إلغاء عملية حفظ الميديا.")
 
-l313l.on(events.NewMessage(incoming=True))
+ABH.on(events.NewMessage(incoming=True))
 async def check_cancel(event):
     global cancel_process
     if isinstance(event.message, MessageService) and event.message.action and isinstance(event.message.action, MessageActionChannelMigrateFrom):
         cancel_process = True
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="سيف(?: |$)(.*) (\d+)",
     command=("سيف", plugin_category),
     info={
@@ -166,8 +166,8 @@ async def Hussein(event):
     os.makedirs(save_dir, exist_ok=True)
     
     try:
-        channel_entity = await l313l.get_entity(channel_username)
-        messages = await l313l.get_messages(channel_entity, limit=limit)
+        channel_entity = await ABH.get_entity(channel_username)
+        messages = await ABH.get_messages(channel_entity, limit=limit)
     except Exception as e:
         return await event.edit(f"حدث خطأ أثناء جلب الرسائل من القناة. الخطأ: {str(e)}")
 
@@ -191,7 +191,7 @@ async def Hussein(event):
                 
                 file_path = os.path.join(save_dir, f"media_{message.id}{file_ext}")
                 await message.download_media(file=file_path)
-                await l313l.send_file("me", file=file_path)
+                await ABH.send_file("me", file=file_path)
                 os.remove(file_path)
             
             if cancel_process:
@@ -204,7 +204,7 @@ async def Hussein(event):
 
     await event.edit(f"تم حفظ الميديا من القناة {channel_username} بنجاح.")
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تحويل ملصق$",
     command=("تحويل ملصق", plugin_category),
     info={
@@ -232,7 +232,7 @@ async def _(event):
     )
     await output[0].delete()
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تحويل (mp3|voice)$",
     command=("تحويل", plugin_category),
     info={
@@ -345,7 +345,7 @@ async def _(event):
 #Copyright  By  @jepthon  © 2021
 #WRITE BY  @lMl10l
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تحويل متحركة ?([0-9.]+)?$",
     command=("تحويل متحركة", plugin_category),
     info={
@@ -381,7 +381,7 @@ async def _(event):
         if os.path.exists(i):
             os.remove(i)
 #write Code By #Hussein For Aljoker 🤡
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern=r"بنتيرست (.+)",
     command=("بنتيرست", plugin_category),
 )
