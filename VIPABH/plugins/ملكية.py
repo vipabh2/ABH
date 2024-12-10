@@ -1,16 +1,15 @@
-# Copyright (C) 2021 JoKeRUB TEAM
 
 import telethon.password as pwd_mod
 from telethon.tl import functions
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..Config import Config
 
 plugin_category = "utils"
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="ملكية (.*)",
     command=("ملكية", plugin_category),
     info={
@@ -19,7 +18,7 @@ plugin_category = "utils"
         "usage": "{tr}otransfer <username to whom you want to transfer>",
     },
 )
-# For JoKeRUB
+# For VIPABH
 
 async def _(event):
     "To transfer channel ownership"
