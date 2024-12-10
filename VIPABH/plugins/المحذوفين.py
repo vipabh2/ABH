@@ -10,7 +10,7 @@ from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _format
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اكسباير ?([\s\S]*)",
     command=("اكسباير", plugin_category),
     info={
@@ -42,12 +42,10 @@ async def _(event):  # sourcery no-metrics
     o = 0
     q = 0
     r = 0
+  
     et = await edit_or_reply(event, "**⪼ البحث في قـوائم المشارڪين ..**")
     async for i in event.client.iter_participants(event.chat_id):
         p += 1
-        #
-        # Note that it's "reversed". You must set to ``True`` the permissions
-        # you want to REMOVE, and leave as ``None`` those you want to KEEP.
         rights = ChatBannedRights(until_date=None, view_messages=True)
         if isinstance(i.status, UserStatusEmpty):
             y += 1
@@ -164,7 +162,7 @@ async def _(event):  # sourcery no-metrics
     )
 
 
-@l313l.ar_cmd(pattern=r"المحذوفين ?([\s\S]*)")
+@ABH.ar_cmd(pattern=r"المحذوفين ?([\s\S]*)")
 async def rm_deletedacc(show):
     con = show.pattern_match.group(1).lower()
     del_u = 0
@@ -213,14 +211,14 @@ async def rm_deletedacc(show):
         )
 
   
-@l313l.ar_cmd(pattern="رسائلي$")
+@ABH.ar_cmd(pattern="رسائلي$")
 async def zed(event):
     zzm = "me"
     a = await bot.get_messages(event.chat_id, 0, from_user=zzm)
     await edit_or_reply(event, f"**⎉╎لديـك هنـا ⇽**  `{a.total}`  **رسـالـه 📩**")
 
 
-@l313l.ar_cmd(pattern="رسائله ?(.*)")
+@ABH.ar_cmd(pattern="رسائله ?(.*)")
 async def zed(event):
     k = await event.get_reply_message()
     if k:
@@ -234,7 +232,7 @@ async def zed(event):
         await edit_or_reply(event, f"**⎉╎بالـرد ع الشخص او بـ إضافة أيـدي او يـوزر الشخـص لـ الامـر**")
 
 
-@l313l.ar_cmd(pattern="(الرسائل|رسائل) ?(.*)")
+@ABH.ar_cmd(pattern="(الرسائل|رسائل) ?(.*)")
 async def zed(event):
     k = await event.get_reply_message()
     if k:
