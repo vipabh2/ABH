@@ -5,7 +5,7 @@ from datetime import datetime
 from ..core.managers import edit_delete, edit_or_reply
 
 
-@l313l.ar_cmd(pattern="مواليد(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="مواليد(?:\s|$)([\s\S]*)")
 async def _(event):
     yar = event.text[12:]
     if not yar:
