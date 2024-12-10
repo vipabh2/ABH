@@ -1,5 +1,4 @@
-#ترجمه فريق الجوكر على التيلكرام
-from JoKeRUB import CMD_HELP, l313l
+from VIPABH import CMD_HELP, ABH
 
 from ..core.managers import edit_delete, edit_or_reply
 
@@ -8,7 +7,7 @@ plugin_category = "extra"
 name = "Profile Photos"
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="صورة(?: |$)(.*)",
     command=("صورة", plugin_category),
     info={
@@ -48,7 +47,7 @@ async def potocmd(event):
             await event.client.send_file(event.chat_id, photos)
         else:
             try:
-                if u:  #ترجمه فريق الجوكر على التيلكرام
+                if u: 
                     photo = await event.client.download_profile_photo(user.sender)
                 else:
                     photo = await event.client.download_profile_photo(event.input_chat)
