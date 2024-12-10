@@ -3,7 +3,7 @@ from telethon.errors.rpcerrorlist import UserAdminInvalidError, UserIdInvalidErr
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.managers import edit_or_reply
 from ..helpers.utils import _format
@@ -17,7 +17,7 @@ NO_PERM = "**᯽︙ يبـدو انه ليس لديك صلاحيات كافية 
 
 joker_t8ed = "https://forkgraph.zaid.pro/file/ya744KD7Km3q"
 joker_unt8ed = "https://forkgraph.zaid.pro/file/YMTcYN1GaXQy"
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تقييد_مؤقت(?:\s|$)([\s\S]*)",
     command=("تقييد_مؤقت", plugin_category),
     info={
@@ -105,7 +105,7 @@ async def tmuter(event):  # sourcery no-metrics
         return await event.edit(f"`{str(e)}`")
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="حظر_مؤقت(?:\s|$)([\s\S]*)",
     command=("حظر_مؤقت", plugin_category),
     info={
@@ -168,9 +168,6 @@ async def tban(event):  # sourcery no-metrics
         return await catevent.edit(
             "᯽︙ ** لـيس لدي صلاحيـات الحذف لكن سيبقى محظور ❕**"
         )
-    # Delete message and then tell that the command
-    # is done gracefully
-    # Shout out the ID, so that fedadmins can fban later
     if reason:
         await catevent.edit(
             f"**المستخدم {_format.mentionuser(user.first_name ,user.id)}** /n **تـم حظره بنـجاح ✅**\n"
@@ -200,7 +197,7 @@ async def tban(event):  # sourcery no-metrics
                 f"**مـدة الحـظر : **`{cattime}`",
             )
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تقييد(?:\s|$)([\s\S]*)",
     command=("تقييد", plugin_category),
     info={
@@ -263,7 +260,7 @@ async def T8ed_Joker(event):
         return await event.edit("يبدو أنك لست مشرفًا في المجموعة أو تحاول تقييد مشرف هنا.")
     except Exception as e:
         return await event.edit(f"`{str(e)}`")
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الغاء تقييد(?:\s|$)([\s\S]*)",
     command=("الغاء تقييد", plugin_category),
     info={
