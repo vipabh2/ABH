@@ -1,6 +1,6 @@
 from telethon import events
 import random, re
-from JoKeRUB.utils import admin_cmd
+from VIPABH.utils import admin_cmd
 import asyncio 
 
 @borg.on(
