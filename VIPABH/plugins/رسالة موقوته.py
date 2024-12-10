@@ -1,13 +1,13 @@
 from asyncio import sleep
 
-from JoKeRUB import l313l
-from JoKeRUB.core.logger import logging
+from VIPABH import ABH
+from VIPABH.core.logger import logging
 
 plugin_category = "tools"
 LOGS = logging.getLogger(__name__)
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="مؤقت (\d*) ([\s\S]*)",
     command=("مؤقت", plugin_category),
     info={
