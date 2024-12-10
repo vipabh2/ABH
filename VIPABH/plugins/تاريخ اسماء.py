@@ -1,10 +1,9 @@
-# Copyright (C) 2021 JoKeRUB TEAM
-# FILES WRITTEN BY  @lMl10l
+
 import asyncio
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers import get_user_from_event, sanga_seperator
@@ -13,7 +12,7 @@ from ..helpers.utils import _format
 plugin_category = "utils"
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تاريخ(معرفات)?(?: |$)(.*)",
     command=("تاريخ", plugin_category),
     info={
