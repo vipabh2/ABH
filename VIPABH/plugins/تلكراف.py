@@ -32,7 +32,7 @@ def resize_image(image):
     im.save(image, "PNG")
 
 
-@zedub.zed_cmd(
+@ABH.ar_cmd(
     pattern="(ت(ل)?ك(راف)?) ?(m|t|ميديا|نص)(?:\s|$)([\s\S]*)",
     command=("تلكراف", plugin_category),
     info={
@@ -128,7 +128,7 @@ async def _(event):
         )
 
 
-@zedub.zed_cmd(
+@ABH.ar_cmd(
     pattern="ctg(?: |$)([\s\S]*)",
     command=("ctg", plugin_category),
     info={
