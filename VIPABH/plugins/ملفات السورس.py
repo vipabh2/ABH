@@ -1,4 +1,4 @@
-from JoKeRUB import l313l
+from VIPABH import ABH
 import pkg_resources
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _catutils, parse_pre, yaml_format
@@ -11,7 +11,7 @@ plugin_category = "tools"
 
 #Reda
 
-@l313l.ar_cmd(pattern="المكاتب")
+@ABH.ar_cmd(pattern="المكاتب")
 async def reda(event):
     installed_packages = pkg_resources.working_set
     installed_packages_list = sorted(["%s==%s" % (i.key, i.version)
@@ -22,42 +22,42 @@ async def reda(event):
     list += "**سورس الجوكر**"
     await edit_or_reply(event, list)
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الملفات$",
     command=("الملفات", plugin_category),
     info={
-        "header": "To list all plugins in JoKeRUB.",
+        "header": "To list all plugins in VIPABH.",
         "usage": "{tr}plugins",
     },
 )
 async def _(event):
-    "To list all plugins in JoKeRUB"
-    cmd = "ls JoKeRUB/plugins"
+    "To list all plugins in VIPABH"
+    cmd = "ls VIPABH/plugins"
     o = (await _catutils.runcmd(cmd))[0]
     OUTPUT = f"**[الجوكر](tg://need_update_for_some_feature/) الـمـلفـات:**\n{o}"
     await edit_or_reply(event, OUTPUT)
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="فاراتي$",
     command=("فاراتي", plugin_category),
     info={
-        "header": "To list all environment values in JoKeRUB.",
-        "description": "to show all heroku vars/Config values in your JoKeRUB",
+        "header": "To list all environment values in VIPABH.",
+        "description": "to show all heroku vars/Config values in your VIPABH",
         "usage": "{tr}env",
     },
 )
 async def _(event):
-    "To show all config values in JoKeRUB"
+    "To show all config values in VIPABH"
     cmd = "env"
     o = (await _catutils.runcmd(cmd))[0]
     OUTPUT = (
         f"**[الجوكر](tg://need_update_for_some_feature/) قـائمـة الـفـارات:**\n\n\n{o}\n\n**انتبه هنالك معلومات حساسة لا تُعطِها لشخص غير موثوق**"
     )
     await edit_or_reply(event, "**تم ارسال المعلومات في الرسائل المحفوضة \nانتبه من الاشخاص الي يطلبون منك كتابة هذا الامر يريد ان يخترقك!**")
-    await l313l.send_message("me", OUTPUT)
+    await ABH.send_message("me", OUTPUT)
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="متى$",
     command=("متى", plugin_category),
     info={
@@ -78,7 +78,7 @@ async def _(event):
     await edit_or_reply(
         event, f"**᯽︙ نـشـرت هـذه الـرسالة فـي  :** `{yaml_format(result)}`"
     )
-@l313l.ar_cmd(pattern="رابط مباشر")
+@ABH.ar_cmd(pattern="رابط مباشر")
 async def upload_reda(event):
     r = await event.get_reply_message()
     if r is None:
