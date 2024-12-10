@@ -1,8 +1,8 @@
 import pyfiglet
-from JoKeRUB import l313l
-from JoKeRUB.helpers.utils import _format
-from JoKeRUB.core.managers import edit_delete, edit_or_reply
-from JoKeRUB.plugins import _format, l313l, deEmojify
+from VIPABH import ABH
+from VIPABH.helpers.utils import _format
+from VIPABH.core.managers import edit_delete, edit_or_reply
+from VIPABH.plugins import _format, ABH, deEmojify
 
 plugin_category = "utils"
 
@@ -40,7 +40,7 @@ CMD_FIG = {
 
 }
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تشكيل(?:\s|$)([\s\S]*)",
     command=("تشكيل", plugin_category),
     info={
