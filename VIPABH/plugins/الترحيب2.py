@@ -1,12 +1,9 @@
-#========================#
-#       JoKeRUB  - lMl10l  #  
-# =======================#
 
 from asyncio import sleep
 from telethon.utils import get_display_name
 from telethon import events
 
-from JoKeRUB import l313l
+from VIPABH import VIPABH
 from ..Config import Config
 
 
@@ -24,7 +21,7 @@ plugin_category = "utils"
 welpriv = Config.PRV_ET or "رحب"
 delwelpriv = Config.DELPRV_ET or "حذف رحب"
 
-@l313l.on(events.ChatAction)
+@VIPABH.on(events.ChatAction)
 async def _(event):  # sourcery no-metrics  # sourcery skip: low-code-quality
     cws = getcurrent_welcome_settings(event.chat_id)
     if (
@@ -87,7 +84,7 @@ async def _(event):  # sourcery no-metrics  # sourcery skip: low-code-quality
             link_preview=link_preview,
         )
 
-@l313l.on(admin_cmd(pattern=f"{welpriv}(?:\s|$)([\s\S]*)"))
+@VIPABH.on(admin_cmd(pattern=f"{welpriv}(?:\s|$)([\s\S]*)"))
 async def save_welcome(event):
     "To set private welcome message."
     msg = await event.get_reply_message()
@@ -123,7 +120,7 @@ async def save_welcome(event):
     await edit_or_reply("**᯽︙ حـدث خطـأ أثنـاء ضبـط رسالـة الترحيـب في هـذه الـدردشـة ️**")
 
 
-@l313l.on(admin_cmd(pattern=f"{delwelpriv}(?:\s|$)([\s\S]*)"))
+@VIPABH.on(admin_cmd(pattern=f"{delwelpriv}(?:\s|$)([\s\S]*)"))
 async def del_welcome(event):
     "To turn off private welcome message"
     if rmwelcome_setting(event.chat_id) is True:
@@ -132,7 +129,7 @@ async def del_welcome(event):
         await edit_or_reply(event, "**᯽︙ لـيس لـدي اي رسـالة تـرحيب خـاص هـنا**")
 
 
-@l313l.ar_cmd(
+@VIPABH.ar_cmd(
     pattern="لستة الترحيب الخاص$",
     command=("لستة الترحيب خاص", plugin_category),
     info={
