@@ -18,7 +18,7 @@ from telethon.tl.types import (
 )
 from telethon.utils import get_input_location
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
@@ -29,7 +29,7 @@ LOGS = logging.getLogger(__name__)
 plugin_category = "utils"
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="المشرفين(?: |$)(.*)",
     command=("المشرفين", plugin_category),
     info={
@@ -39,7 +39,7 @@ plugin_category = "utils"
             "{tr}المشرفيـن +إسم المستخـدم/معرّف المستخـدم> ✪",
             "{tr}المشرفيـن + في المجموعـة التي تريدهـا> ✪",
         ],
-        "examples": "{tr}المشرفين @l313l",
+        "examples": "{tr}المشرفين @ABH",
     },
 )
 async def _(event):
@@ -84,7 +84,7 @@ async def _(event):
     await event.delete()
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="البوتات(?: |$)(.*)",
     command=("البوتات", plugin_category),
     info={
@@ -94,7 +94,7 @@ async def _(event):
             "{tr}البوتات + إسم المستخـدم/معرّف المستخـدم> 🝰 ",
             "{tr}البوتات + في المجموعـة التي تريدهـا 🝰 ",
         ],
-        "examples": "{tr}البوتات @l313l",
+        "examples": "{tr}البوتات @ABH",
     },
 )
 async def _(event):
@@ -126,7 +126,7 @@ async def _(event):
     await edit_or_reply(event, mentions)
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الاعضاء(?: |$)(.*)",
     command=("الاعضاء", plugin_category),
     info={
@@ -176,7 +176,7 @@ async def get_users(show):
     await edit_or_reply(catevent, mentions)
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="معلومات(?: |$)(.*)",
     command=("معلومات", plugin_category),
     info={
