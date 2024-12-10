@@ -1,7 +1,7 @@
 import re
 import asyncio
 import time
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.managers import edit_or_reply
 from ..sql_helper.filter_sql import (
@@ -15,7 +15,7 @@ from . import BOTLOG, BOTLOG_CHATID
 plugin_category = "utils"
 ROZTEXT = "عـذرا لا يمكـنك اضافـة رد هـنا" 
 
-@l313l.ar_cmd(incoming=True)
+@ABH.ar_cmd(incoming=True)
 async def filter_incoming_handler(handler):
     if handler.sender_id == handler.client.uid:
         return
@@ -82,7 +82,7 @@ async def filter_incoming_handler(handler):
             return
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="رد ([\s\S]*)",
     command=("رد", plugin_category),
     info={
@@ -145,7 +145,7 @@ async def add_new_filter(new_handler):
         return await edit_or_reply(new_handler, success.format(keyword, "Updated"))
     await edit_or_reply(new_handler, f"Error while setting filter for {keyword}")
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الردود$",
     command=("الردود", plugin_category),
     info={
@@ -170,7 +170,7 @@ async def on_snip_list(event):
     )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="حذف رد ([\s\S]*)",
     command=("حذف رد", plugin_category),
     info={
@@ -187,7 +187,7 @@ async def remove_a_filter(r_handler):
         await r_handler.edit("**᯽︙ الـرد {} تـم حـذفة بنـجـاح ✓**".format(filt))
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="حذف الردود$",
     command=("حذف الردود", plugin_category),
     info={
