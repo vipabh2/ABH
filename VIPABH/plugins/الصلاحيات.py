@@ -7,7 +7,7 @@ from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from telethon.tl.types import ChatBannedRights
 
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _format
@@ -17,10 +17,7 @@ from . import BOTLOG, get_user_from_event
 
 plugin_category = "admin" 
 
-# Copyright (C) 2021 JoKeRUB TEAM
-# FILES WRITTEN BY  @lMl10l
-
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="قفل (.*)",
     command=("قفل", plugin_category),
     info={
@@ -208,7 +205,7 @@ async def _(event):  # sourcery no-metrics
             )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="فتح (.*)",
     command=("فتح", plugin_category),
     info={
@@ -396,7 +393,7 @@ async def _(event):  # sourcery no-metrics
             )
 
 # BY  @lMl10l
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الصلاحيات$",
     command=("الصلاحيات", plugin_category),
     info={
@@ -456,7 +453,7 @@ async def _(event):  # sourcery no-metrics
     await edit_or_reply(event, res)
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="plock (.*)",
     command=("plock", plugin_category),
     info={
@@ -703,7 +700,7 @@ async def _(event):  # sourcery no-metrics
         )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="punlock (.*)",
     command=("punlock", plugin_category),
     info={
@@ -954,7 +951,7 @@ async def _(event):  # sourcery no-metrics
         )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="uperm(?: |$)(.*)",
     command=("uperm", plugin_category),
     info={
@@ -1031,7 +1028,7 @@ async def _(event):  # sourcery no-metrics
     await edit_or_reply(event, output)
 
 
-@l313l.ar_cmd(incoming=True)
+@ABH.ar_cmd(incoming=True)
 async def check_incoming_messages(event):  # sourcery no-metrics
     if not event.is_private:
         try:
@@ -1100,7 +1097,7 @@ async def check_incoming_messages(event):  # sourcery no-metrics
                 update_lock(peer_id, "url", False)
 
 
-@l313l.on(events.ChatAction())
+@ABH.on(events.ChatAction())
 async def _(event):
     if not event.is_private:
         chat = await event.get_chat()
