@@ -1,8 +1,8 @@
 import re
 import os
 import requests
-from JoKeRUB import l313l
-from JoKeRUB.core.logger import logging
+from VIPABH import ABH
+from VIPABH.core.logger import logging
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
@@ -20,7 +20,7 @@ oldvars = {
     "PM_BLOCK": "pmblock",
 }
 
-@l313l.ar_cmd(pattern="جلب (.*)")
+@ABH.ar_cmd(pattern="جلب (.*)")
 async def getvar(event):
     input = event.pattern_match.group(1)
     if input is None:
@@ -34,7 +34,7 @@ async def getvar(event):
     await edit_or_reply(event, gvarstatus(input))
 
 
-@l313l.ar_cmd(pattern="اضف (.*)")
+@ABH.ar_cmd(pattern="اضف (.*)")
 async def custom_HuRe(event):
     reply = await event.get_reply_message()
     text = None
@@ -122,7 +122,7 @@ async def custom_HuRe(event):
         )
 
 
-@l313l.ar_cmd(pattern="حذف (.*)")
+@ABH.ar_cmd(pattern="حذف (.*)")
 async def custom_HuRe(event):
     input_str = event.pattern_match.group(1)
     if (
@@ -241,7 +241,7 @@ async def custom_HuRe(event):
             f"#حذف_فار\
                     \n**فار {input_str}** تم حذفه من قاعده البيانات",
         )
-@l313l.ar_cmd(pattern="اضف صورة (الفحص|فحص) ?(.*)")
+@ABH.ar_cmd(pattern="اضف صورة (الفحص|فحص) ?(.*)")
 async def alive_aljoker(event):
     reply = await event.get_reply_message()
     if reply and reply.media:
@@ -271,7 +271,7 @@ async def alive_aljoker(event):
                 os.remove(media)
     else:
         await event.edit("**᯽︙ يُرجى الرد على الصورة لطفًا**")
-@l313l.ar_cmd(pattern="اضف صورة (البنك|بنك) ?(.*)")
+@ABH.ar_cmd(pattern="اضف صورة (البنك|بنك) ?(.*)")
 async def ping_aljoker(event):
     reply = await event.get_reply_message()
     if reply and reply.media:
@@ -301,7 +301,7 @@ async def ping_aljoker(event):
                 os.remove(media)
     else:
         await event.edit("**᯽︙ يُرجى الرد على الصورة لطفًا**")
-@l313l.ar_cmd(pattern="اضف صورة (الحماية|الحمايه|حماية|حمايه) ?(.*)")
+@ABH.ar_cmd(pattern="اضف صورة (الحماية|الحمايه|حماية|حمايه) ?(.*)")
 async def secu_aljoker(event):
     reply = await event.get_reply_message()
     if reply and reply.media:
@@ -331,7 +331,7 @@ async def secu_aljoker(event):
                 os.remove(media)
     else:
         await event.edit("**᯽︙ يُرجى الرد على الصورة لطفًا**")
-@l313l.ar_cmd(pattern="اضف صورة (الخاص|خاص) ?(.*)")
+@ABH.ar_cmd(pattern="اضف صورة (الخاص|خاص) ?(.*)")
 async def khas_aljoker(event):
     reply = await event.get_reply_message()
     if reply and reply.media:
