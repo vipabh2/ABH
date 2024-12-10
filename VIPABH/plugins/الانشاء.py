@@ -6,7 +6,7 @@ from ..utils.tools import create_supergroup
 plugin_category = "الادوات"
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="انشاء (كروب|خارق|قناه) ([\s\S]*)",
     command=("انشاء", plugin_category),
     info={
