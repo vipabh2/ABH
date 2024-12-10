@@ -1,10 +1,10 @@
 import sys
-from JoKeRUB.core.logger import logging
+from VIPABH.core.logger import logging
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from telethon.sessions import StringSession
 from telethon.errors import AccessTokenExpiredError, AccessTokenInvalidError
 from ..Config import Config
-from .aljokerUB import aljokerPyro
+from .alVIPABH import aljokerPyro
 from .client import HuReClient
 LOGS = logging.getLogger(" ")
 
@@ -19,7 +19,6 @@ else:
 
 try:
     ABH = HuReClient(
-    # ABH = HuReClient(
         session=session,
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
