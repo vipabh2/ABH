@@ -1,9 +1,4 @@
-# @jepthon - < https://t.me/jepthon >
-# Copyright (C) 2021 - JoKeRUB-AR
-# All rights reserved.
-#
-# Please read the GNU Affero General Public License in;
-# ===============================================================
+
 import asyncio
 import os
 import re
