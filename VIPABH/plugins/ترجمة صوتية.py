@@ -1,7 +1,7 @@
 import os
 from telethon import functions 
 import subprocess
-from JoKeRUB.helpers.functions.functions import translate
+from VIPABH.helpers.functions.functions import translate
 from datetime import datetime
 
 
@@ -9,7 +9,7 @@ from datetime import datetime
 from gtts import gTTS
 
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 
 from ..core.managers import edit_delete, edit_or_reply
@@ -17,18 +17,18 @@ from ..core.managers import edit_delete, edit_or_reply
 from . import deEmojify, reply_id
 
 
-@l313l.ar_cmd(pattern="test(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="test(?:\s|$)([\s\S]*)")
 async def reda(event):
     tr = translate("انا عراقي", lang_tgt="fa").replace("\ N", "\n")
     await edit_or_reply(event, tr)
-    result = await l313l(functions.users.GetFullUserRequest(
+    result = await ABH(functions.users.GetFullUserRequest(
         id='earthlink_telecommunications'
     ))
     await event.reply(result.stringify())
 
 
 
-@l313l.ar_cmd(pattern="تكلم(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="تكلم(?:\s|$)([\s\S]*)")
 
 async def _(event):
 
