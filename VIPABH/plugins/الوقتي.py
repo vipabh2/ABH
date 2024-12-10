@@ -14,11 +14,11 @@ from pySmartDL import SmartDL
 from telethon.errors import FloodWaitError, ChannelInvalidError
 from telethon.tl import functions
 from telethon import types
-from JoKeRUB import BOTLOG_CHATID
+from VIPABH import BOTLOG_CHATID
 from ..Config import Config
 from ..helpers.utils import _format
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from . import AUTONAME, DEFAULT_GROUP, DEFAULT_BIO, edit_delete, l313l, logging
+from . import AUTONAME, DEFAULT_GROUP, DEFAULT_BIO, edit_delete, ABH, logging
 from colour import Color
 
 plugin_category = "tools"
@@ -29,14 +29,14 @@ LOGS = logging.getLogger(__name__)
 namerzfont = gvarstatus("JP_FN") or "𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗𝟎"
 FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
 
-autopic_path = os.path.join(os.getcwd(), "JoKeRUB", "original_pic.png")
-digitalpic_path = os.path.join(os.getcwd(), "JoKeRUB", "digital_pic.png")
-digital_group_pic_path = os.path.join(os.getcwd(), "JoKeRUB", "digital_group_pic.png")
-autophoto_path = os.path.join(os.getcwd(), "JoKeRUB", "photo_pfp.png")
-auto_group_photo_path = os.path.join(os.getcwd(), "JoKeRUB", "photo_pfp.png")
+autopic_path = os.path.join(os.getcwd(), "VIPABH", "original_pic.png")
+digitalpic_path = os.path.join(os.getcwd(), "VIPABH", "digital_pic.png")
+digital_group_pic_path = os.path.join(os.getcwd(), "VIPABH", "digital_group_pic.png")
+autophoto_path = os.path.join(os.getcwd(), "VIPABH", "photo_pfp.png")
+auto_group_photo_path = os.path.join(os.getcwd(), "VIPABH", "photo_pfp.png")
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
 digitalgrouppfp = Config.DIGITAL_GROUP_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
-jep = Config.DEFAULT_PIC or "JoKeRUB/helpers/styles/PaybAck.ttf"
+jep = Config.DEFAULT_PIC or "VIPABH/helpers/styles/PaybAck.ttf"
 normzltext = "1234567890"
 namew8t = Config.NAME_ET or "اسم وقتي"
 biow8t = Config.BIO_ET or "بايو وقتي"
@@ -62,7 +62,7 @@ async def aljoker_timezone(event, tz_name):
     else:
         await event.edit("**᯽︙ عذراً المنطقة الزمنية هذه لم تتم إضافتها إلى الان** ")
 
-@l313l.on(admin_cmd(pattern="وقت (.+)"))
+@ABH.on(admin_cmd(pattern="وقت (.+)"))
 async def handle_timezone(event):
     tz_name = event.pattern_match.group(1).strip()
     await aljoker_timezone(event, tz_name)
@@ -100,13 +100,13 @@ async def digitalpicloop():
         img.save(autophoto_path)
         try:
             if i > 0:
-                await l313l(
+                await ABH(
                     functions.photos.DeletePhotosRequest(
-                        await l313l.get_profile_photos("me", limit=1)
+                        await ABH.get_profile_photos("me", limit=1)
                     )
                 )
             i += 1
-            result = await l313l(functions.photos.UploadProfilePhotoRequest(file=await l313l.upload_file(autophoto_path)))
+            result = await ABH(functions.photos.UploadProfilePhotoRequest(file=await ABH.upload_file(autophoto_path)))
             os.remove(autophoto_path)
             await asyncio.sleep(60)
         except BaseException:
@@ -140,19 +140,19 @@ async def digitalgrouppicloop():
         fnt = ImageFont.truetype(jep, 65)
         drawn_text.text((200, 200), current_time, font=fnt, fill=colo)
         img.save(auto_group_photo_path)
-        file = await l313l.upload_file(auto_group_photo_path)
+        file = await ABH.upload_file(auto_group_photo_path)
         try:
             if i > 0:
-                async for photo in l313l.iter_profile_photos(int(dgp), limit=1) :
-                    await l313l(
+                async for photo in ABH.iter_profile_photos(int(dgp), limit=1) :
+                    await ABH(
                     functions.photos.DeletePhotosRequest(id=[types.InputPhoto( id=photo.id, access_hash=photo.access_hash, file_reference=photo.file_reference )])
                     )
             i += 1
-            await l313l(functions.channels.EditPhotoRequest(int(dgp), file))
+            await ABH(functions.channels.EditPhotoRequest(int(dgp), file))
             os.remove(auto_group_photo_path)
             await asyncio.sleep(60)
         except ChatAdminRequiredError:
-            return await l313l.tgbot.send_message(BOTLOG_CHATID, "**يجب ان يكون لديك صلاحية تغيير صورة الكروب لتغيير صورة الكروب الوقتية •**")
+            return await ABH.tgbot.send_message(BOTLOG_CHATID, "**يجب ان يكون لديك صلاحية تغيير صورة الكروب لتغيير صورة الكروب الوقتية •**")
         except ChannelInvalidError:
             return
         except FloodWaitError:
@@ -175,12 +175,12 @@ async def group_loop():
                 HM = HM.replace(normal, namefont)
         name = f"{DEFAULTUSERGRO} {HM}"
         try:
-            await l313l(functions.channels.EditTitleRequest(
-                channel=await l313l.get_entity(int(ag)),
+            await ABH(functions.channels.EditTitleRequest(
+                channel=await ABH.get_entity(int(ag)),
                 title=name
             ))
         except ChatAdminRequiredError:
-            await l313l.tgbot.send_message(BOTLOG_CHATID, "**يجب ان يكون لديك صلاحية تغيير اسم الكروب لتفعيل وقتي الكروب•**")
+            await ABH.tgbot.send_message(BOTLOG_CHATID, "**يجب ان يكون لديك صلاحية تغيير اسم الكروب لتفعيل وقتي الكروب•**")
         except ChannelInvalidError:
             return
         except FloodWaitError:
@@ -203,7 +203,7 @@ async def autoname_loop():
         name = f"{lMl10l} {HM}"
         LOGS.info(name)
         try:
-            await l313l(functions.account.UpdateProfileRequest(first_name=name))
+            await ABH(functions.account.UpdateProfileRequest(first_name=name))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
             await asyncio.sleep(120)
@@ -225,14 +225,14 @@ async def autobio_loop():
         bio = f"{DEFAULTUSERBIO} {HI}"
         LOGS.info(bio)
         try:
-            await l313l(functions.account.UpdateProfileRequest(about=bio))
+            await ABH(functions.account.UpdateProfileRequest(about=bio))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
         await asyncio.sleep(Config.CHANGE_TIME)
         AUTOBIOSTART = gvarstatus("autobio") == "true"
 
 
-@l313l.on(admin_cmd(pattern=f"{phow8t}(?:\s|$)([\s\S]*)"))
+@ABH.on(admin_cmd(pattern=f"{phow8t}(?:\s|$)([\s\S]*)"))
 async def _(event):
     "To set random colour pic with time to profile pic"
     downloader = SmartDL(digitalpfp, digitalpic_path, progress_bar=False)
@@ -245,7 +245,7 @@ async def _(event):
     await edit_delete(event, "**تم تفـعيل الصـورة الـوقتية بنجـاح ✓**")
     await digitalpicloop()
 
-@l313l.on(admin_cmd(pattern="كروب وقتي"))
+@ABH.on(admin_cmd(pattern="كروب وقتي"))
 async def _(event):
     ison = get_auto_g()
     if event.is_group or event.is_channel:
@@ -258,7 +258,7 @@ async def _(event):
     else:
         return await edit_delete(event, "**يمكنك استعمال الاسم الوقتي في الكروب او في القناة فقط**")
 
-@l313l.on(admin_cmd(pattern="كروب صورة وقتي"))
+@ABH.on(admin_cmd(pattern="كروب صورة وقتي"))
 async def _(event):
     ison = gvarstatus("digitalgrouppic")
     if event.is_group or event.is_channel:
@@ -271,7 +271,7 @@ async def _(event):
     else:
         return await edit_delete(event, "**يمكنك استعمال الصورة الوقتية في كروب او قناة**")
 
-@l313l.on(admin_cmd(pattern=f"{namew8t}(?:\s|$)([\s\S]*)"))
+@ABH.on(admin_cmd(pattern=f"{namew8t}(?:\s|$)([\s\S]*)"))
 async def _(event):
     "To set your display name along with time"
     if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
@@ -281,7 +281,7 @@ async def _(event):
     await autoname_loop()
 
 
-@l313l.on(admin_cmd(pattern=f"{biow8t}(?:\s|$)([\s\S]*)"))
+@ABH.on(admin_cmd(pattern=f"{biow8t}(?:\s|$)([\s\S]*)"))
 async def _(event):
     "To update your bio along with time"
     if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
@@ -291,7 +291,7 @@ async def _(event):
     await autobio_loop()
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="انهاء ([\s\S]*)",
     command=("انهاء", plugin_category),
 )
@@ -349,8 +349,8 @@ async def _(event):  # sourcery no-metrics
         )
 
 
-l313l.loop.create_task(digitalpicloop())
-l313l.loop.create_task(digitalgrouppicloop())
-l313l.loop.create_task(autoname_loop())
-l313l.loop.create_task(autobio_loop())
-l313l.loop.create_task(group_loop())
+ABH.loop.create_task(digitalpicloop())
+ABH.loop.create_task(digitalgrouppicloop())
+ABH.loop.create_task(autoname_loop())
+ABH.loop.create_task(autobio_loop())
+ABH.loop.create_task(group_loop())
