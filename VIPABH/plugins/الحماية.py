@@ -6,8 +6,8 @@ from telethon import Button, functions
 from telethon.events import CallbackQuery
 from telethon.utils import get_display_name
 
-from JoKeRUB import l313l
-from JoKeRUB.core.logger import logging
+from VIPABH import AB
+from VIPABH.core.logger import logging
 
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
@@ -20,10 +20,9 @@ from . import mention
 
 LOGS = logging.getLogger(__name__)
 cmdhd = Config.COMMAND_HAND_LER
-# ترجمه وكتابة فريق الجوكر
 
 
-async def do_pm_permit_action(event, chat):  # sourcery no-metrics
+async def do_pm_permit_action(event, chat):
     reply_to_id = await reply_id(event)
     try:
         PM_WARNS = sql.get_collection("pmwarns").json
@@ -80,8 +79,7 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
                 totalwarns=totalwarns,
                 warns=warns,
                 remwarns=remwarns,
-            )  # ترجمه وكتابة فريق الجوكر
-        else:
+            )          else:
             USER_BOT_WARN_ZERO = f"- حذࢪتك وكتلك لا تكࢪࢪ تَم حظࢪك بنجاح ما ٱكدر اخليك تزعج المالك \n- - بباي 🙁🤍"
         msg = await event.reply(USER_BOT_WARN_ZERO)
         await event.client(functions.contacts.BlockRequest(chat.id))
@@ -217,7 +215,6 @@ async def do_pm_options_action(event, chat):
         return
 
 
-# ترجمه وكتابة فريق الجوكر
 async def do_pm_enquire_action(event, chat):
     try:
         PM_WARNS = sql.get_collection("pmwarns").json
@@ -268,7 +265,6 @@ async def do_pm_enquire_action(event, chat):
         return
 
 
-# ترجمه وكتابة فريق الجوكر
 
 
 async def do_pm_request_action(event, chat):
@@ -321,7 +317,6 @@ async def do_pm_request_action(event, chat):
         return
 
 
-# ترجمه وكتابة فريق الجوكر
 
 
 async def do_pm_chat_action(event, chat):
@@ -374,7 +369,6 @@ async def do_pm_chat_action(event, chat):
         return
 
 
-# ترجمه وكتابة فريق الجوكر
 
 
 async def do_pm_spam_action(event, chat):
@@ -407,8 +401,7 @@ async def do_pm_spam_action(event, chat):
         return
 
 
-# ترجمه وكتابة فريق الجوكر
-@l313l.ar_cmd(incoming=True, func=lambda e: e.is_private, edited=False, forword=None)
+@ABH.ar_cmd(incoming=True, func=lambda e: e.is_private, edited=False, forword=None)
 async def on_new_private_message(event):
     if gvarstatus("pmpermit") is None:
         return
@@ -438,7 +431,7 @@ async def on_new_private_message(event):
     await do_pm_permit_action(event, chat)
 
 
-@l313l.ar_cmd(outgoing=True, func=lambda e: e.is_private, edited=False, forword=None)
+@ABH.ar_cmd(outgoing=True, func=lambda e: e.is_private, edited=False, forword=None)
 async def you_dm_other(event):
     if gvarstatus("pmpermit") is None:
         return
@@ -462,7 +455,7 @@ async def you_dm_other(event):
             f"{cmdhd}س",
             f"{cmdhd}ر",
             f"{cmdhd}سماح",
-        )  # ترجمه وكتابة فريق الجوكر
+        ) 
     ):
         return
     try:
@@ -491,7 +484,7 @@ async def you_dm_other(event):
 
 
 
-@l313l.tgbot.on(CallbackQuery(data=re.compile(rb"show_pmpermit_options")))
+@ABH.tgbot.on(CallbackQuery(data=re.compile(rb"show_pmpermit_options")))
 async def on_plug_in_callback_query_handler(event):
     if event.query.user_id == event.client.uid:
         text = "- - عذرا هذه الخيارات ليست لك انها للمستخدمين الذين يراسلوك 😐⚕️"
@@ -510,7 +503,7 @@ async def on_plug_in_callback_query_handler(event):
                 data="to_spam_my_master_inbox",
             ),
         ),
-    ]  # ترجمه وكتابة فريق الجوكر
+    ] 
     sqllist.add_to_list("pmoptions", event.query.user_id)
     try:
         PM_WARNS = sql.get_collection("pmwarns").json
@@ -523,8 +516,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(text, buttons=buttons)
 
 
-# ترجمه وكتابة فريق الجوكر
-@l313l.tgbot.on(CallbackQuery(data=re.compile(rb"to_enquire_something")))
+@ABH.tgbot.on(CallbackQuery(data=re.compile(rb"to_enquire_something")))
 async def on_plug_in_callback_query_handler(event):
     if event.query.user_id == event.client.uid:
         text = "- - عذرا هذه الخيارات ليست لك انها للمستخدمين الذين يراسلوك "
@@ -545,10 +537,9 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(text)
 
 
-# ترجمه وكتابة فريق الجوكر
 
 
-@l313l.tgbot.on(CallbackQuery(data=re.compile(rb"to_request_something")))
+@ABH.tgbot.on(CallbackQuery(data=re.compile(rb"to_request_something")))
 async def on_plug_in_callback_query_handler(event):
     if event.query.user_id == event.client.uid:
         text = "- - عذرا هذه الخيارات ليست لك انها للمستخدمين الذين يراسلوك "
@@ -570,8 +561,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(text)
 
 
-# ترجمه وكتابة فريق الجوكر
-@l313l.tgbot.on(CallbackQuery(data=re.compile(rb"to_chat_with_my_master")))
+@ABH.tgbot.on(CallbackQuery(data=re.compile(rb"to_chat_with_my_master")))
 async def on_plug_in_callback_query_handler(event):
     if event.query.user_id == event.client.uid:
         text = "- - عذرا هذه الخيارات ليست لك انها للمستخدمين الذين يراسلوك "
@@ -591,10 +581,9 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(text)
 
 
-# ترجمه وكتابة فريق الجوكر
 
 
-@l313l.tgbot.on(CallbackQuery(data=re.compile(rb"to_spam_my_master_inbox")))
+@ABH.tgbot.on(CallbackQuery(data=re.compile(rb"to_spam_my_master_inbox")))
 async def on_plug_in_callback_query_handler(event):
     if event.query.user_id == event.client.uid:
         text = " عذرا هذه الخيارات ليست لك انها للمستخدمين الذين يراسلوك "
@@ -618,8 +607,7 @@ async def on_plug_in_callback_query_handler(event):
     try:
         PM_WARNS = sql.get_collection("pmspam").json
     except AttributeError:
-        PM_WARNS = {}  # ترجمه وكتابة فريق الجوكر
-    if str(event.query.user_id) in PM_WARNS:
+        PM_WARNS = {}      if str(event.query.user_id) in PM_WARNS:
         del PM_WARNS[str(event.query.user_id)]
         sql.del_collection("pmwarns")
         sql.add_collection("pmwarns", PM_WARNS, {})
@@ -627,8 +615,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(text)
 
 
-@l313l.ar_cmd(pattern="الحماية (تشغيل|تعطيل)$")  # ترجمه وكتابة فريق الجوكر
-async def pmpermit_on(event):
+@ABH.ar_cmd(pattern="الحماية (تشغيل|تعطيل)$")  async def pmpermit_on(event):
     input_str = event.pattern_match.group(1)
     if input_str == "تشغيل":
         if gvarstatus("pmpermit") is None:
@@ -643,12 +630,10 @@ async def pmpermit_on(event):
         await edit_delete(event, "- امر الحمايه بالفعل مُعطل لحسابك 🌿")
 
 
-@l313l.ar_cmd(pattern="الحماية (تشغيل|تعطيل)$")  # ترجمه وكتابة فريق الجوكر
-async def pmpermit_on(event):
+@ABH.ar_cmd(pattern="الحماية (تشغيل|تعطيل)$")  async def pmpermit_on(event):
     input_str = event.pattern_match.group(1)
     if input_str == "تعطيل":
-        if gvarstatus("pmmenu") is None:  # ترجمه وكتابة فريق الجوكر
-            addgvar("pmmenu", "false")
+        if gvarstatus("pmmenu") is None:              addgvar("pmmenu", "false")
             await edit_delete(
                 event,
                 "-  تم تعطيل امر الحماية لحسابك بنجاح ✅",
@@ -662,7 +647,7 @@ async def pmpermit_on(event):
         await edit_delete(event, "- امر الحمايه بالفعل مُمكن لحسابك 🌿")
 
 
-@l313l.ar_cmd(pattern="(س|سماح)(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="(س|سماح)(?:\s|$)([\s\S]*)")
 async def approve_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
@@ -678,8 +663,7 @@ async def approve_p_m(event):
             return
     if not reason:
         reason = "لم يذكر"
-    try:  # ترجمه وكتابة فريق الجوكر
-        PM_WARNS = sql.get_collection("pmwarns").json
+    try:          PM_WARNS = sql.get_collection("pmwarns").json
     except AttributeError:
         PM_WARNS = {}
     if not pmpermit_sql.is_approved(user.id):
@@ -727,10 +711,9 @@ async def approve_p_m(event):
         )
 
 
-# ترجمه وكتابة فريق الجوكر
 
 
-@l313l.ar_cmd(pattern="(ر|رفض)(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="(ر|رفض)(?:\s|$)([\s\S]*)")
 async def disapprove_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
@@ -765,14 +748,13 @@ async def disapprove_p_m(event):
         )
 
 
-@l313l.ar_cmd(pattern="بلوك(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="بلوك(?:\s|$)([\s\S]*)")
 async def block_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
             f"- يجب تفعيل امر الحماية اولا بأرسال `{cmdhd}الحماية on` ليشتغل هذا الأمر",
-        )  # ترجمه وكتابة فريق الجوكر
-    if event.is_private:
+        )      if event.is_private:
         user = await event.get_chat()
         reason = event.pattern_match.group(1)
     else:
@@ -810,7 +792,7 @@ async def block_p_m(event):
     )
 
 
-@l313l.ar_cmd(pattern="الخاص بلوك(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="الخاص بلوك(?:\s|$)([\s\S]*)")
 async def block_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_or_reply(
@@ -855,7 +837,7 @@ async def block_p_m(event):
     )
 
 
-@l313l.ar_cmd(pattern="انبلوك(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="انبلوك(?:\s|$)([\s\S]*)")
 async def unblock_pm(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
@@ -877,8 +859,7 @@ async def unblock_pm(event):
     )
 
 
-# ترجمه وكتابة فريق الجوكر
-@l313l.ar_cmd(pattern="المسموح لهم$")
+@ABH.ar_cmd(pattern="المسموح لهم$")
 async def approve_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
