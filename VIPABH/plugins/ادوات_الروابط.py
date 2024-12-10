@@ -1,14 +1,13 @@
-# Copyright (C) 2021 JoKeRUB TEAM
-# FILES WRITTEN BY  @lMl10l
+
 import requests
 from validators.url import url
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.managers import edit_delete, edit_or_reply
 
 plugin_category = "utils"
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="دنس(?:\s|$)([\s\S]*)",
     command=("دنس", plugin_category),
     info={
@@ -42,8 +41,8 @@ async def _(event):
             event, f"᯽︙ - لم استطع ايجاد `{input_str}` في الانترنت"
         )
 
-# urltools for l313l 
-@l313l.ar_cmd(
+# urltools for ABH 
+@ABH.ar_cmd(
     pattern="مصغر(?:\s|$)([\s\S]*)",
     command=("مصغر", plugin_category),
     info={
@@ -79,9 +78,9 @@ async def _(event):
     else:
         await edit_or_reply(event, "᯽︙  هـنالك شي خطـا حاول لاحقـا")
 
-# urltools for l313l
+# urltools for ABH
   
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اخفاء(?:\s|$)([\s\S]*)",
     command=("اخفاء", plugin_category),
     info={
