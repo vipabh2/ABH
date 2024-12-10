@@ -12,7 +12,7 @@ __version__ = "2.10.6"
 loop = None
 
 if Config.STRING_SESSION:
-    session = aljokerPyro(Config.STRING_SESSION, LOGS)
+    session = StringSession(Config.STRING_SESSION, LOGS)
 else:
     session = "VIBABH"
 
