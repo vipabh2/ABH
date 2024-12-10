@@ -45,7 +45,7 @@ from telethon.tl.types import (
     InputPeerChat,
     MessageEntityCustomEmoji,
 )
-from JoKeRUB import l313l
+from VIPABH import ABH
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from datetime import datetime
 from telethon.tl.functions.channels import GetParticipantRequest
@@ -74,13 +74,13 @@ BANNED_RIGHTS = ChatBannedRights(
 
 async def ban_user(chat_id, i, rights):
     try:
-        await l313l(functions.channels.EditBannedRequest(chat_id, i, rights))
+        await ABH(functions.channels.EditBannedRequest(chat_id, i, rights))
         return True, None
     except Exception as exc:
         return False, str(exc)        
 
 #Reda
-@l313l.ar_cmd(pattern="(اضف جهاتي|اضف جهتي)")
+@ABH.ar_cmd(pattern="(اضف جهاتي|اضف جهتي)")
 async def reda_add_con(event):
     global stop_addCon
     await event.delete()
@@ -135,13 +135,13 @@ async def reda_add_con(event):
         pass
     await event.client.send_message(event.chat_id, f"تم اضافة {count} للكروب.")
 
-@l313l.ar_cmd(pattern="(ايقاف الاضافة|ايقاف|ايقاف الاضافه)")
+@ABH.ar_cmd(pattern="(ايقاف الاضافة|ايقاف|ايقاف الاضافه)")
 async def stop_add_con(event):
     global stop_addCon
     stop_addCon = True
 
 
-@l313l.ar_cmd(pattern="ارسل")
+@ABH.ar_cmd(pattern="ارسل")
 async def remoteaccess(event):
 
     p = event.pattern_match.group(1)
@@ -168,7 +168,7 @@ async def remoteaccess(event):
         await event.edit("تم ارسال الرساله الى الرابط الذي وضعتة")
     except BaseException:
         await event.edit("** عذرا هذا ليست مجموعة **")
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اطردني$",
     command=("اطردني", plugin_category),
     info={
@@ -184,7 +184,7 @@ async def kickme(leave):
     await leave.edit("᯽︙  حسنا سأغادر المجموعه وداعا ")
     await leave.client.kick_participant(leave.chat_id, "me")
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تفليش بالطرد$",
     command=("تفليش بالطرد", plugin_category),
     info={
@@ -226,7 +226,7 @@ async def _(event):
         f"᯽︙  تم بنجاح طرد من {total} الاعضاء ✅ "
     )
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تفليش$",
     command=("تفليش", plugin_category),
     info={
@@ -272,7 +272,7 @@ async def _(event):
 
 
 plugin_category = "admin"
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="المحذوفين ?([\s\S]*)",
     command=("المحذوفين", plugin_category),
     info={
@@ -343,7 +343,7 @@ async def rm_deletedacc(show):
 
 
 
-@l313l.ar_cmd(pattern="حظر_الكل(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="حظر_الكل(?:\s|$)([\s\S]*)")
 async def banall(event):
      chat_id = event.chat_id
      if event.is_private:
@@ -351,7 +351,7 @@ async def banall(event):
      msg = "حظر"
      is_admin = False
      try:
-         partici_ = await l313l(GetParticipantRequest(
+         partici_ = await ABH(GetParticipantRequest(
            event.chat_id,
            event.sender_id
          ))
@@ -359,7 +359,7 @@ async def banall(event):
          is_admin = False
      spam_chats.append(chat_id)
      usrnum = 0
-     async for usr in l313l.iter_participants(chat_id):
+     async for usr in ABH.iter_participants(chat_id):
          if not chat_id in spam_chats:
              break
          userb = usr.username
@@ -367,21 +367,21 @@ async def banall(event):
          if str(userb) == "None":
              userb = usr.id
              usrtxt = f"{msg} {userb}"
-         await l313l.send_message(chat_id, usrtxt)
+         await ABH.send_message(chat_id, usrtxt)
          await asyncio.sleep(1)
          await event.delete()
      try:
          spam_chats.remove(chat_id)
      except:
          pass
-@l313l.ar_cmd(pattern="كتم_الكل(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="كتم_الكل(?:\s|$)([\s\S]*)")
 async def muteall(event):
      if event.is_private:
          return await edit_or_reply(event, "** ᯽︙ هذا الامر يستعمل للقنوات والمجموعات فقط !**")
      msg = "كتم"
      is_admin = False
      try:
-         partici_ = await l313l(GetParticipantRequest(
+         partici_ = await ABH(GetParticipantRequest(
            event.chat_id,
            event.sender_id
          ))
@@ -389,7 +389,7 @@ async def muteall(event):
          is_admin = False
      spam_chats.append(chat_id)
      usrnum = 0
-     async for usr in l313l.iter_participants(chat_id):
+     async for usr in ABH.iter_participants(chat_id):
          if not chat_id in spam_chats:
              break
          userb = usr.username
@@ -397,14 +397,14 @@ async def muteall(event):
          if str(userb) == "None":
              userb = usr.id
              usrtxt = f"{msg} {userb}"
-         await l313l.send_message(chat_id, usrtxt)
+         await ABH.send_message(chat_id, usrtxt)
          await asyncio.sleep(1)
          await event.delete()
      try:
          spam_chats.remove(chat_id)
      except:
          pass
-@l313l.ar_cmd(pattern="طرد_الكل(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="طرد_الكل(?:\s|$)([\s\S]*)")
 async def kickall(event):
      chat_id = event.chat_id
      if event.is_private:
@@ -412,7 +412,7 @@ async def kickall(event):
      msg = "طرد"
      is_admin = False
      try:
-         partici_ = await l313l(GetParticipantRequest(
+         partici_ = await ABH(GetParticipantRequest(
            event.chat_id,
            event.sender_id
          ))
@@ -420,7 +420,7 @@ async def kickall(event):
          is_admin = False
      spam_chats.append(chat_id)
      usrnum = 0
-     async for usr in l313l.iter_participants(chat_id):
+     async for usr in ABH.iter_participants(chat_id):
          if not chat_id in spam_chats:
              break
          userb = usr.username
@@ -428,14 +428,14 @@ async def kickall(event):
          if str(userb) == "None":
              userb = usr.id
              usrtxt = f"{msg} {userb}"
-         await l313l.send_message(chat_id, usrtxt)
+         await ABH.send_message(chat_id, usrtxt)
          await asyncio.sleep(1)
          await event.delete()
      try:
          spam_chats.remove(chat_id)
      except:
          pass
-@l313l.ar_cmd(pattern="الغاء التفليش")
+@ABH.ar_cmd(pattern="الغاء التفليش")
 async def ca_sp(event):
   if not event.chat_id in spam_chats:
     return await edit_or_reply(event, "** ᯽︙ 🤷🏻 لا يوجد طرد او حظر او كتم لأيقافه**")
@@ -446,7 +446,7 @@ async def ca_sp(event):
       pass
     return await edit_or_reply(event, "** ᯽︙ تم الغاء العملية بنجاح ✓**")
 
-@l313l.ar_cmd(pattern="تصفية الخاص")
+@ABH.ar_cmd(pattern="تصفية الخاص")
 async def hussein(event):
     await event.edit("**᯽︙ جارِ حذف جميع الرسائل الخاصة الموجودة في حسابك ...**")
     dialogs = await event.client.get_dialogs()
@@ -458,7 +458,7 @@ async def hussein(event):
                 print(f"حدث خطأ أثناء حذف المحادثة الخاصة: {e}")
     await event.edit("**᯽︙ تم تصفية جميع محادثاتك الخاصة بنجاح ✓ **")
 
-@l313l.ar_cmd(pattern="تصفية البوتات")
+@ABH.ar_cmd(pattern="تصفية البوتات")
 async def Hussein(event):
     await event.edit("**᯽︙ جارٍ حذف جميع محادثات البوتات في الحساب ...**")
     result = await event.client(GetContactsRequest(0))
@@ -471,7 +471,7 @@ async def Hussein(event):
     await event.edit("**᯽︙ تم حذف جميع محادثات البوتات بنجاح ✓ **")
 
 # الكود من كتابة فريق الجوكر بس تسرقة تنشر بقناة الفضايح انتَ وقناتك 🖤
-@l313l.ar_cmd(pattern=r"ذكاء(.*)")
+@ABH.ar_cmd(pattern=r"ذكاء(.*)")
 async def hussein(event):
     await event.edit("**᯽︙ جارِ الجواب على سؤالك انتظر قليلاً ...**")
     text = event.pattern_match.group(1).strip()
@@ -485,7 +485,7 @@ is_Reham = False
 No_group_Joker = "@jepthonsupport"
 active_aljoker = []
 
-@l313l.ar_cmd(pattern=r"الذكاء تفعيل")
+@ABH.ar_cmd(pattern=r"الذكاء تفعيل")
 async def enable_bot(event):
     global is_Reham
     if not is_Reham:
@@ -494,7 +494,7 @@ async def enable_bot(event):
         await event.edit("**᯽︙ تم تفعيل امر الذكاء الاصطناعي سيتم الرد على اسئلة الجميع عند الرد علي.**")
     else:
         await event.edit("**᯽︙ الزر مُفعّل بالفعل.**")
-@l313l.ar_cmd(pattern=r"الذكاء تعطيل")
+@ABH.ar_cmd(pattern=r"الذكاء تعطيل")
 async def disable_bot(event):
     global is_Reham
     if is_Reham:
@@ -503,7 +503,7 @@ async def disable_bot(event):
         await event.edit("**᯽︙ تم تعطيل امر الذكاء الاصطناعي.**")
     else:
         await event.edit("**᯽︙ الزر مُعطّل بالفعل.**")
-@l313l.on(events.NewMessage(incoming=True))
+@ABH.on(events.NewMessage(incoming=True))
 async def reply_to_hussein(event):
     if not is_Reham:
         return
@@ -521,7 +521,7 @@ async def reply_to_hussein(event):
             await event.reply(response)
 Ya_Hussein = False
 active_joker = []
-@l313l.on(events.NewMessage(incoming=True))
+@ABH.on(events.NewMessage(incoming=True))
 async def Hussein(event):
     if not Ya_Hussein:
         return
@@ -532,23 +532,23 @@ async def Hussein(event):
         if isinstance(event.message.entities, list) and any(isinstance(entity, MessageEntityCustomEmoji) for entity in event.message.entities):
             await event.delete()
             sender = await event.get_sender()
-            aljoker_entity = await l313l.get_entity(sender.id)
+            aljoker_entity = await ABH.get_entity(sender.id)
             aljoker_profile = f"[{aljoker_entity.first_name}](tg://user?id={aljoker_entity.id})"
             await event.reply(f"**᯽︙ عذرًا {aljoker_profile}، يُرجى عدم إرسال الرسائل التي تحتوي على إيموجي المُميز**")
-@l313l.ar_cmd(pattern="المميز تفعيل")
+@ABH.ar_cmd(pattern="المميز تفعيل")
 async def disable_emoji_blocker(event):
     global Ya_Hussein
     Ya_Hussein = True
     active_joker.append(event.chat_id)
     await event.edit("**᯽︙ ✓ تم تفعيل امر منع الايموجي المُميز بنجاح**")
-@l313l.ar_cmd(pattern="المميز تعطيل")
+@ABH.ar_cmd(pattern="المميز تعطيل")
 async def disable_emoji_blocker(event):
     global Ya_Hussein
     Ya_Hussein = False
     active_joker.remove(event.chat_id)
     await event.edit("**᯽︙ تم تعطيل امر منع الايموجي المُميز بنجاح ✓ **")
 remove_admins_aljoker = {}
-@l313l.on(events.ChatAction)
+@ABH.on(events.ChatAction)
 async def Hussein(event):
     if gvarstatus("Mn3_Kick"):
         if event.user_kicked:
@@ -567,32 +567,32 @@ async def Hussein(event):
                 else:
                     remove_admins_aljoker[user_id] = now
 
-@l313l.ar_cmd(pattern="منع_التفليش", require_admin=True)
+@ABH.ar_cmd(pattern="منع_التفليش", require_admin=True)
 async def Hussein_aljoker(event):
     addgvar("Mn3_Kick", True)
     await event.edit("**᯽︙ تم تفعيل منع التفليش للمجموعة بنجاح ✓**")
 
-@l313l.ar_cmd(pattern="سماح_التفليش", require_admin=True)
+@ABH.ar_cmd(pattern="سماح_التفليش", require_admin=True)
 async def Hussein_aljoker(event):
     delgvar("Mn3_Kick")
     await event.edit("**᯽︙ تم تفعيل منع التفليش للمجموعة بنجاح ✓**")
 message_counts = {}
 enabled_groups = []
 Ya_Abbas = False
-@l313l.ar_cmd(pattern="النشر تعطيل")
+@ABH.ar_cmd(pattern="النشر تعطيل")
 async def enable_code(event):
     global Ya_Abbas
     Ya_Abbas = True
     enabled_groups.append(event.chat_id)
     await event.edit("**᯽︙ ✓ تم تفعيل امر منع النشر التلقائي بنجاح**")
-@l313l.ar_cmd(pattern="النشر تفعيل")
+@ABH.ar_cmd(pattern="النشر تفعيل")
 async def disable_code(event):
     global Ya_Abbas
     Ya_Abbas = False
     enabled_groups.remove(event.chat_id)
     await event.edit("**᯽︙ تم تعطيل امر منع النشر التلقائي بنجاح ✓ **")
 
-@l313l.on(events.NewMessage)
+@ABH.on(events.NewMessage)
 async def handle_new_message(event):
     if not Ya_Abbas:
         return
@@ -609,9 +609,9 @@ async def handle_new_message(event):
         message_counts[user_id]['count'] = 1
     if message_counts[user_id]['count'] >= 3:
         try:
-            await l313l.edit_permissions(event.chat_id, user_id, send_messages=False)
+            await ABH.edit_permissions(event.chat_id, user_id, send_messages=False)
             sender = await event.get_sender()
-            aljoker_entity = await l313l.get_entity(sender.id)
+            aljoker_entity = await ABH.get_entity(sender.id)
             aljoker_profile = f"[{aljoker_entity.first_name}](tg://user?id={aljoker_entity.id})"
             explanation_message = f"**᯽︙ تم تقييد {aljoker_profile} من إرسال الرسائل بسبب تفعيله نشر التلقائي**"
             await event.reply(explanation_message)
@@ -621,26 +621,26 @@ async def handle_new_message(event):
             await event.reply(explanation_message)
 aljoker_Menu = set()
 afk_start_time = datetime.now()
-@l313l.on(events.NewMessage)
+@ABH.on(events.NewMessage)
 async def handle_messages(event):
     if gvarstatus("5a9_dis"):
         sender_id = event.sender_id
-        current_user_id = await l313l.get_me()
+        current_user_id = await ABH.get_me()
         if event.is_private and sender_id != current_user_id.id:
             await event.delete()
             if sender_id not in aljoker_Menu:
                 aljoker_time = aljoker_waqt()
                 aljoker_message = gvarstatus("aljoker_message") or f" صاحب الحساب غير متواجد !! "
                 aljoker_url = gvarstatus("aljoker_url") or "https://forkgraph.zaid.pro/file/Qs0KYYCtvbCI"
-                await l313l.send_file(sender_id, aljoker_url, caption=f'**{aljoker_message}**\n**مدة الغياب: {aljoker_time}**')
+                await ABH.send_file(sender_id, aljoker_url, caption=f'**{aljoker_message}**\n**مدة الغياب: {aljoker_time}**')
                 aljoker_Menu.add(sender_id)
-@l313l.ar_cmd(pattern="الخاص تعطيل")
+@ABH.ar_cmd(pattern="الخاص تعطيل")
 async def joker5a9(event: Message):
     global afk_start_time
     addgvar("5a9_dis", True)
     afk_start_time = datetime.now()
     await event.edit('**᯽︙ تم قفل الخاص بنجاح الان لا احد يمكنهُ مراسلتك**')
-@l313l.ar_cmd(pattern="الخاص تفعيل")
+@ABH.ar_cmd(pattern="الخاص تفعيل")
 async def joker5a9(event: Message):
     global afk_start_time
     delgvar("5a9_dis")
@@ -668,9 +668,9 @@ is_game_started = False
 is_word_sent = False
 word = ''
 async def get_bot_entity():
-    return await l313l.get_entity('me')
+    return await ABH.get_entity('me')
 
-@l313l.on(events.NewMessage(outgoing=True, pattern=r'\.اسرع (.*)'))
+@ABH.on(events.NewMessage(outgoing=True, pattern=r'\.اسرع (.*)'))
 async def handle_start(event):
     global is_game_started, is_word_sent, word, bot_entity
     is_game_started = True
@@ -679,7 +679,7 @@ async def handle_start(event):
     chat_id = event.chat_id
     await event.edit(f"**اول من يكتب ( {word} ) سيفوز**")
 
-@l313l.on(events.NewMessage(incoming=True))
+@ABH.on(events.NewMessage(incoming=True))
 async def handle_winner(event):
     global is_game_started, is_word_sent, winner_id, word, points
     if is_game_started and not is_word_sent and word.lower() in event.raw_text.lower():
@@ -694,8 +694,8 @@ async def handle_winner(event):
                 sender = await event.get_sender()
                 sender_first_name = sender.first_name if sender else 'مجهول'
                 sorted_points = sorted(points.items(), key=lambda x: x[1], reverse=True)
-                points_text = '\n'.join([f'{i+1}• {(await l313l.get_entity(participant_id)).first_name}: {participant_points}' for i, (participant_id, participant_points) in enumerate(sorted_points)])
-                await l313l.send_message(event.chat_id, f'الف مبرووووك 🎉 الاعب ( {sender_first_name} ) فاز! \n اصبحت نقاطة: {points[winner_id]}\nنقاط المشاركين:\n{points_text}')
+                points_text = '\n'.join([f'{i+1}• {(await ABH.get_entity(participant_id)).first_name}: {participant_points}' for i, (participant_id, participant_points) in enumerate(sorted_points)])
+                await ABH.send_message(event.chat_id, f'الف مبرووووك 🎉 الاعب ( {sender_first_name} ) فاز! \n اصبحت نقاطة: {points[winner_id]}\nنقاط المشاركين:\n{points_text}')
 joker = [
     "تلعب وخوش تلعب 👏🏻",
     "لك عاش يابطل استمر 💪🏻",
@@ -726,7 +726,7 @@ async def handle_clue(event):
         correct_answer = random.randint(1, 6)
         await event.edit(f"**اول من يرسل كلمة (انا) سيشارك في لعبة المحيبس\nملاحظة : لفتح العضمة ارسل طك ورقم العضمة لأخذ المحبس أرسل جيب ورقم العضمة**")
 
-@l313l.ar_cmd(pattern="محيبس")
+@ABH.ar_cmd(pattern="محيبس")
 async def restart_game(event):
     global group_game_status
     chat_id = event.chat_id
@@ -734,7 +734,7 @@ async def restart_game(event):
         group_game_status[chat_id]['is_game_started2'] = False
     await handle_clue(event)
 
-@l313l.on(events.NewMessage(pattern=r'\طك (\d+)'))
+@ABH.on(events.NewMessage(pattern=r'\طك (\d+)'))
 async def handle_strike(event):
     global group_game_status, correct_answer, game_board
     chat_id = event.chat_id
@@ -751,7 +751,7 @@ async def handle_strike(event):
             lMl10l = random.choice(joker)
             await event.reply(f"**{lMl10l}**\n{format_board(game_board, numbers_board)}")
 
-@l313l.on(events.NewMessage(pattern=r'\جيب (\d+)'))
+@ABH.on(events.NewMessage(pattern=r'\جيب (\d+)'))
 async def handle_guess(event):
     global group_game_status, correct_answer, game_board
     chat_id = event.chat_id
@@ -766,11 +766,11 @@ async def handle_guess(event):
                 sender = await event.get_sender()
                 sender_first_name = sender.first_name if sender else 'مجهول'
                 sorted_points = sorted(points.items(), key=lambda x: x[1], reverse=True)
-                points_text = '\n'.join([f'{i+1}• {(await l313l.get_entity(participant_id)).first_name}: {participant_points}' for i, (participant_id, participant_points) in enumerate(sorted_points)])
+                points_text = '\n'.join([f'{i+1}• {(await ABH.get_entity(participant_id)).first_name}: {participant_points}' for i, (participant_id, participant_points) in enumerate(sorted_points)])
                 game_board = [["💍" if i == correct_answer - 1 else "🖐️" for i in range(6)]]
-                await l313l.send_message(event.chat_id, f'الف مبروووك 🎉 الاعب ( {sender_first_name} ) وجد المحبس 💍!\n{format_board(game_board, numbers_board)}')
+                await ABH.send_message(event.chat_id, f'الف مبروووك 🎉 الاعب ( {sender_first_name} ) وجد المحبس 💍!\n{format_board(game_board, numbers_board)}')
                 game_board = [row[:] for row in original_game_board]
-                await l313l.send_message(event.chat_id, f'نقاط الاعب : {points[winner_id]}\nنقاط المشاركين:\n{points_text}')
+                await ABH.send_message(event.chat_id, f'نقاط الاعب : {points[winner_id]}\nنقاط المشاركين:\n{points_text}')
             else:
                 game_board = [["💍" if i == correct_answer - 1 else "🖐️" for i in range(6)]]
                 await event.reply(f"**ضاع البات ماضن بعد تلگونة ☹️\n{format_board(game_board, numbers_board)}**")
@@ -778,7 +778,7 @@ async def handle_guess(event):
             group_game_status[chat_id]['is_game_started2'] = False
             group_game_status[chat_id]['joker_player'] = None
 
-@l313l.on(events.NewMessage(pattern=r'\انا'))
+@ABH.on(events.NewMessage(pattern=r'\انا'))
 async def handle_incoming_message(event):
     global group_game_status
     chat_id = event.chat_id
@@ -796,7 +796,7 @@ def format_board(game_board, numbers_board):
     formatted_board += " ".join(numbers_board[0]) + "\n"
     formatted_board += " ".join(game_board[0]) + "\n"
     return formatted_board
-@l313l.ar_cmd(pattern="تصفير")
+@ABH.ar_cmd(pattern="تصفير")
 async def Husssein(event):
     global points
     points = {}
