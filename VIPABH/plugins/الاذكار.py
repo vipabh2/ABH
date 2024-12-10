@@ -2,23 +2,23 @@ import random
 from telethon import events
 import random, re
 
-from JoKeRUB.utils import admin_cmd
+from VIPABH.utils import admin_cmd
 
 import asyncio
-from JoKeRUB import l313l
-from l313l.razan._islam import *
+from VIPABH import ABH
+from ABH.razan._islam import *
 from ..core.managers import edit_or_reply
 
 plugin_category = "extra" 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اذكار الصباح",
     command=("اذكار الصباح", plugin_category),)
 async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
            roze = random.choice(razan)
            return await event.edit(f"{roze}")
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اذكار المساء$",
     command=("اذكار المساء", plugin_category),)
 async def _(event):
@@ -26,7 +26,7 @@ async def _(event):
            ror = random.choice(roz)
            return await event.edit(f"{ror}")
             
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="احاديث$",
     command=("احاديث", plugin_category),)
 async def _(event):
@@ -34,7 +34,7 @@ async def _(event):
            me = random.choice(roza)
            return await event.edit(f"{me}")
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اذكار الاستيقاظ$",
     command=("اذكار الاستيقاظ", plugin_category),)
 async def _(event):
@@ -42,7 +42,7 @@ async def _(event):
            az = random.choice(rozan)
            return await event.edit(f"{az}")
                      
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اذكار النوم$",
     command=("اذكار النوم", plugin_category),)
 async def _(event):
@@ -50,7 +50,7 @@ async def _(event):
            rr = random.choice(rozmuh)
            return await event.edit(f"{rr}")
            
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اذكار الصلاة$",
     command=("اذكار الصلاة", plugin_category),)
 async def _(event):
@@ -59,7 +59,7 @@ async def _(event):
            return await event.edit(f"{rm}")
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="اوامر الاذكار$",
     command=("اوامر الاذكار", plugin_category),)
 async def _(event):
