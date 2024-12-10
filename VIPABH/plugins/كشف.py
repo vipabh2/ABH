@@ -7,8 +7,8 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.utils import get_input_location
 from ..sql_helper.globals import gvarstatus
 
-from JoKeRUB import l313l
-from JoKeRUB.core.logger import logging
+from VIPABH import ABH
+from VIPABH.core.logger import logging
 
 from ..Config import Config
 from ..core.managers import edit_or_reply
@@ -87,7 +87,7 @@ async def fetch_info(replied_user, event):
     caption += f"\n<b> {JEP_EM} البايـو \n    ⇠ </b> {user_bio} \n"
     return photo, caption
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="كشف(?:\s|$)([\s\S]*)",
     command=("كشف", plugin_category),
     info={
@@ -154,7 +154,7 @@ async def _(event):
     await edit_or_reply(catevent, caption)
 
 
-@l313l.ar_cmd(pattern="ايدي(?: |$)(.*)",
+@ABH.ar_cmd(pattern="ايدي(?: |$)(.*)",
     command=("ايدي", plugin_category),
     info={
         "header": "لـ عـرض معلومـات الشخـص",
@@ -183,7 +183,7 @@ async def who(event):
         await cat.edit(caption, parse_mode="html")
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="رابط الحساب(?:\s|$)([\s\S]*)",
     command=("رابط الحساب", plugin_category),
     info={
@@ -201,7 +201,7 @@ async def permalink(mention):
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(mention, f"⌔︙[{tag}](tg://user?id={user.id})")
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="(الايدي|id)(?:\s|$)([\s\S]*)",
     command=("الايدي", plugin_category),
     info={
