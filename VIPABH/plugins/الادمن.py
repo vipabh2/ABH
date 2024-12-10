@@ -21,7 +21,7 @@ from telethon.tl.types import (
     MessageMediaPhoto,
 )
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
@@ -68,7 +68,7 @@ plugin_category = "aadmin"
 # ================================================
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الصورة( -وضع| -حذف)$",
     command=("الصورة", plugin_category),
     info={
@@ -129,7 +129,7 @@ async def set_group_photo(event):  # sourcery no-metrics
             f"الدردشه: {event.chat.title}(`{event.chat_id}`)",
         )
         
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="لقب(?:\s|$)([\s\S]*)",
     command=("لقب", plugin_category),
     info={
@@ -180,7 +180,7 @@ async def promote(event):
     else:
         await event.reply("᯽︙ لم يتم العثور على المستخدم!")
         await event.delete()  
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="مشرف(?:\s|$)([\s\S]*)",
     command=("مشرف", plugin_category),
     info={
@@ -231,7 +231,7 @@ async def promote(event):
     else:
         await event.reply("᯽︙ لم يتم العثور على المستخدم!")
         await event.delete()  
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="مشرف2(?:\s|$)([\s\S]*)",
     command=("مشرف2", plugin_category),
     info={
@@ -283,7 +283,7 @@ async def promote(event):
         await event.reply("᯽︙ لم يتم العثور على المستخدم!")
         await event.delete()  
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="نغيير لقب(?:\s|$)([\s\S]*)",
     command=("لقب", plugin_category),
     info={
@@ -320,7 +320,7 @@ async def change_rank(event):
         await event.reply("᯽︙ لم يتم العثور على المستخدم!")
         await event.delete()  
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="تنزيل الكل(?:\s|$)([\s\S]*)",
     command=("تنزيل الكل", plugin_category),
     info={
@@ -364,7 +364,7 @@ async def demote(event):
             \nالمعرف: [{user.first_name}](tg://user?id={user.id})\
             \nالدردشه: {event.chat.title}(`{event.chat_id}`)",
         )
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="طرد(?:\s|$)([\s\S]*)",
     command=("طرد", plugin_category),
     info={
@@ -397,7 +397,7 @@ async def endmute(event):
         )
     else:
         await catevent.edit(f"᯽︙ الـمستخدم [{user.first_name}](tg://user?id={user.id})\n ᯽︙ تـم طرده بنجاح ✅ ")
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="حظر(?:\s|$)([\s\S]*)",
     command=("حظر", plugin_category),
     info={
@@ -461,7 +461,7 @@ async def jokerban(event):
             )
 
 
-@l313l.ar_cmd(
+@ABH.ar_cmd(
     pattern="الغاء حظر(?:\s|$)([\s\S]*)",
     command=("الغاء حظر", plugin_category),
     info={
@@ -500,7 +500,7 @@ async def nothanos(event):
         await catevent.edit(f"**خـطأ :**\n`{e}`")
 
 
-@l313l.ar_cmd(incoming=True)
+@ABH.ar_cmd(incoming=True)
 async def watcher(event):
     if is_muted(event.sender_id, event.chat_id):
         try:
