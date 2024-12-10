@@ -12,7 +12,6 @@ heroku_api = "https://api.heroku.com"
 
 
 def check_data_base_heal_th():
-    # https://stackoverflow.com/a/41961968
     is_database_working = False
     output = "No Database is set"
     if not Config.DB_URI:
@@ -73,7 +72,7 @@ async def catalive(StartTime):
         dyno = f"{AppHours}h {AppMinutes}m/{hours}h {minutes}m"
     except Exception as e:
         dyno = e
-    return f"🖤༄ JoKeRUB Stats ༄🖤\
+    return f"🖤༄ VIPABH Stats ༄🖤\
                  \n\nღ Database : {check_sgnirts}\
                   \nღ Sudo : {sudo}\
                   \nღ Uptime : {uptime}\
