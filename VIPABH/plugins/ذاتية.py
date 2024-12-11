@@ -28,7 +28,7 @@ async def dato(event):
   """,
     )
     await event.delete()
-#By @jepthon For You 🌹
+#By  For You 🌹
 @ABH.on(admin_cmd(pattern="(الذاتية تشغيل|ذاتية تشغيل)"))
 async def reda(event):
     if gvarstatus ("savepicforme"):
