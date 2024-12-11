@@ -53,7 +53,7 @@ def ibuild_keyboard(buttons):
 
 
 def main_menu():
-    text = f"**- [سـورس ABH](https://t.me/jepthon)\
+    text = f"**- [سـورس ABH](https://t.me/k_4x1)\
         \n المسـاعد\
         \n\
         \n◽ ABH لـ {mention}**"
@@ -228,7 +228,7 @@ async def inline_handler(event):  # sourcery no-metrics
             buttons = [
                 (
                     Button.inline("الحـالة ⚒️", data="stats"),
-                    Button.url(" VIPABH UsᴇʀBoᴛ", "https://t.me/jepthon"),
+                    Button.url(" VIPABH UsᴇʀBoᴛ", "https://t.me/k_4x1"),
                 )
             ]
             ALIVE_PIC = gvarstatus("ALIVE_PIC")
@@ -559,7 +559,7 @@ async def inline_handler(event):  # sourcery no-metrics
     # else:
     #     buttons = [
     #         (
-    #             Button.url("قنـاة السـورس ⚒️", "https://t.me/jepthon"),
+    #             Button.url("قنـاة السـورس ⚒️", "https://t.me/k_4x1"),
     #             Button.url(
     #                 "كـروب المـساعدة 📬",
     #                 "https://t.me/k_4x1",
