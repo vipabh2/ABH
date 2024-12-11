@@ -270,7 +270,6 @@ async def stopspamrz(event):
         delgvar("spamwork")
         return await edit_delete(event, "**⌔∮ تم بنجاح ايقاف التكرار **")
     return await edit_delete(event, "**⌔∮ عذرا لم يتم تفعيل التكرار بالاصل**")
-#جميع الاكواد ادناه تمت كتابتها من قبل مطورين الجوكر ممنوع السرقة !
 async def aljoker_nshr(ABH, sleeptimet, chat, message, seconds):
     global yaAli
     yaAli = True
@@ -311,7 +310,6 @@ async def aljoker_allnshr(ABH, sleeptimet, message):
     while yaAli:
         for chat in aljoker_chats:
             if chat.is_group:
-                if chat.title != "مشتركين الجوكر • Team ALjoker":
                     try:
                         if message.media:
                             await ABH.send_file(chat.id, message.media, caption=message.text)
