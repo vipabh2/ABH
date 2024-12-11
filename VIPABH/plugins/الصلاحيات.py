@@ -392,7 +392,6 @@ async def _(event):  # sourcery no-metrics
                 time=5,
             )
 
-# BY  @lMl10l
 @ABH.ar_cmd(
     pattern="الصلاحيات$",
     command=("الصلاحيات", plugin_category),
