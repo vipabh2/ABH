@@ -94,7 +94,7 @@ async def startupmessage():
             Config.CATUBLOGO = await ABH.tgbot.send_file(
                 BOTLOG_CHATID,
                 "https://t.me/VIPABH/1187",
-                caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n  ᯽︙ لأستعمال بوت الأختراق عبر كود التيرمكس أرسل`.هاك`**",
+                caption="**‏᯽︙ بــوت ABH يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n  ᯽︙ لأستعمال بوت الأختراق عبر كود التيرمكس أرسل`.هاك`**",
                 buttons=[(Button.url("ابـ،ـن،هـ.ـاشـ.ـم ✘", "https://t.me/k_4x1"),)],
             )
     except Exception as e:
@@ -129,7 +129,7 @@ async def startupmessage():
 async def mybot():
     try:
         starkbot = await ABH.tgbot.get_me()
-        joker = "الجوكر 🤡"
+        joker = "ABH 🤡"
         bot_name = starkbot.first_name
         botname = f"@{starkbot.username}"
         if bot_name.endswith("Assistant"):
@@ -296,13 +296,13 @@ async def verifyLoggerGroup():
     else:
         descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - "
         photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon.JPEG")
-        botlog_group_id = await aljoker_the_best(ABH, "مجموعة أشعارات الجوكر")
+        botlog_group_id = await aljoker_the_best(ABH, "مجموعة أشعارات ABH")
         if botlog_group_id:
             addgvar("PRIVATE_GROUP_BOT_API_ID", botlog_group_id)
             print("᯽︙تم العثور على مجموعة المساعدة بالفعل وإضافتها إلى المتغيرات.")
         else:
             _, groupid = await create_supergroup(
-                "مجموعة أشعارات الجوكر", ABH, Config.TG_BOT_USERNAME, descript, photobt
+                "مجموعة أشعارات ABH", ABH, Config.TG_BOT_USERNAME, descript, photobt
             )
             addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
             print("᯽︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
