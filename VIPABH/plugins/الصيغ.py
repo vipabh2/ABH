@@ -342,8 +342,6 @@ async def _(event):
             os.remove(new_required_file_name)
             await event.delete()
             
-#Copyright  By  @jepthon  © 2021
-#WRITE BY  @lMl10l
 
 @ABH.ar_cmd(
     pattern="تحويل متحركة ?([0-9.]+)?$",
