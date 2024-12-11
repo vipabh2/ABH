@@ -1,7 +1,3 @@
-#by Hussein For VIPABH-VIPABH
-# Hussein
-# يمنع منعاً باتاً تخمط الملف خلي عندك كرامه ولتسرقة
-# Added some f. by Reda
 
 import asyncio
 import time
@@ -82,8 +78,8 @@ async def Hussein(event):
     
 @ABH.on(events.NewMessage(incoming=True))
 async def Hussein(event):
-    if event.message.message.startswith("تجميع الجوكر") and str(event.sender_id) in ConsoleJoker:
-        await event.reply("**᯽︙سيتم تجميع النقاط من بوت الجوكر , قبل كل شي تأكد من انك قمت بلانظمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
+    if event.message.message.startswith("تجميع ABH") and str(event.sender_id) in ConsoleJoker:
+        await event.reply("**᯽︙سيتم تجميع النقاط من بوت ABH , قبل كل شي تأكد من انك قمت بلانظمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
         channel_entity = await ABH.get_entity(bot_username2)
         await ABH.send_message('@A_MAN9300BOT', '/start')
         await asyncio.sleep(2)
@@ -247,10 +243,10 @@ async def cancel_collection(event):
     await ABH.send_message('@EEObot', '/start')
     await event.edit("** ᯽︙ تم الغاء التجميع من بوت المليار **")
     
-@ABH.on(admin_cmd(pattern="(تجميع الجوكر|تجميع جوكر)"))
+@ABH.on(admin_cmd(pattern="(تجميع ABH|تجميع جوكر)"))
 async def _(event):
     if VIPABH[0] == "yes":
-        await event.edit("**᯽︙سيتم تجميع النقاط من بوت الجوكر , قبل كل شي تأكد من انك قمت بلانظمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
+        await event.edit("**᯽︙سيتم تجميع النقاط من بوت ABH , قبل كل شي تأكد من انك قمت بلانظمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
         channel_entity = await ABH.get_entity(bot_username2)
         await ABH.send_message('@A_MAN9300BOT', '/start')
         await asyncio.sleep(2)
@@ -432,7 +428,7 @@ async def _(event):
         if msgs.message.find('لا يوجد قنوات حالياً 🤍') != -1:
             await ABH.send_message(event.chat_id, "تم الانتهاء من التجميع")
             break
-        msg_text = msgs.message  # الكود تمت كتابتهُ من قبل سورس الجوكر 
+        msg_text = msgs.message  # الكود تمت كتابتهُ من قبل سورس ABH 
         if "اشترك فالقناة @" in msg_text:
             aljoker_channel = msg_text.split('@')[1].split()[0]
             try:
