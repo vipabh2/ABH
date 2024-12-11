@@ -9,6 +9,7 @@ from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
 __version__ = "3.1.3"
 __license__ = "كـتابة وتـعديل ABH"
+__copyright__ = "abh (C) 2024"
 __author__ = "ABH <https://T.ME/k_4x1>"
 
 ABH.version = __version__
