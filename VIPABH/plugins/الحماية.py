@@ -750,11 +750,12 @@ async def disapprove_p_m(event):
 
 @ABH.ar_cmd(pattern="بلوك(?:\s|$)([\s\S]*)")
 async def block_p_m(event):
-    if gvarstatus("pmpermit") is None:
-        return await edit_delete(
-            event,
-            f"- يجب تفعيل امر الحماية اولا بأرسال `{cmdhd}الحماية on` ليشتغل هذا الأمر",
-        )      if event.is_private:
+    # if gvarstatus("pmpermit") is None:
+    #     return await edit_delete(
+    #         event,
+    #         f"- يجب تفعيل امر الحماية اولا بأرسال `{cmdhd}الحماية on` ليشتغل هذا الأمر",
+    #     )
+    if event.is_private:
         user = await event.get_chat()
         reason = event.pattern_match.group(1)
     else:
@@ -876,6 +877,6 @@ async def approve_p_m(event):
     await edit_or_reply(
         event,
         APPROVED_PMs,
-        file_name="قائمة الحماية الجوكر.txt",
-        caption="قائمة المسموح لهم الحالية\n سورس الجوكر \n @jepthon",
+        file_name="قائمة الحماية txt",
+        caption="قائمة المسموح لهم الحالية\n سورس abh \n @k_4x1",
     )
