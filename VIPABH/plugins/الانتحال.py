@@ -1,5 +1,4 @@
-# Copyright (C) 2021 VIPABH TEAM
-# FILES WRITTEN BY  @lMl10l
+
 import html
 import base64
 from telethon.tl.functions.channels import GetFullChannelRequest
