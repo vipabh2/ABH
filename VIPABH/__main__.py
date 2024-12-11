@@ -61,7 +61,7 @@ print(imam_ali)
 cmdhr = Config.COMMAND_HAND_LER
 
 try:
-    LOGS.info("جارِ بدء بوت الجوكر ✓")
+    LOGS.info("جارِ بدء بوت ABH ✓")
     ABH.loop.run_until_complete(setup_bot())
     LOGS.info("تم اكتمال تنصيب البوت ✓")
 except Exception as e:
@@ -81,7 +81,7 @@ async def startup_process():
     await load_plugins("plugins")
     await load_plugins("assistant")
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("᯽︙بـوت الجوكر يعـمل بـنجاح ")
+    print("᯽︙بـوت ABH يعـمل بـنجاح ")
     print(
         f"تم تشغيل الانلاين تلقائياً ارسل {cmdhr}الاوامر لـرؤيـة اوامر السورس")
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
