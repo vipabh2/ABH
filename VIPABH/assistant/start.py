@@ -18,7 +18,6 @@ from VIPABH.sql_helper.idadder_sql import (
     get_all_users,
 )
 from ABH.razan.resources.assistant import *
-#start 
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start(event):
     rehu = await tgbot.get_me()
@@ -35,7 +34,7 @@ async def start(event):
             buttons=[
                                      [Button.inline("عرض المستخدمين 📬", data="users"), Button.inline(
                                          "اوامر البـوت ⚒️", data="gibcmd")],
-                                     [Button.url("المطـور 🔗", "https://t.me/lMl10l"), Button.inline(
+                                     [Button.url("المطـور 🔗", "https://t.me/k_4x1"), Button.inline(
                                          "اوامر الزغـرفة", data="rozzag")],
 
                                  ])
@@ -50,7 +49,7 @@ async def start(event):
             link_preview=False,
             buttons=[
                 [custom.Button.inline("تنـصيب جيـبثون  🐍", data="deploy")],
-                [Button.url("تحتاج مسـاعدة ❓", "https://t.me/lMl10l")],
+                [Button.url("تحتاج مسـاعدة ❓", "https://t.me/k_4x1")],
             ],
         )
 
@@ -64,8 +63,7 @@ async def help(event):
             event.chat_id,
             message="**لتـنصيب البـوت الخاص بك اتبـع الخطـوات في الاسفـل وحاول واذا لم تستطيع تفضل الى مجموعة المساعدة ليساعدوك 🧸♥**.",
             buttons=[
-                [Button.url("شرح التنصيب 📺", "https://youtu.be/ATAgbLGzr7w")],
-                [Button.url("كروب المساعدة ❓", "https://t.me/jepthonSupport")],
+                [Button.url("المساعدة ❓", "https://t.me/k_4x1")],
             ],
         )
 
@@ -135,7 +133,7 @@ async def settings(event):
 
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rozname"))) 
-async def settings(event):  #    قـسـم  الزغرفـة جمـثـون
+async def settings(event): 
     if event.sender_id == bot.uid:
         await event.delete()
         await tgbot.send_message(event.chat_id,
@@ -274,7 +272,7 @@ async def settings(event): #    قـسـم  البـايو 2
 
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rozpio3"))) 
-async def settings(event): #    قـسـم  البـايو 3
+async def settings(event):
     if event.sender_id == bot.uid:
         await event.delete()
         await tgbot.send_message(event.chat_id,
