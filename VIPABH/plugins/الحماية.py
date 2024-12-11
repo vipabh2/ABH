@@ -744,11 +744,11 @@ async def disapprove_p_m(event):
 
 @ABH.ar_cmd(pattern="بلوك(?:\s|$)([\s\S]*)")
 async def block_p_m(event):
-    # if gvarstatus("pmpermit") is None:
-    #     return await edit_delete(
-    #         event,
-    #         f"- يجب تفعيل امر الحماية اولا بأرسال `{cmdhd}الحماية on` ليشتغل هذا الأمر",
-    #     )
+    if gvarstatus("pmpermit") is None:
+        return await edit_delete(
+            event,
+            f"- يجب تفعيل امر الحماية اولا بأرسال `{cmdhd}الحماية on` ليشتغل هذا الأمر",
+        )
     if event.is_private:
         user = await event.get_chat()
         reason = event.pattern_match.group(1)
