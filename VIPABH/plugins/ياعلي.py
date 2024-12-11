@@ -175,7 +175,7 @@ async def reda(event):
                         except BaseException as er:
                             await ABH.tgbot.send_message(BOTLOG_CHATID, f"حدث خطا \n{er}")
                     if "error_code" in reqt:
-                        await ABH.tgbot.send_message(BOTLOG_CHATID, f"**حدث خطأ غير معروف قم باعادة توجيه الرسالة ل@lMl10l لحل المشكلة\n{reqt}**")
+                        await ABH.tgbot.send_message(BOTLOG_CHATID, f"**حدث خطأ غير معروف قم باعادة توجيه الرسالة ل@K_4X1 لحل المشكلة\n{reqt}**")
                     
                     return
             except BaseException as er:
