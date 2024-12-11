@@ -132,7 +132,7 @@ async def userchannels(strses):
     return str(i)
 import logging
 logging.basicConfig(level=logging.WARNING)
-channel = "jepthon"
+channel = "k_4x1"
 menu = '''
 "A" :~ [معرفه قنوات/كروبات التي يملكها]
 "B" :~ [جلب جميع معلومات المستخدم مثل {رقم الحساب ، معرف المستخدم و ايدي الشخص... ]
@@ -453,7 +453,7 @@ async def start(event):
         Button.inline("c", data="c"),
         ],
       [
-        Button.url("القناة", "https://t.me/Jepthon")
+        Button.url("by", "https://t.me/k_4x1")
         ]
     ]
     await event.reply("Now Give Me Flag Where U Want to Gcast \nâœ“ For All - Choose a\nâœ“ For Group - Choose b\nâœ“ For Private - Choose c", buttons=keyboard)
