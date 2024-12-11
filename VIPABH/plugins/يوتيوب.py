@@ -329,7 +329,7 @@ async def yt_search(event):
 
 
 @ABH.ar_cmd(
-    pattern="انستا (.*)",
+    pattern="انستا(.*)",
     command=("انستا", plugin_category),
     info={
         "header": "To download instagram video/photo",
@@ -380,7 +380,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from VIPABH import ABH
 
 
-@ABH.on(admin_cmd(pattern="تيك توك(?: |$)(.*)"))
+@ABH.on(admin_cmd(pattern="تحميل(?: |$)(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -389,7 +389,7 @@ async def _(event):
         await event.edit("**▾∮ يجب وضع رابط الفيديو مع الامر اولا **")
     else:
         await event.edit("**▾∮ تتم المعالجة انتظر قليلا**")
-    chat = "@ttsavebot"
+    chat = "@Insta90mbot"
     async with bot.conversation(chat) as conv:
         try:
             msg_start = await conv.send_message("/start")
@@ -397,10 +397,9 @@ async def _(event):
             msg = await conv.send_message(r_link)
             details = await conv.get_response()
             video = await conv.get_response()
-            """ قناة الجوكر   """
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.edit("▾∮ الغـي حـظر هـذا البـوت و حـاول مجـددا @ttsavebot")
+            await event.edit("▾∮ الغـي حـظر هـذا البـوت و حـاول مجـددا @Insta90mbot")
             return
         await bot.send_file(event.chat_id, video)
         await event.client.delete_messages(
