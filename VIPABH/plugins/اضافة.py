@@ -63,10 +63,6 @@ def user_full_name(user):
  
 
 
-# كتابة فريق الجوكر المتغيرات تثبت ودي
-# تخمط اذكر حقوق غيرها انت فرخ و دي 😂
-
-
 @ABH.on(admin_cmd(pattern=r"ضيف ?(.*)"))
 async def get_users(event):   
     sender = await event.get_sender() ; me = await event.client.get_me()
@@ -90,7 +86,6 @@ async def get_users(event):
                 except Exception as e:
                     error = str(e) ; f = f + 1             
     return await roz.edit(f"**▾∮اڪتـملت الأضافـة ✅** \n\n• تـم بنجـاح اضافـة `{s}` \n• خـطأ بأضافـة `{f}`")
-#تم كتابة الكود من قبل مطورين الجوكر ممنوع السرقة اخي الكريم
 @ABH.on(admin_cmd(pattern=r"اضافة_جهاتي ?(.*)"))
 async def Hussein(event):
     channel_id = event.chat_id  
