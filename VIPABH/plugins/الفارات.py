@@ -692,14 +692,14 @@ async def _(event):
                         " يجب التذكر من ان قيمه الفارات التاليه ان تكون بشكل صحيح \nHEROKU_APP_NAME\n HEROKU_API_KEY"
                     )
                 data = app.get_log()
-                with open('الجوكر 🖤.txt', 'w') as file:
+                with open('ABH 🖤.txt', 'w') as file:
         	        file.write(data)
 
-                with open('الجوكر 🖤.txt', 'rb') as file:
+                with open('ABH 🖤.txt', 'rb') as file:
                     await ABH.send_file(
-                    event.chat_id, "الجوكر 🖤.txt", caption="هذا هو الـ Log"
+                    event.chat_id, "ABH 🖤.txt", caption="هذا هو الـ Log"
                     )
-                os.remove("الجوكر 🖤.txt")
+                os.remove("ABH 🖤.txt")
 
 def prettyjson(obj, indent=4, maxlinelength=80):
     items, _ = getsubitems(
@@ -720,16 +720,3 @@ headers = {
     'Authorization': 'Bearer api_key'
 }
 
-@ABH.ar_cmd(pattern="خلي الاسم(.*)")
-async def set_alive_name(var):
-    rep = await var.get_reply_message()
-    if rep is None or not rep.text:
-        return await edit_delete(var, "**⌔∮ يجب عليك الرد على القيمة التي ترغب في تعيينها كاسم `ALIVE_NAME`.**")
-    alive_name_value = rep.text
-    os.environ['ALIVE_NAME'] = alive_name_value
-    response = requests.get(api_url, headers=headers)
-    if response.status_code == 200:
-        services_data = response.json()
-        await edit_or_reply(var, f"**⌔∮ تم بنجاح تعيين المتغير `ALIVE_NAME` بقيمة: `{alive_name_value}` على Render.**")
-    else:
-        await edit_or_reply(var, f"**⌔∮ فشل في تعيين المتغير على Render. الرد: {response.status_code}: {response.text}**")
