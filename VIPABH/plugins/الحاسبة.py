@@ -41,7 +41,7 @@ lst.append([Button.inline("=", data="calc=")])
 async def icalc(e):
     if e.client._bot:
         return await e.reply(
-            "**الحـاسبة العـلمية لسـورس الجوكر\n @jepthon**", buttons=lst
+            "**الحـاسبة العـلمية لسـورس الجوكر\n **", buttons=lst
         )
     results = await e.client.inline_query(Config.TG_BOT_USERNAME, "calc")
     await results[0].click(e.chat_id, silent=True, hide_via=True)
@@ -58,12 +58,12 @@ async def inlinecalc(event):
     ) and string == "calc":
         event.builder
         calc = event.builder.article(
-            "Calc", text="**الحـاسبة العـلمية لسـورس الجوكر\n @jepthon**", buttons=lst
+            "Calc", text="**الحـاسبة العـلمية لسـورس الجوكر\n **", buttons=lst
         )
         await event.answer([calc])
 
 
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @jepthon  ~ @lMl10l
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 :   ~ @lMl10l
 @ABH.tgbot.on(CallbackQuery(data=re.compile(b"calc(.*)")))
 @check_owner
 async def _(e):  # sourcery no-metrics
@@ -74,7 +74,7 @@ async def _(e):  # sourcery no-metrics
         if CALC.get(user):
             CALC.pop(user)
         await e.edit(
-            "**الحـاسبة العـلمية لسـورس الجوكر\n @jepthon**",
+            "**الحـاسبة العـلمية لسـورس الجوكر\n **",
             buttons=[Button.inline("افتح مره اخرى", data="recalc")],
         )
     elif x == "C":
@@ -129,7 +129,7 @@ async def _(e):  # sourcery no-metrics
         await e.answer(str(x))
 
 
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @jepthon  ~ @lMl10l
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 :   ~ @lMl10l
 @ABH.tgbot.on(CallbackQuery(data=re.compile(b"recalc")))
 @check_owner
 async def _(e):
@@ -158,7 +158,7 @@ async def _(e):
     tultd = [Button.inline(f"{x}", data=f"calc{x}") for x in m]
     lst = list(zip(tultd[::4], tultd[1::4], tultd[2::4], tultd[3::4]))
     lst.append([Button.inline("=", data="calc=")])
-    await e.edit("**الحـاسبة العـلمية لسـورس الجوكر\n @jepthon**", buttons=lst)
+    await e.edit("**الحـاسبة العـلمية لسـورس الجوكر\n **", buttons=lst)
 
 CMD_HELP.update(
     {"الحسابة": ".حاسبة" "\n فقط اكتب الامر لعرض حاسبة علميه تحتاج الى تفعيل وضع الانلاين اولا\n\n"}
