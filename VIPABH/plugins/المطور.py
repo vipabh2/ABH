@@ -22,7 +22,7 @@ from . import mention
 
 plugin_category = "utils"
 
-@ABH.on(events.NewMessage(outgoing=True, pattern=r'^ابن هاشم$'))
+@ABH.on(events.NewMessage(outgoing=True, pattern=r'^\.*ابن هاشم$'))
 async def amireallyalive(event):
     await event.delete()
     "A kind of showing bot details"
