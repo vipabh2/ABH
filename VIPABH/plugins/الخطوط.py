@@ -44,17 +44,17 @@ async def btext(event):
         await edit_delete(event, "**᯽︙ تم اطفاء خط الرمز بنجاح ✓ **")
         return
 
-@ABH.on(admin_cmd(pattern="(خط الجوكر|خط جوكر)"))
+@ABH.on(admin_cmd(pattern="(خط ABH|خط جوكر)"))
 async def Aljoker(event):
     Aljoker = gvarstatus("joker")
     if not Aljoker:
         addgvar ("joker", "on")
-        await edit_delete(event, "**᯽︙ تم تفعيل خط الجوكر بنجاح ✓**")
+        await edit_delete(event, "**᯽︙ تم تفعيل خط ABH بنجاح ✓**")
         return
 
     if Aljoker:
         delgvar("joker")
-        await edit_delete(event, "**᯽︙ تم اطفاء خط الجوكر بنجاح ✓ **")
+        await edit_delete(event, "**᯽︙ تم اطفاء خط ABH بنجاح ✓ **")
         return
 
 @ABH.on(events.NewMessage(outgoing=True))
