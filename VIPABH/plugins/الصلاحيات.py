@@ -1138,4 +1138,3 @@ async def _(event):
                     users_added_by
                 )
             )
-#THIS FILE WRITTEN BY  @lMl10l
