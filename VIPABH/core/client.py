@@ -150,8 +150,8 @@ class HuReClient(TelegramClient):
                             ftext, pastetype="s", markdown=False
                         )
                         text = "**تقرير خطا ABH**\n\n"
-                        link = "[هنا](https://t.me/jepthonSupport)"
-                        text += "إذا كنت تريد يمكنك الإبلاغ عن ذلك"
+                        link = "[هنا](https://t.me/k_4x1)"
+                        text += "إذا كنت تريد الإبلاغ عن ذلك"
                         text += f"- فقط قم بإعادة توجيه هذه الرسالة {link}.\n"
                         text += "لا يتم تسجيل اي خطا فقط التاريخ والوقت\n\n"
                         text += f"**⌯︙تقرير الخطأ : ** [{new['error']}]({pastelink})"
