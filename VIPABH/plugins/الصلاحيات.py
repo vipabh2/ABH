@@ -308,7 +308,7 @@ async def _(event):  # sourcery no-metrics
                     event, "᯽︙ ارسال الانلاين مسموح في هذه الدردشه ⌁"
                 )
             ainline = False
-            locktype = "الانلاين"  # BY  @lMl10l  -  @UUNZZ
+            locktype = "الانلاين"  
         elif input_str == "التصويت":  
             if not gpoll:
                 return await edit_delete(
