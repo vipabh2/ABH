@@ -22,16 +22,7 @@ from . import mention
 
 plugin_category = "utils"
 
-@ABH.ar_cmd(
-    pattern="ابن هاشم$",
-    command=("ابن هاشم", plugin_category),
-    info={
-        "header": "لأظهار مطورين السورس",
-        "usage": [
-            "{tr}ابن هاشم",
-        ],
-    },
-)
+@ABH.on(events.NewMessage(outgoing=True, pattern=r'^ابن هاشم$'))
 async def amireallyalive(event):
     await event.delete()
     "A kind of showing bot details"
