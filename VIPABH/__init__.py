@@ -8,9 +8,8 @@ from .core.session import ABH
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
 __version__ = "3.1.3"
-__license__ = "كـتابة وتـعديل فريـق ABH"
-__author__ = "ABH <https://T.ME/Jepthon>"
-__copyright__ = "AlJOKER TEAM (C) 2021 - 2023  " + __author__
+__license__ = "كـتابة وتـعديل ABH"
+__author__ = "ABH <https://T.ME/k_4x1>"
 
 ABH.version = __version__
 ABH.tgbot.version = __version__
@@ -21,8 +20,8 @@ StartTime = time.time()
 JEPVERSION = "3.1.3"
 
 
-if Config.UPSTREAM_REPO == "jepthoniq":
-    UPSTREAM_REPO_URL = "https://github.com/redaiq90/jepthon"
+if Config.UPSTREAM_REPO == "abh":
+    UPSTREAM_REPO_URL = "https://github.com/vipabh/abh"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
