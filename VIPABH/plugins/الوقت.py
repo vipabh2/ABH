@@ -14,7 +14,6 @@ from . import reply_id
 
 plugin_category = "utils"
 
-# VIPABH timezone
 
 
 FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
@@ -110,8 +109,6 @@ async def time_func(tdata):
             f"({time_zone} timezone).`",
         )
 
-#كـتابة  @lMl10l
-#تعديل وترتيب  @KiNGBrlin
 @ABH.ar_cmd(
     pattern="الوقت(?:\s|$)([\s\S]*)",
     command=("الوقت", plugin_category),
