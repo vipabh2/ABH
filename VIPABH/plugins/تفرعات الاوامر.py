@@ -6,7 +6,7 @@ from VIPABH import ABH
 from ..core.managers import edit_or_reply
 
 plugin_category = "extra"
-banned_users = [1510396227, 6844153802, 6806412130]  
+banned_users = [1510396227, 6844153802]  
 
 @ABH.ar_cmd(
     incoming=True,
