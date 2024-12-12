@@ -6,7 +6,7 @@ from VIPABH import ABH
 from ..core.managers import edit_or_reply
 
 plugin_category = "extra"
-banned_users = [1510396227]  
+banned_users = [1510396227, 6844153802, 6806412130]  
 
 @ABH.ar_cmd(
     incoming=True,
@@ -15,8 +15,8 @@ banned_users = [1510396227]
 )
 async def reply_salam(event):
     if event.sender.id in banned_users:
-        await event.reply("ههههه هاي بسبب الملحة")  
-        await event.reply("☝️")  
+        # await event.reply("ههههه هاي بسبب الملحة")  
+        # await event.reply("☝️")  
         return 
 
     username = event.sender.username if event.sender.username else "لا يوجد اسم مستخدم"
