@@ -143,9 +143,9 @@ async def log(log_text):
     else:  
         await log_text.edit("**⌔┊يرجى الرد على رسالة لحفظها أو إدخال نص لتخزينه.**")
         return
-    # await log_text.edit("**⌔┊تم الحفظ في الخاص بنجاح ✓**")
-    # await asyncio.sleep(2)
-    # await log_text.delete()
+    await log_text.edit("︎ ︎")
+    await asyncio.sleep(1)
+    await log_text.delete()
 
 
 @ABH.ar_cmd(
