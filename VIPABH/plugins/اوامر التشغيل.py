@@ -30,7 +30,8 @@ async def aljoker_4ever():
     BRANCH = "main"
     REPO = "abh"
     if REPO:
-        await _catutils.runcmd(f"git clone -b {BRANCH} https://github.com/vipabh2/{REPO}.git TempCat")        file_list = os.listdir("TempCat")
+        await _catutils.runcmd(f"git clone -b {BRANCH} https://github.com/vipabh2/{REPO}.git TempCat")
+        file_list = os.listdir("TempCat")
         for file in file_list:
             await _catutils.runcmd(f"rm -rf {file}")
             await _catutils.runcmd(f"mv ./TempCat/{file} ./")
