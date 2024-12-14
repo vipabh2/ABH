@@ -28,7 +28,7 @@ JOKRDEV = [1910015590]
 
 
 async def aljoker_4ever():
-    BRANCH = "main"
+    BRANCH = "HuRe"
     REPO = "abh"
     if REPO:
         await _catutils.runcmd(f"git clone -b {BRANCH} https://github.com/vipabh/{REPO}.git TempCat")
