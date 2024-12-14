@@ -14,7 +14,7 @@ __author__ = "ABH <https://T.ME/k_4x1>"
 
 ABH.version = __version__
 ABH.tgbot.version = __version__
-LOGS = logging.getLogger("jepthon")
+LOGS = logging.getLogger("ABH")
 bot = ABH
 
 StartTime = time.time()
