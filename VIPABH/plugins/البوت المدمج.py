@@ -3,7 +3,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from asyncio.exceptions import TimeoutError
 
 
-@l313l.on(admin_cmd(pattern="رجب ?(.*)"))
+@ABH.on(admin_cmd(pattern="رجب ?(.*)"))
 async def _(event):
     await event.edit("**- يتم جلب النتيجة**")
     async with event.client.conversation("@tt_tabot") as conv:
@@ -19,7 +19,7 @@ async def _(event):
             return
         await event.edit(f"- {response.message.message}\n @tt_tabot")
 
-@l313l.on(admin_cmd(pattern="شعبان ?(.*)"))
+@ABH.on(admin_cmd(pattern="شعبان ?(.*)"))
 async def _(event):
     await event.edit("**- يتم جلب النتيجة**")
     async with event.client.conversation("@tt_tabot") as conv:
@@ -35,7 +35,7 @@ async def _(event):
             return
         await event.edit(f"- {response.message.message}\n @tt_tabot")
 
-@l313l.on(admin_cmd(pattern="رمضان ?(.*)"))
+@ABH.on(admin_cmd(pattern="رمضان ?(.*)"))
 async def _(event):
     await event.edit("**- يتم جلب النتيجة**")
     async with event.client.conversation("@tt_tabot") as conv:
@@ -51,7 +51,7 @@ async def _(event):
             return
         await event.edit(f"- {response.message.message}\n @tt_tabot")
 
-@l313l.on(admin_cmd(pattern="محرم ?(.*)"))
+@ABH.on(admin_cmd(pattern="محرم ?(.*)"))
 async def _(event):
     await event.edit("**- يتم جلب النتيجة**")
     async with event.client.conversation("@tt_tabot") as conv:
@@ -69,7 +69,7 @@ async def _(event):
             
 
 
-@l313l.on(admin_cmd(pattern="الاغنية ?(.*)"))
+@ABH.on(admin_cmd(pattern="الاغنية ?(.*)"))
 async def _(event):
     "To reverse search music by bot."
     if not event.reply_to_msg_id:
@@ -104,7 +104,7 @@ async def _(event):
         return await event.edit("***حدث خطا ما حاول مجددا**")
 
 
-@l313l.on(admin_cmd(pattern="ايميل وهمي(?: |$)(.*)"))
+@ABH.on(admin_cmd(pattern="ايميل وهمي(?: |$)(.*)"))
 async def _(event):
     chat = "@TempMailBot"
     geez = await event.edit("**جاري انشاء بريد ...**")
@@ -117,11 +117,11 @@ async def _(event):
             await asyncio.sleep(1)
             await conv.send_message("/create")
             response = await response
-            l313lmail = response.reply_markup.rows[2].buttons[0].url
+            ABHmail = response.reply_markup.rows[2].buttons[0].url
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await geez.edit("**الغي حظر @TempMailBot  و حاول مجددا**")
             return
         await event.edit(
-            f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({l313lmail})"
+            f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({ABHmail})"
         )
