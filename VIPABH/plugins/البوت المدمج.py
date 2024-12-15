@@ -132,3 +132,15 @@ async def _(event):
         await event.edit(
             f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({ABHmail})"
         )
+       continue
+@ABH.on(admin_cmd(pattern="(حساب|احسب)$"))
+async def Hussein(event):
+    reply_to = event.reply_to_msg_id
+    if reply_to:
+        msg = await client.get_messages(event.chat_id, ids=reply_to)
+        user_id = msg.sender_id
+        chat = await client.get_entity("@NewCalcuBot")
+        async with client.conversation(chat) as conv:
+            await conv.send_message(f'{user_id}')
+            response = await conv.get_response()
+            await event.edit(response.text)
