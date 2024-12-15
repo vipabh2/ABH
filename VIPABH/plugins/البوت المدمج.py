@@ -132,7 +132,7 @@ async def _(event):
         await event.edit(
             f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({ABHmail})"
         )
-       continue
+       
 @ABH.on(admin_cmd(pattern="(حساب|احسب)$"))
 async def Hussein(event):
     reply_to = event.reply_to_msg_id
