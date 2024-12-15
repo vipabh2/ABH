@@ -36,16 +36,27 @@ async def _(event):
             await event.edit("** وحاول مجددا**")
             return
         await event.edit(f"- {response.message.message}\n @tt_tabot")
+
+@ABH.on(admin_cmd(pattern="احسب ?(.*)"))
+async def _(event):
+    input_equation = event.pattern_match.group(1)  # التقاط المعادلة المُدخلة
+    if not input_equation:
+        await event.edit("**✾╎يرجى إدخال المعادلة بعد الأمر**")
+        return
+
+    await event.edit("**- يتم جلب النتيجة**")
+    async with event.client.conversation("@NewCalcuBot") as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=6878741756)  # معرف @NewCalcuBot
+            )
+            await conv.send_message(input_equation)  # إرسال المعادلة إلى البوت
+            response = await response
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
+            return
+        await event.edit(f"- {response.message.message}\n @NewCalcuBot")
+
             
        
-@ABH.on(admin_cmd(pattern="(حساب|احسب)$"))
-async def Hussein(event):
-    reply_to = event.reply_to_msg_id
-    if reply_to:
-        msg = await client.get_messages(event.chat_id, ids=reply_to)
-        user_id = msg.sender_id
-        chat = await client.get_entity("@NewCalcuBot")
-        async with client.conversation(chat) as conv:
-            await conv.send_message(f'{user_id}')
-            response = await conv.get_response()
-            await event.edit(response.text)
