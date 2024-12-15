@@ -9,21 +9,22 @@ from telethon.tl.functions.users import GetFullUserRequest
 from VIPABH import ABH
 
 
-@ABH.on(admin_cmd(pattern="رجب ?(.*)"))
+@l313l.on(admin_cmd(pattern="حالتي ?(.*)"))
 async def _(event):
-    await event.edit("**- يتم جلب النتيجة**")
-    async with event.client.conversation("@tt_tabot") as conv:
+    await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
+    async with bot.conversation("@SpamBot") as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=7308514832)
+                events.NewMessage(incoming=True, from_users=178220800)
             )
-            await conv.send_message("رجب")
+            await conv.send_message("/start")
             response = await response
-            await event.client.send_read_acknowledge(conv.chat_id)
+            await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.edit("** وحاول مجددا**")
+            await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
             return
-        await event.edit(f"- {response.message.message}\n @tt_tabot")
+        await event.edit(f"- {response.message.message}\n @jepthon")
+
 
 @ABH.on(admin_cmd(pattern="شعبان ?(.*)"))
 async def _(event):
