@@ -55,8 +55,4 @@ async def _(event):
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
-            return
-        await event.edit(f"- {response.message.message}\n @NewCalcuBot")
-
-            
-       
+          
