@@ -47,12 +47,12 @@ async def _(event):
     await event.edit("**- يتم جلب النتيجة**")
     async with event.client.conversation("@NewCalcuBot") as conv:
         try:
-            response = conv.wait_event(
+            await conv.send_message(input_equation)  # إرسال المعادلة إلى البوت
+            response = await conv.wait_event(
                 events.NewMessage(incoming=True, from_users=6878741756)  # معرف @NewCalcuBot
             )
-            await conv.send_message(input_equation)  # إرسال المعادلة إلى البوت
-            response = await response
             await event.client.send_read_acknowledge(conv.chat_id)
+            result = response.message.text
+            await event.edit(f"**النتيجة: {result}**")
         except YouBlockedUserError:
             await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
-          
