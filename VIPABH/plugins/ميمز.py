@@ -39,7 +39,7 @@ async def _(event):
 
 @ABH.on(admin_cmd(pattern="احسب ?(.*)"))
 async def _(event):
-    input_equation = event.pattern_match.group(1)  # التقاط المعادلة المُدخلة
+    input_equation = event.pattern_match.group(1)  
     if not input_equation:
         await event.edit("**✾╎يرجى إدخال المعادلة بعد الأمر**")
         return
