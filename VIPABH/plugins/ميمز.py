@@ -13,7 +13,8 @@ from ..helpers.utils import reply_id
 plugin_category = "tools"
 aljoker_links = {}
 
-@ABH.on(admin_cmd(outgoing=True, pattern="لطمية$"))
+# @ABH.on(admin_cmd(outgoing=True, pattern="لطمية$"))
+@ABH.on(events.NewMessage(outgoing=True, pattern=r'^\.*لطمية$'))
 async def jepThe(theme):
     rl = random.randint(19, 170)
     url = f"https://t.me/x04ou/{rl}"
