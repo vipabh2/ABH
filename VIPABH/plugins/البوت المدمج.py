@@ -29,68 +29,65 @@ async def _(event):
             await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
 
 
-@l313l.on(admin_cmd(pattern="حالتي ?(.*)"))
+@ABH.on(admin_cmd(pattern="محرم ?(.*)"))
 async def _(event):
-    await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
-    async with bot.conversation("@SpamBot") as conv:
+    input_equation = event.pattern_match.group(1)  
+    if not input_equation:
+        await event.edit("**✾╎يرجى إدخال المعادلة بعد الأمر**")
+        return
+
+    await event.edit("**- يتم جلب النتيجة**")
+    async with event.client.conversation("@TT_TABOT") as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=178220800)
+            await conv.send_message(input_equation) 
+            response = await conv.wait_event(
+                events.NewMessage(incoming=True, from_users=7308514832)  
             )
-            await conv.send_message("/start")
-            response = await response
-            await bot.send_read_acknowledge(conv.chat_id)
+            await event.client.send_read_acknowledge(conv.chat_id)
+            result = response.message.text
+            await event.edit(f"**{result}**")
         except YouBlockedUserError:
-            await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
-            return
-        await event.edit(f"- {response.message.message}\n @jepthon")
+            await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
+
 
 @ABH.on(admin_cmd(pattern="شعبان ?(.*)"))
 async def _(event):
-    await event.edit("**- يتم جلب النتيجة**")
-    async with event.client.conversation("@tt_tabot") as conv:
-        try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=7308514832)
-            )
-            await conv.send_message("شعبان")
-            response = await response
-            await event.client.send_read_acknowledge(conv.chat_id)
-        except YouBlockedUserError:
-            await event.edit("** وحاول مجددا**")
-            return
-        await event.edit(f"- {response.message.message}\n @tt_tabot")
+    input_equation = event.pattern_match.group(1)  
+    if not input_equation:
+        await event.edit("**✾╎يرجى إدخال المعادلة بعد الأمر**")
+        return
 
-@ABH.on(admin_cmd(pattern="رمضان ?(.*)"))
-async def _(event):
     await event.edit("**- يتم جلب النتيجة**")
-    async with event.client.conversation("@tt_tabot") as conv:
+    async with event.client.conversation("@TT_TABOT") as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=7308514832)
+            await conv.send_message(input_equation) 
+            response = await conv.wait_event(
+                events.NewMessage(incoming=True, from_users=7308514832)  
             )
-            await conv.send_message("رمضان")
-            response = await response
             await event.client.send_read_acknowledge(conv.chat_id)
+            result = response.message.text
+            await event.edit(f"**{result}**")
         except YouBlockedUserError:
-            await event.edit("** وحاول مجددا**")
-            return
-        await event.edit(f"- {response.message.message}\n @tt_tabot")
+            await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
 
-@ABH.on(admin_cmd(pattern="محرم ?(.*)"))
+
+@ABH.on(admin_cmd(pattern="رجب ?(.*)"))
 async def _(event):
+    input_equation = event.pattern_match.group(1)  
+    if not input_equation:
+        await event.edit("**✾╎يرجى إدخال المعادلة بعد الأمر**")
+        return
+
     await event.edit("**- يتم جلب النتيجة**")
-    async with event.client.conversation("@tt_tabot") as conv:
+    async with event.client.conversation("@TT_TABOT") as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=7308514832)
+            await conv.send_message(input_equation) 
+            response = await conv.wait_event(
+                events.NewMessage(incoming=True, from_users=7308514832)  
             )
-            await conv.send_message("محرم")
-            response = await response
             await event.client.send_read_acknowledge(conv.chat_id)
+            result = response.message.text
+            await event.edit(f"**{result}**")
         except YouBlockedUserError:
-            await event.edit("** وحاول مجددا**")
-            return
-        await event.edit(f"- {response.message.message}\n @tt_tabot")
-            
+            await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
 
