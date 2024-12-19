@@ -21,22 +21,6 @@ async def jepThe(theme):
     await theme.client.send_file(theme.chat_id, url, caption="᯽︙  اذكر القائم ", parse_mode="html")
     await theme.delete()
 
-
-@ABH.on(admin_cmd(pattern="محرم ?(.*)"))
-async def _(event):
-    await event.edit("**- يتم جلب النتيجة**")
-    async with event.client.conversation("@tt_tabot") as conv:
-        try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=7308514832)
-            )
-            await conv.send_message("محرم")
-            response = await response
-            await event.client.send_read_acknowledge(conv.chat_id)
-        except YouBlockedUserError:
-            await event.edit("** وحاول مجددا**")
-            return
-        await event.edit(f"- {response.message.message}\n @tt_tabot")
 @ABH.on(events.NewMessage(outgoing=True, pattern=r'^\.*لتغلط$'))
 async def jepmeme(memejep):
   Jep = await reply_id(memejep)
