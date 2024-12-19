@@ -29,12 +29,12 @@ async def _(event):
             await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
 
 
-@ABH.on(admin_cmd(pattern="محرم ?(.*)"))
+@ABH.on(admin_cmd(pattern="محرم"))
 async def _(event):
     # input_equation = event.pattern_match.group(1)  
-    if not input_equation:
-        await event.edit("**✾╎يرجى إدخال المعادلة بعد الأمر**")
-        return
+    # if not input_equation:
+        # await event.edit("**✾╎يرجى إدخال المعادلة بعد الأمر**")
+        # return
 
     await event.edit("**- يتم جلب النتيجة**")
     async with event.client.conversation("@TT_TABOT") as conv:
