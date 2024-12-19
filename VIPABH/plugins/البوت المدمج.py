@@ -8,7 +8,7 @@ from telethon.tl.functions.messages import GetMessagesRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from VIPABH import ABH
 
-# @ABH.on(admin_cmd(pattern="(حساب|احسب)$"))
+@ABH.on(admin_cmd(pattern="(حساب|احسب)$"))
 # @ABH.on(admin_cmd(pattern="احسب ?(.*)"))
 async def _(event):
     input_equation = event.pattern_match.group(1)  
