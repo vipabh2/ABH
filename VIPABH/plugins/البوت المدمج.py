@@ -8,7 +8,8 @@ from telethon.tl.functions.messages import GetMessagesRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from VIPABH import ABH
 
-@ABH.on(admin_cmd(pattern="احسب ?(.*)"))
+# @ABH.on(admin_cmd(pattern="(حساب|احسب)$"))
+# @ABH.on(admin_cmd(pattern="احسب ?(.*)"))
 async def _(event):
     input_equation = event.pattern_match.group(1)  
     if not input_equation:
@@ -18,9 +19,9 @@ async def _(event):
     await event.edit("**- يتم جلب النتيجة**")
     async with event.client.conversation("@NewCalcuBot") as conv:
         try:
-            await conv.send_message(input_equation)  # إرسال المعادلة إلى البوت
+            await conv.send_message(input_equation) 
             response = await conv.wait_event(
-                events.NewMessage(incoming=True, from_users=6878741756)  # معرف @NewCalcuBot
+                events.NewMessage(incoming=True, from_users=6878741756)  
             )
             await event.client.send_read_acknowledge(conv.chat_id)
             result = response.message.text
@@ -44,7 +45,6 @@ async def _(event):
             await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
             return
         await event.edit(f"- {response.message.message}\n @jepthon")
-
 
 @ABH.on(admin_cmd(pattern="شعبان ?(.*)"))
 async def _(event):
@@ -96,41 +96,6 @@ async def _(event):
             
 
 
-@ABH.on(admin_cmd(pattern="الاغنية ?(.*)"))
-async def _(event):
-    "To reverse search music by bot."
-    if not event.reply_to_msg_id:
-        return await event.edit("**▾∮ يجب الرد على الاغنيه اولا**")
-    reply_message = await event.get_reply_message()
-    chat = "@auddbot"
-    try:
-        async with event.client.conversation(chat) as conv:
-            try:
-                await event.edit("**▾∮ يتم التعرف على الاغنية انتظر**")
-                start_msg = await conv.send_message("/start")
-                response = await conv.get_response()
-                send_audio = await conv.send_message(reply_message)
-                check = await conv.get_response()
-                if not check.text.startswith("Audio received"):
-                    return await event.edit(
-                        "**▾∮ يجب ان يكون حجم الاغنيه من 5 الى 10 ثواني **."
-                    )
-                await event.edit("- انتظر قليلا")
-                result = await conv.get_response()
-                await event.client.send_read_acknowledge(conv.chat_id)
-            except YouBlockedUserError:
-                await event.edit("```Mohon buka blokir (@auddbot) dan coba lagi```")
-                return
-            namem = f"**الأغنية : **{result.text.splitlines()[0]}\n\n**التفاصيـل : **{result.text.splitlines()[2]}"
-            await event.edit(namem)
-            await event.client.delete_messages(
-                conv.chat_id,
-                [start_msg.id, send_audio.id, check.id, result.id, response.id],
-            )
-    except TimeoutError:
-        return await event.edit("***حدث خطا ما حاول مجددا**")
-
-
 @ABH.on(admin_cmd(pattern="ايميل وهمي(?: |$)(.*)"))
 async def _(event):
     chat = "@TempMailBot"
@@ -153,14 +118,3 @@ async def _(event):
             f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({ABHmail})"
         )
        
-# @ABH.on(admin_cmd(pattern="(حساب|احسب)$"))
-# async def Hussein(event):
-#     reply_to = event.reply_to_msg_id
-#     if reply_to:
-#         msg = await client.get_messages(event.chat_id, ids=reply_to)
-#         user_id = msg.sender_id
-#         chat = await client.get_entity("@NewCalcuBot")
-#         async with client.conversation(chat) as conv:
-#             await conv.send_message(f'{user_id}')
-#             response = await conv.get_response()
-#             await event.edit(response.text)
