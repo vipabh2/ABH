@@ -31,7 +31,7 @@ async def _(event):
 
 @ABH.on(admin_cmd(pattern="محرم ?(.*)"))
 async def _(event):
-    input_equation = event.pattern_match.group(1)  
+    # input_equation = event.pattern_match.group(1)  
     if not input_equation:
         await event.edit("**✾╎يرجى إدخال المعادلة بعد الأمر**")
         return
@@ -39,7 +39,7 @@ async def _(event):
     await event.edit("**- يتم جلب النتيجة**")
     async with event.client.conversation("@TT_TABOT") as conv:
         try:
-            await conv.send_message(input_equation) 
+            await conv.send_message(محرم) 
             response = await conv.wait_event(
                 events.NewMessage(incoming=True, from_users=7308514832)  
             )
