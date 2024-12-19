@@ -1,12 +1,32 @@
-# import asyncio
-# from ..core.managers import edit_delete, edit_or_reply
-# from ..helpers import get_user_from_event, sanga_seperator
-# from ..helpers.utils import _format
-# from telethon import events
-# from telethon.errors.rpcerrorlist import YouBlockedUserError
-# from telethon.tl.functions.messages import GetMessagesRequest
-# from telethon.tl.functions.users import GetFullUserRequest
-# from VIPABH import ABH
+import asyncio
+from ..core.managers import edit_delete, edit_or_reply
+from ..helpers import get_user_from_event, sanga_seperator
+from ..helpers.utils import _format
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.functions.messages import GetMessagesRequest
+from telethon.tl.functions.users import GetFullUserRequest
+from VIPABH import ABH
+
+@ABH.on(admin_cmd(pattern="احسب ?(.*)"))
+async def _(event):
+    input_equation = event.pattern_match.group(1)  
+    if not input_equation:
+        await event.edit("**✾╎يرجى إدخال المعادلة بعد الأمر**")
+        return
+
+    await event.edit("**- يتم جلب النتيجة**")
+    async with event.client.conversation("@NewCalcuBot") as conv:
+        try:
+            await conv.send_message(input_equation)  # إرسال المعادلة إلى البوت
+            response = await conv.wait_event(
+                events.NewMessage(incoming=True, from_users=6878741756)  # معرف @NewCalcuBot
+            )
+            await event.client.send_read_acknowledge(conv.chat_id)
+            result = response.message.text
+            await event.edit(f"**{result}**")
+        except YouBlockedUserError:
+            await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
 
 
 # @l313l.on(admin_cmd(pattern="حالتي ?(.*)"))
