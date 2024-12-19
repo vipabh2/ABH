@@ -94,26 +94,3 @@ async def _(event):
         await event.edit(f"- {response.message.message}\n @tt_tabot")
             
 
-
-@ABH.on(admin_cmd(pattern="ايميل وهمي(?: |$)(.*)"))
-async def _(event):
-    chat = "@TempMailBot"
-    geez = await event.edit("**جاري انشاء بريد ...**")
-    async with event.client.conversation(chat) as conv:
-        try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=220112646)
-            )
-            await conv.send_message("/start")
-            await asyncio.sleep(1)
-            await conv.send_message("/create")
-            response = await response
-            ABHmail = response.reply_markup.rows[2].buttons[0].url
-            await event.client.send_read_acknowledge(conv.chat_id)
-        except YouBlockedUserError:
-            await geez.edit("**الغي حظر @TempMailBot  و حاول مجددا**")
-            return
-        await event.edit(
-            f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({ABHmail})"
-        )
-       
