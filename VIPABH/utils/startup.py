@@ -95,7 +95,7 @@ async def startupmessage():
                 BOTLOG_CHATID,
                 "https://t.me/VIPABH/1187",
                 caption="**‏᯽︙ بــوت ABH يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n  ᯽︙ لأستعمال بوت الأختراق عبر كود التيرمكس أرسل`.هاك`**",
-                buttons=[(Button.url("ابـ،ـن،هـ.ـاشـ.ـم ✘", "https://t.me/k_4x1"),)],
+                buttons=[(Button.url("ABH", "https://t.me/ltswe"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -173,7 +173,7 @@ async def add_bot_to_logger_group(chat_id):
             )
         except Exception as e:
             LOGS.error(str(e))
-VIPABH = {"@sszxl", "@x04ou", @ltswe "@iamMUAOL"}
+VIPABH = {"@sszxl", "@x04ou", "@ltswe", "@iamMUAOL"}
 async def saves():
     for lMl10l in VIPABH:
         try:
