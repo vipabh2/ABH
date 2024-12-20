@@ -147,6 +147,46 @@ async def set_group_photo(event):  # sourcery no-metrics
 async def promote(event):
     "᯽︙ لـرفع مستخدم مشرف في الكروب"
     
+
+    await event.delete()  
+    user, rank = await get_user_from_event(event)
+
+    if event.pattern_match.group(1):
+        rank = event.pattern_match.group(1).strip()
+    else:
+        rank = "مشرف"
+
+    if user:
+        try:
+            await event.client(EditAdminRequest(event.chat_id, user.id, rank))
+            
+            reply_message = await event.reply(f"᯽︙ تم تغيير اللقب الئ {user.first_name} {rank}!")
+            await asyncio.sleep(4) 
+            await reply_message.delete()  
+        except Exception as e:
+            await event.reply(f"᯽︙ حدث خطأ {user.first_name}: {str(e)}")
+    else:
+        await event.reply("᯽︙ لم يتم العثور على المستخدم!")
+        await event.delete()  
+  
+@ABH.ar_cmd(
+    pattern="مشرف0(?:\s|$)([\s\S]*)",
+    command=("مشرف0", plugin_category),
+    info={
+        "الامر": "᯽︙ لرفع الشخص مشرف مع صلاحيات",
+        "الشرح": "᯽︙ لرفع الشخص مشرف بالمجموعة قم بالرد على الشخص\
+            \n᯽︙ تـحتاج الصلاحـيات لـهذا الأمـر",
+        "الاستخدام": [
+            "{tr}رفع مشرف <ايدي/معرف/بالرد عليه>",
+            "{tr}رفع مشرف <ايدي/معرف/بالرد عليه> <لقب>",
+        ],
+    },
+    groups_only=True,
+    require_admin=True,
+)
+async def promote(event):
+    "᯽︙ لـرفع مستخدم مشرف في الكروب"
+    
     new_rights = ChatAdminRights(
         add_admins=False,
         invite_users=True,
