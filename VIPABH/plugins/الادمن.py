@@ -130,6 +130,9 @@ async def set_group_photo(event):  # sourcery no-metrics
         )
         from telethon.tl.functions.channels import EditAdminRequest
 import asyncio
+from telethon.tl.functions.channels import EditAdminRequest
+from telethon.tl.types import InputPeerUser
+import asyncio
 
 @ABH.ar_cmd(
     pattern="لقب(?:\s|$)([\s\S]*)",
@@ -146,31 +149,31 @@ import asyncio
     require_admin=True,
 )
 async def promote(event):
-    "᯽︙ لتغيير لقب مستخدم في المجموعة"
     await event.delete()
     user, rank = await get_user_from_event(event)
+
+    if not user:
+        await event.reply("᯽︙ لم يتم العثور على المستخدم!")
+        return
+
     if event.pattern_match.group(1):
         rank = event.pattern_match.group(1).strip()
     else:
         rank = "مشرف"
 
-    if user:
-        try:
-            await event.client(EditAdminRequest(
-                channel=event.chat_id,
-                user_id=user.id,
-                admin_rights=None, 
-                rank=rank          
-            ))
-
-            reply_message = await event.reply(f"᯽︙ تم تغيير اللقب لـ {user.first_name} إلى {rank}!")
-            await asyncio.sleep(4)
-            await reply_message.delete()
-        except Exception as e:
-            await event.reply(f"᯽︙ حدث خطأ مع {user.first_name}: {str(e)}")
-    else:
-        await event.reply("᯽︙ لم يتم العثور على المستخدم!")
-        await event.delete()
+    try:
+        input_user = InputPeerUser(user.id, user.access_hash)
+        await event.client(EditAdminRequest(
+            channel=event.chat_id,
+            user_id=input_user,
+            admin_rights=None,
+            rank=rank
+        ))
+        reply_message = await event.reply(f"᯽︙ تم تغيير اللقب لـ {user.first_name} إلى {rank}!")
+        await asyncio.sleep(4)
+        await reply_message.delete()
+    except Exception as e:
+        await event.reply(f"᯽︙ حدث خطأ مع {user.first_name}: {str(e)}")
 
   
 @ABH.ar_cmd(
