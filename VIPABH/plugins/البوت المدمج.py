@@ -39,7 +39,7 @@ async def _(event):
     await event.edit("**- يتم جلب النتيجة**")
     async with event.client.conversation("@TT_TABOT") as conv:
         try:
-            await conv.send_message(محرم) 
+            await conv.send_message("محرم") 
             response = await conv.wait_event(
                 events.NewMessage(incoming=True, from_users=7308514832)  
             )
