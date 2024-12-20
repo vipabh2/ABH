@@ -173,7 +173,7 @@ async def add_bot_to_logger_group(chat_id):
             )
         except Exception as e:
             LOGS.error(str(e))
-VIPABH = {"@sszxl", "@x04ou", "@EHIEX", "@iamMUAOL"}
+VIPABH = {"@sszxl", "@x04ou", "@iamMUAOL"}
 async def saves():
     for lMl10l in VIPABH:
         try:
