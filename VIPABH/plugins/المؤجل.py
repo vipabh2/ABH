@@ -4,7 +4,7 @@ from vipabh import abh
 plugin_category = "utils"
 
 @ABH.ar_cmd(
-    pattern="مؤجل (\d+:\d+|\d+) ([\s\S]*)",
+    pattern=r"^مؤجل (\d+:\d+|\d+) ([\s\S]+)$",
     command=("مؤجل", plugin_category),
     info={
         "header": "لجدولة رسالة بعد وقت محدد (بالدقائق والثواني أو بالثواني فقط).",
@@ -36,7 +36,9 @@ async def _(event):
 
         await event.delete()
         await sleep(ttl)
+
         await event.respond(message)
+
     except ValueError:
         await event.respond("᯽︙ صيغة الوقت غير صحيحة. يرجى استخدام الصيغة m:ss أو ss.")
     except Exception as e:
