@@ -128,29 +128,27 @@ async def set_group_photo(event):  # sourcery no-metrics
             f"صورة المجموعه {process} بنجاح "
             f"الدردشه: {event.chat.title}(`{event.chat_id}`)",
         )
-        
+        from telethon.tl.functions.channels import EditAdminRequest
+import asyncio
+
 @ABH.ar_cmd(
     pattern="لقب(?:\s|$)([\s\S]*)",
     command=("لقب", plugin_category),
     info={
-        "الامر": "᯽︙ لرفع الشخص مشرف مع صلاحيات",
-        "الشرح": "᯽︙ لرفع الشخص مشرف بالمجموعة قم بالرد على الشخص\
-            \n᯽︙ تـحتاج الصلاحـيات لـهذا الأمـر",
+        "الامر": "᯽︙ لتغيير لقب شخص في المجموعة.",
+        "الشرح": "᯽︙ لتغيير لقب شخص بالمجموعة قم بالرد على الشخص مع تحديد اللقب الجديد.\
+            \n᯽︙ تحتاج إلى صلاحيات لتغيير اللقب.",
         "الاستخدام": [
-            "{tr}رفع مشرف <ايدي/معرف/بالرد عليه>",
-            "{tr}رفع مشرف <ايدي/معرف/بالرد عليه> <لقب>",
+            "{tr}لقب <لقب جديد> (بالرد على المستخدم)",
         ],
     },
     groups_only=True,
     require_admin=True,
 )
 async def promote(event):
-    "᯽︙ لـرفع مستخدم مشرف في الكروب"
-    
-
-    await event.delete()  
+    "᯽︙ لتغيير لقب مستخدم في المجموعة"
+    await event.delete()
     user, rank = await get_user_from_event(event)
-
     if event.pattern_match.group(1):
         rank = event.pattern_match.group(1).strip()
     else:
@@ -158,16 +156,22 @@ async def promote(event):
 
     if user:
         try:
-            await event.client(EditAdminRequest(event.chat_id, user.id, rank))
-            
-            reply_message = await event.reply(f"᯽︙ تم تغيير اللقب الئ {user.first_name} {rank}!")
-            await asyncio.sleep(4) 
-            await reply_message.delete()  
+            await event.client(EditAdminRequest(
+                channel=event.chat_id,
+                user_id=user.id,
+                admin_rights=None, 
+                rank=rank          
+            ))
+
+            reply_message = await event.reply(f"᯽︙ تم تغيير اللقب لـ {user.first_name} إلى {rank}!")
+            await asyncio.sleep(4)
+            await reply_message.delete()
         except Exception as e:
-            await event.reply(f"᯽︙ حدث خطأ {user.first_name}: {str(e)}")
+            await event.reply(f"᯽︙ حدث خطأ مع {user.first_name}: {str(e)}")
     else:
         await event.reply("᯽︙ لم يتم العثور على المستخدم!")
-        await event.delete()  
+        await event.delete()
+
   
 @ABH.ar_cmd(
     pattern="مشرف0(?:\s|$)([\s\S]*)",
