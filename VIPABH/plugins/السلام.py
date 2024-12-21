@@ -15,7 +15,7 @@ async def auto_replay_off(event):
 async def auto_replay_on(event):
     global auto_replay
     auto_replay = True 
-    await event.reply("تم تفعيل الرد التلقائي على السلام.")
+    await event.edit("تم تفعيل الرد التلقائي على السلام.")
 
 @ABH.ar_cmd(
     incoming=True,
