@@ -23,9 +23,6 @@ async def auto_replay_on(event):
     edited=False
 )
 async def reply_salam(event):
-    # if event.sender.id in banned_users:
-    #     return  
-
     if not auto_replay:
         return 
 
