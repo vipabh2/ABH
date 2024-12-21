@@ -211,19 +211,20 @@ async def fastpurger(event):  # sourcery no-metrics
     error = ""
     result = ""
     await event.delete()
-    reply = await event.get_reply_message()  if reply:
+    reply = await event.get_reply_message()
+    if reply:
         if input_str and input_str.isnumeric():
-            input_str = int(input_str) - 1
             if p_type is not None:
                 for ty in p_type:
                     if ty in purgetype:
                         async for msg in event.client.iter_messages(
                             event.chat_id,
-                            limit=input_str,
+                            limit=int(input_str),
                             offset_id=reply.id - 1,
                             reverse=True,
                             filter=purgetype[ty],
                         ):
+                            # count += 1 
                             count = 0
                             msgs.append(msg)
                             if len(msgs) == 50:
@@ -237,14 +238,16 @@ async def fastpurger(event):  # sourcery no-metrics
                         error += f"\n\n᯽︙ `{ty}`  : هـذه أضافـة خاطئـة "
             else:
                 count = 0
+                # count += 1
                 async for msg in event.client.iter_messages(
                     event.chat_id,
-                    limit=input_str, 
+                    limit=(int(input_str) - 1),
                     offset_id=reply.id,
                     reverse=True,
                 ):
                     msgs.append(msg)
                     count = 0
+                    # count += 1
                     if len(msgs) == 50:
                         await event.client.delete_messages(chat, msgs)
                         msgs = []
