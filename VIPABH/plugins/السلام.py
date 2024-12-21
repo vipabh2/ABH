@@ -1,6 +1,8 @@
 from telethon import events
 from VIPABH import ABH
 
+plugin_category = "extra"
+
 auto_replay = False  
 
 @ABH.ar_cmd(pattern="السلام تعطيل")
