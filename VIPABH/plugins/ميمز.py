@@ -24,13 +24,6 @@ async def jepThe(theme):
             caption="᯽︙  اذكر القائم", 
             parse_mode="html"
         )        
-        await theme.client.send_message(
-            BOTLOG_CHATID,
-            f"᯽︙ الـتثبيت\
-                \n **᯽︙ تـم بـنجـاح الـتثبيت فـي الدردشـة**\
-                \nالـدردشـة: {theme.chat.title}(`{theme.chat_id}`)\
-                \nالـتثبيت: {is_silent}",
-        )
         await theme.delete()
     except Exception as e:
         error_message = str(e)
