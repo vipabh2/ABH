@@ -77,3 +77,19 @@ async def _(event):
         except YouBlockedUserError:
             await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
 
+@ABH.on(admin_cmd(pattern="محرم"))
+async def _(event):
+
+    await event.edit("**- يتم جلب النتيجة**")
+    async with event.client.conversation("@TT_TABOT") as conv:
+        try:
+            await conv.send_message("محرم") 
+            response = await conv.wait_event(
+                events.NewMessage(incoming=True, from_users=7308514832)  
+            )
+            await event.client.send_read_acknowledge(conv.chat_id)
+            result = response.message.text
+            await event.edit(f"**{result}**")
+        except YouBlockedUserError:
+            await event.edit("**✾╎يرجى التحقق من عدم حظر البوت @NewCalcuBot وحاول مجددا**")
+
