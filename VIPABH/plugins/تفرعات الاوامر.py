@@ -9,21 +9,6 @@ plugin_category = "extra"
 banned_users = [1510396227, 6844153802]  
 
 @ABH.ar_cmd(
-    incoming=True,
-    func=lambda e: e.text and (e.text.strip().lower() == "السلام عليكم" or e.text.strip().lower() == "سلام عليكم"),
-    edited=False
-)
-async def reply_salam(event):
-    if event.sender.id in banned_users:
-        # await event.reply("ههههه هاي بسبب الملحة")  
-        # await event.reply("☝️")  
-        return 
-
-    username = event.sender.username if event.sender.username else "لا يوجد اسم مستخدم"
-    await event.reply(f"عليكم السلام")
-
-
-@ABH.ar_cmd(
     pattern="اوامر الحظر$",
     command=("اوامر الحظر ", plugin_category),
            )
