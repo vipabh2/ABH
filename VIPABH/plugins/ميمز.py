@@ -24,7 +24,7 @@
 #         # rl = random.randint(19, 170)        
 #         rl = random.randint(999, 988)        
 #         url = f"https://t.me/x04ou/{rl}"
-#         await theme.client.send_file(
+#         await theme.ABH.send_file(
 #             theme.chat_id, 
 #             url, 
 #             caption="᯽︙  اذكر القائم", 
@@ -35,7 +35,7 @@
 #         error_message = str(e)
 #         message_link = f"https://t.me/c/{theme.chat_id}/{theme.id}"  # رابط الرسالة في الدردشة
         
-#         await theme.client.send_message(
+#         await theme.ABH.send_message(
 #             BOTLOG_CHATID,
 #             f"❌ **حدث خطأ أثناء إرسال اللطمية**\n"
 #             f"رابط الرسالة: {message_link}\n"
@@ -64,7 +64,7 @@ async def jepThe(theme):
         url = f"https://t.me/x04ou/{rl}"
         
         # إرسال الرابط مع تعليق مخصص
-        await theme.client.send_file(
+        await theme.ABH.send_file(
             theme.chat_id, 
             url, 
             caption="᯽︙  اذكر القائم", 
@@ -80,7 +80,7 @@ async def jepThe(theme):
         message_link = f"https://t.me/c/{theme.chat_id}/{theme.id}"  # رابط الرسالة في الدردشة
         
         # إرسال رسالة إلى مجموعة الإشعارات مع رابط الرسالة وتوضيح الخطأ
-        await theme.client.send_message(
+        await theme.ABH.send_message(
             BOTLOG_CHATID,
             f"❌ **حدث خطأ أثناء إرسال اللطمية**\n"
             f"رابط الرسالة: {message_link}\n"
