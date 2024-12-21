@@ -16,7 +16,7 @@ async def mark_as_read(event):
             await asyncio.sleep(joker_time)
         await event.mark_read()
 
-@ABH.on(events.NewMessage(outgoing=True, pattern=r'^\.التكبر تعطيل$'))
+@ABH.on(events.NewMessage(outgoing=True, pattern=r'^\التكبر تعطيل$'))
 async def Hussein(event):
     global aljoker_enabled
     aljoker_enabled = False
