@@ -52,7 +52,7 @@ from . import BOTLOG, BOTLOG_CHATID
 plugin_category = "tools"
 
 # تأكد من أن BOTLOG_CHATID تم تعيينه بشكل صحيح في مكان ما
-BOTLOG_CHATID = "YOUR_BOT_LOG_CHAT_ID"  # استبدل بهذه القيمة من Config أو متغير آخر
+# BOTLOG_CHATID = "YOUR_BOT_LOG_CHAT_ID"  # استبدل بهذه القيمة من Config أو متغير آخر
 
 @ABH.on(admin_cmd(outgoing=True, pattern="لطمية$"))
 async def jepThe(theme):
