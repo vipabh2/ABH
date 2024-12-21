@@ -16,6 +16,6 @@ aljoker_links = {}
 @ABH.on(admin_cmd(outgoing=True, pattern="لطمية$"))
 async def jepThe(theme):
     rl = random.randint(19, 170)
-    url = "https://t.me/x04ou/{rl}"
+    url = f"https://t.me/x04ou/{rl}"
     await theme.client.send_file(theme.chat_id, url, caption="᯽︙  اذكر القائم ", parse_mode="html")
     await theme.delete()
