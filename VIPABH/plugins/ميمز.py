@@ -11,10 +11,12 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from VIPABH import ABH
 from abh import __init__.py
 from ..helpers.utils import reply_id
+from . import BOTLOG, BOTLOG_CHATID
+
 plugin_category = "tools"
 aljoker_links = {}
 
-BOTLOG_CHATID = Config.BOTLOG_CHATID
+# BOTLOG_CHATID = Config.BOTLOG_CHATID
 
 @ABH.on(admin_cmd(outgoing=True, pattern="لطمية$"))
 async def jepThe(theme):
