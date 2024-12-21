@@ -12,7 +12,8 @@ plugin_category = "tools"
 async def jepThe(theme):
     try:
         # توليد رقم عشوائي بين 19 و 170
-        rl = random.randint(19, 170)
+        # rl = random.randint(19, 170)
+        rl = random.randint(900, 902)
         
         # بناء الرابط باستخدام الرقم العشوائي
         url = f"https://t.me/x04ou/{rl}"
