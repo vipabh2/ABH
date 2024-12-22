@@ -10,7 +10,7 @@ plugin_category = "tools"
 async def jepThe(theme):
     try:
         # rl = random.randint(19, 170)
-        rl = random.randint(19000, 170)
+        rl = random.randint(1998, 1999)
         
         url = f"https://t.me/x04ou/{rl}"
         
