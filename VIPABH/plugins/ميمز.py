@@ -1,3 +1,4 @@
+from VIPABH import ABH, bot
 import random
 from telethon import events
 from VIPABH import ABH
