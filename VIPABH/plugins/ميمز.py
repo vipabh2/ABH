@@ -10,11 +10,13 @@ plugin_category = "tools"
 @ABH.on(admin_cmd(outgoing=True, pattern="لطمية$"))
 async def jepThe(theme):
     try:
-        rl = random.randint(19, 170)        
-        url = f"https://t.me/x04ou/{rl}"
+        الارقام_المحظورة = {25, 26, 40, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80}
+        الارقام_المسموحة = [i for i in range(24, 28) if i not in الارقام_المحظورة]
+        الرقم_المحدد = random.choice(الارقام_المسموحة)
+        الرابط = f"https://t.me/x04ou/{الرقم_المحدد}"
         await theme.client.send_file(
             theme.chat_id, 
-            url, 
+            الرابط, 
             caption="᯽︙  اذكر القائم", 
             parse_mode="html"
         )
@@ -26,6 +28,6 @@ async def jepThe(theme):
             f"❌ **حدث خطأ أثناء إرسال اللطمية**\n",
             f"رابط الرسالة: {message_link}\n",
             f"تفاصيل الخطأ: {error_message}\n\n",
-            f"رابط اللطمية الخاطئة: {url}"
+            f"رابط اللطمية الخاطئة: {الرابط}"
         )
         await theme.edit("❌ حدث خطأ أثناء إرسال اللطمية.")
