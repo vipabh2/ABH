@@ -9,7 +9,8 @@ plugin_category = "tools"
 @ABH.on(admin_cmd(outgoing=True, pattern="لطمية$"))
 async def jepThe(theme):
     try:
-        rl = random.randint(19, 170)
+        # rl = random.randint(19, 170)
+        rl = random.randint(19000, 170)
         
         url = f"https://t.me/x04ou/{rl}"
         
