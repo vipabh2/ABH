@@ -26,8 +26,7 @@ async def jepThe(theme):
     except Exception as e:
         error_message = str(e)
         message_link = f"https://t.me/c/{theme.chat_id}/{theme.id}" 
-        return await ABH.tgbot.send_message(
-            BOTLOG_CHATID,
+        await ABH.tgbot.send_message(BOTLOG_CHATID,
             f"❌ **حدث خطأ أثناء إرسال اللطمية**\n",
             f"رابط الرسالة: {message_link}\n",
             f"تفاصيل الخطأ: {error_message}\n\n",
