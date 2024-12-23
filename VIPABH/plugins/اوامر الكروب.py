@@ -273,7 +273,7 @@ async def _(event):
 
 plugin_category = "admin"
 @ABH.ar_cmd(
-    pattern="المحذوفين ?([\s\S]*)",
+    pattern="المحذوفين?([\s\S]*)",
     command=("المحذوفين", plugin_category),
     info={
         "header": "لتحقق من الحسابات المحذوفة وتنظيفها",
