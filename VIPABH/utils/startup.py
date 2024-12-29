@@ -142,7 +142,7 @@ async def mybot():
                 await asyncio.sleep(1)
                 await ABH.send_message("@BotFather", botname)
                 await asyncio.sleep(1)
-                await ABH.send_message("@BotFather", joker)
+                await ABH.send_message("@BotFather", abh)
                 await asyncio.sleep(2)
             except Exception as e:
                 print(e)
@@ -295,7 +295,7 @@ async def verifyLoggerGroup():
             )
     else:
         descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - "
-        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon.JPEG")
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/abh2.JPEG")
         botlog_group_id = await aljoker_the_best(ABH, "مجموعة أشعارات ABH")
         if botlog_group_id:
             addgvar("PRIVATE_GROUP_BOT_API_ID", botlog_group_id)
@@ -309,7 +309,7 @@ async def verifyLoggerGroup():
         flag = True
     if PM_LOGGER_GROUP_ID == -100:
         descript = "᯽︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - "
-        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon2.JPEG")
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/abh.JPEG")
         pm_logger_group_id = await aljoker_the_best(ABH, "مجموعة التخزين")
         if pm_logger_group_id:
             addgvar("PM_LOGGER_GROUP_ID", pm_logger_group_id)
