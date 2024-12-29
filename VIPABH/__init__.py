@@ -20,7 +20,6 @@ bot = ABH
 StartTime = time.time()
 JEPVERSION = "3.1.3"
 
-
 if Config.UPSTREAM_REPO == "abh":
     UPSTREAM_REPO_URL = "https://github.com/vipabh/abh"
 else:
@@ -29,7 +28,7 @@ else:
 if Config.PRIVATE_GROUP_BOT_API_ID == 0:
     if gvarstatus("PRIVATE_GROUP_BOT_API_ID") is None:
         Config.BOTLOG = False
-        Config.BOTLOG_CHATID = "me"
+        Config.BOTLOG_CHATID = "me"  # تعيين القيمة الافتراضية
     else:
         Config.BOTLOG_CHATID = int(gvarstatus("PRIVATE_GROUP_BOT_API_ID"))
         Config.PRIVATE_GROUP_BOT_API_ID = int(gvarstatus("PRIVATE_GROUP_BOT_API_ID"))
@@ -40,6 +39,19 @@ else:
     else:
         Config.BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
     Config.BOTLOG = True
+
+# التحقق من BOTLOG_CHATID إذا لم يتم تحديد قيمة صالحة
+if not Config.BOTLOG_CHATID or Config.BOTLOG_CHATID == "me":
+    print("⚠️ لم يتم العثور على BOTLOG_CHATID. يرجى تحديد معرف صالح (ID) أو كتابة 'me' لاستقبال الرسائل في حسابك الشخصي.")
+    user_input = input("أدخل BOTLOG_CHATID (أو اتركه فارغًا لاستخدام 'me'): ").strip()
+    if user_input:
+        try:
+            Config.BOTLOG_CHATID = int(user_input)
+        except ValueError:
+            Config.BOTLOG_CHATID = "me"
+    else:
+        Config.BOTLOG_CHATID = "me"
+    print(f"تم تعيين BOTLOG_CHATID إلى: {Config.BOTLOG_CHATID}")
 
 if Config.PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
@@ -58,8 +70,7 @@ try:
 except Exception:
     HEROKU_APP = None
 
-
-# Global Configiables
+# Global Variables
 COUNT_MSG = 0
 USERS = {}
 COUNT_PM = {}
