@@ -4,21 +4,22 @@ import heroku3
 
 from .Config import Config
 from .core.logger import logging
-from .core.session import ABH
+from .core.session import l313l
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
 __version__ = "3.1.3"
-__license__ = "كـتابة وتـعديل ABH"
-__copyright__ = "abh (C) 2024"
-__author__ = "ABH <https://T.ME/k_4x1>"
+__license__ = "تـعديل فريـق abh"
+__author__ = "abh <https://T.ME/k_4x1>"
+__copyright__ = "ABH TEAM (C) 2021 - 2023  " + __author__
 
-ABH.version = __version__
-ABH.tgbot.version = __version__
-LOGS = logging.getLogger("ABH")
-bot = ABH
+l313l.version = __version__
+l313l.tgbot.version = __version__
+LOGS = logging.getLogger("abh")
+bot = l313l
 
 StartTime = time.time()
 JEPVERSION = "3.1.3"
+
 
 if Config.UPSTREAM_REPO == "abh":
     UPSTREAM_REPO_URL = "https://github.com/vipabh/abh"
@@ -28,7 +29,7 @@ else:
 if Config.PRIVATE_GROUP_BOT_API_ID == 0:
     if gvarstatus("PRIVATE_GROUP_BOT_API_ID") is None:
         Config.BOTLOG = False
-        Config.BOTLOG_CHATID = "me"  # تعيين القيمة الافتراضية
+        Config.BOTLOG_CHATID = "me"
     else:
         Config.BOTLOG_CHATID = int(gvarstatus("PRIVATE_GROUP_BOT_API_ID"))
         Config.PRIVATE_GROUP_BOT_API_ID = int(gvarstatus("PRIVATE_GROUP_BOT_API_ID"))
@@ -39,19 +40,6 @@ else:
     else:
         Config.BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
     Config.BOTLOG = True
-
-# التحقق من BOTLOG_CHATID إذا لم يتم تحديد قيمة صالحة
-if not Config.BOTLOG_CHATID or Config.BOTLOG_CHATID == "me":
-    print("⚠️ لم يتم العثور على BOTLOG_CHATID. يرجى تحديد معرف صالح (ID) أو كتابة 'me' لاستقبال الرسائل في حسابك الشخصي.")
-    user_input = input("أدخل BOTLOG_CHATID (أو اتركه فارغًا لاستخدام 'me'): ").strip()
-    if user_input:
-        try:
-            Config.BOTLOG_CHATID = int(user_input)
-        except ValueError:
-            Config.BOTLOG_CHATID = "me"
-    else:
-        Config.BOTLOG_CHATID = "me"
-    print(f"تم تعيين BOTLOG_CHATID إلى: {Config.BOTLOG_CHATID}")
 
 if Config.PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
@@ -70,7 +58,8 @@ try:
 except Exception:
     HEROKU_APP = None
 
-# Global Variables
+
+# Global Configiables
 COUNT_MSG = 0
 USERS = {}
 COUNT_PM = {}
