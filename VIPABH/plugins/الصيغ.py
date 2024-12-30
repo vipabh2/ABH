@@ -378,7 +378,6 @@ async def _(event):
     for i in [inputfile, outputfile]:
         if os.path.exists(i):
             os.remove(i)
-#write Code By #Hussein For Aljoker 🤡
 @ABH.ar_cmd(
     pattern=r"بنتيرست (.+)",
     command=("بنتيرست", plugin_category),
