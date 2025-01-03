@@ -31,7 +31,12 @@ if Config.PRIVATE_GROUP_BOT_API_ID == 0:
         Config.BOTLOG = False
         Config.BOTLOG_CHATID = "me"
     else:
-        Config.BOTLOG_CHATID = int(gvarstatus("PRIVATE_GROUP_BOT_API_ID"))
+        botlog_chat_id = gvarstatus("PRIVATE_GROUP_BOT_API_ID")
+try:
+    Config.BOTLOG_CHATID = int(botlog_chat_id)
+except ValueError:
+    print(f"Error: Unable to convert '{botlog_chat_id}' to an integer.")
+    # معالجة الخطأ أو تسجيله
         Config.PRIVATE_GROUP_BOT_API_ID = int(gvarstatus("PRIVATE_GROUP_BOT_API_ID"))
         Config.BOTLOG = True
 else:
