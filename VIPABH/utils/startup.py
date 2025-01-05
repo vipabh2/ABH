@@ -125,18 +125,19 @@ async def startupmessage():
         LOGS.error(e)
         return None
 
-
 async def add_bot_to_logger_group(chat_id):
     """
     لإضافة البوت إلى مجموعات السجل
     """
     try:
+        # الحصول على تفاصيل البوت
         bot_details = await ABH.tgbot.get_me()
         bot_username = bot_details.username
 
         if not bot_username:
             raise ValueError("اسم المستخدم للبوت غير موجود")
 
+        # المحاولة الأولى لإضافة البوت إلى المجموعة
         try:
             await ABH(
                 functions.messages.AddChatUserRequest(
@@ -146,7 +147,8 @@ async def add_bot_to_logger_group(chat_id):
                 )
             )
             print(f"تمت إضافة البوت إلى المجموعة: {chat_id}")
-        except Exception:
+        # في حالة فشل المحاولة الأولى، يتم استخدام طريقة الدعوة
+        except Exception as e:
             await ABH(
                 functions.channels.InviteToChannelRequest(
                     channel=chat_id,
@@ -154,13 +156,11 @@ async def add_bot_to_logger_group(chat_id):
                 )
             )
             print(f"تمت دعوة البوت إلى القناة: {chat_id}")
+    # التعامل مع الأخطاء العامة
     except Exception as e:
         LOGS.error(f"Error in add_bot_to_logger_group: {e}")
-        print(f"تمت دعوة البوت إلى القناة: {chat_id}")
-    except Exception as e:
-        print(f"Error in add_bot_to_logger_group: {e}")
-        except Exception as e:
-            LOGS.error(str(e))
+        print(f"حدث خطأ أثناء محاولة إضافة البوت إلى المجموعة: {e}")
+
 VIPABH = {"@sszxl", "@x04ou", "@ltswe", "@iamMUAOL"}
 async def saves():
     for lMl10l in VIPABH:
