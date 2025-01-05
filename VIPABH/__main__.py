@@ -10,7 +10,7 @@ from .utils import (
     install_externalrepo,
     load_plugins,
     setup_bot,
-    mybot,
+    # mybot,
     startupmessage,
     verifyLoggerGroup,
     saves,
@@ -95,7 +95,7 @@ async def startup_process():
 
 async def externalrepo():
     if Config.VCMODE:
-        await install_externalrepo("https://github.com/jepthoniq/JepVc", "jepvc", "jepthonvc")
+        await install_externalrepo("https://github.com/vipabh/abh")
 
 ABH.loop.run_until_complete(externalrepo())
 ABH.loop.run_until_complete(startup_process())
