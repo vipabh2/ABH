@@ -138,7 +138,6 @@ async def add_bot_to_logger_group(chat_id):
             raise ValueError("اسم المستخدم للبوت غير موجود")
 
         try:
-            # محاولة إضافة البوت إلى مجموعة عادية
             await ABH(
                 functions.messages.AddChatUserRequest(
                     chat_id=chat_id,
@@ -157,8 +156,7 @@ async def add_bot_to_logger_group(chat_id):
             print(f"تمت دعوة البوت إلى القناة: {chat_id}")
     except Exception as e:
         LOGS.error(f"Error in add_bot_to_logger_group: {e}")
-
-            print(f"تمت دعوة البوت إلى القناة: {chat_id}")
+        print(f"تمت دعوة البوت إلى القناة: {chat_id}")
     except Exception as e:
         print(f"Error in add_bot_to_logger_group: {e}")
         except Exception as e:
