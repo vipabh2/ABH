@@ -5,12 +5,12 @@ from VIPABH import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 from .Config import Config
 from .core.logger import logging
 from .core.session import ABH
+from ABH.razan.resources.mybot import mybot
 from .utils import (
     add_bot_to_logger_group,
     install_externalrepo,
     load_plugins,
     setup_bot,
-    # mybot,
     startupmessage,
     verifyLoggerGroup,
     saves,
