@@ -126,32 +126,6 @@ async def startupmessage():
         return None
 
 
-async def mybot():
-    try:
-        starkbot = await ABH.tgbot.get_me()
-        joker = "ABH 🤡"
-        bot_name = starkbot.first_name
-        bot_username = starkbot.username
-        botname = f"@{bot_username}" if bot_username else "Unknown Bot"
-
-        if bot_name.endswith("Assistant"):
-            print("تم تشغيل البوت")
-        
-        if starkbot.bot_inline_placeholder:
-            print("Aljoker ForEver")
-        else:
-            try:
-                await ABH.send_message("@BotFather", "/setinline")
-                await asyncio.sleep(1)
-                await ABH.send_message("@BotFather", botname)
-                await asyncio.sleep(1)
-                await ABH.send_message("@BotFather", joker)
-                await asyncio.sleep(2)
-            except Exception as e:
-                print(f"Error during inline configuration: {e}")
-    except Exception as e:
-        print(f"Error in mybot: {e}")
-
 async def add_bot_to_logger_group(chat_id):
     """
     لإضافة البوت إلى مجموعات السجل
@@ -164,6 +138,7 @@ async def add_bot_to_logger_group(chat_id):
             raise ValueError("اسم المستخدم للبوت غير موجود")
 
         try:
+            # محاولة إضافة البوت إلى مجموعة عادية
             await ABH(
                 functions.messages.AddChatUserRequest(
                     chat_id=chat_id,
@@ -179,6 +154,10 @@ async def add_bot_to_logger_group(chat_id):
                     users=[bot_username],
                 )
             )
+            print(f"تمت دعوة البوت إلى القناة: {chat_id}")
+    except Exception as e:
+        LOGS.error(f"Error in add_bot_to_logger_group: {e}")
+
             print(f"تمت دعوة البوت إلى القناة: {chat_id}")
     except Exception as e:
         print(f"Error in add_bot_to_logger_group: {e}")
