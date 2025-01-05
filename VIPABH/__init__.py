@@ -12,10 +12,10 @@ __license__ = "كـتابة وتـعديل فريـق الجوكر"
 __author__ = "الجوكر <https://T.ME/Jepthon>"
 __copyright__ = "AlJOKER TEAM (C) 2021 - 2023  " + __author__
 
-l313l.version = __version__
-l313l.tgbot.version = __version__
+ABH.version = __version__
+ABH.tgbot.version = __version__
 LOGS = logging.getLogger("ABH")
-bot = l313l
+bot = ABH
 
 StartTime = time.time()
 JEPVERSION = "3.1.3"
