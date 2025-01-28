@@ -10,7 +10,6 @@ from .utils import (
     install_externalrepo,
     load_plugins,
     setup_bot,
-    mybot,
     startupmessage,
     verifyLoggerGroup,
     saves,
