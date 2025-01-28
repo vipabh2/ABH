@@ -5,12 +5,12 @@ from VIPABH import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 from .Config import Config
 from .core.logger import logging
 from .core.session import ABH
-from ABH.razan.resources.mybot import mybot
 from .utils import (
     add_bot_to_logger_group,
     install_externalrepo,
     load_plugins,
     setup_bot,
+    mybot,
     startupmessage,
     verifyLoggerGroup,
     saves,
@@ -61,7 +61,7 @@ print(imam_ali)
 cmdhr = Config.COMMAND_HAND_LER
 
 try:
-    LOGS.info("جارِ بدء بوت ABH ✓")
+    LOGS.info("جارِ بدء بوت الجوكر ✓")
     ABH.loop.run_until_complete(setup_bot())
     LOGS.info("تم اكتمال تنصيب البوت ✓")
 except Exception as e:
@@ -81,9 +81,11 @@ async def startup_process():
     await load_plugins("plugins")
     await load_plugins("assistant")
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("᯽︙بـوت ABH يعـمل بـنجاح ")
+    print("᯽︙بـوت الجوكر يعـمل بـنجاح ")
     print(
-        f"تم تشغيل الانلاين تلقائياً ارسل {cmdhr}الاوامر لـرؤيـة اوامر السورس")
+        f"تم تشغيل الانلاين تلقائياً ارسل {cmdhr}الاوامر لـرؤيـة اوامر السورس\
+        \nللمسـاعدة تواصـل  https://t.me/JepthonSupport"
+    )
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
     await verifyLoggerGroup()
     await saves()
@@ -95,7 +97,7 @@ async def startup_process():
 
 async def externalrepo():
     if Config.VCMODE:
-        await install_externalrepo("https://github.com/vipabh/abh")
+        await install_externalrepo("https://github.com/jepthoniq/JepVc", "jepvc", "jepthonvc")
 
 ABH.loop.run_until_complete(externalrepo())
 ABH.loop.run_until_complete(startup_process())
