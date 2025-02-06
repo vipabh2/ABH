@@ -483,7 +483,7 @@ async def hussein(event):
         await event.edit("يُرجى كتابة رسالة مع الأمر للحصول على إجابة.")
 is_Reham = False
 # 
-No_group_Joker = "@jepthonsupport"
+No_group_Joker = "@ltswe"
 active_aljoker = []
 
 @ABH.ar_cmd(pattern=r"الذكاء تفعيل")
