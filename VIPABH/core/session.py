@@ -32,7 +32,7 @@ except Exception as e:
     sys.exit()
 try:
     ABH.tgbot = tgbot = HuReClient(
-        session="arTgbot",
+        session="ABH",
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
         loop=loop,
