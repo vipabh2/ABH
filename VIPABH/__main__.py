@@ -69,7 +69,7 @@ async def startup_process():
     print("᯽︙بـوت الجوكر يعـمل بـنجاح ")
     print(
         f"تم تشغيل الانلاين تلقائياً ارسل {cmdhr}الاوامر لـرؤيـة اوامر السورس\
-        \nللمسـاعدة تواصـل  https://t.me/JepthonSupport"
+        \nللمسـاعدة تواصـل  https://t.me/K_4X1"
     )
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
     await verifyLoggerGroup()
@@ -82,7 +82,7 @@ async def startup_process():
 
 async def externalrepo():
     if Config.VCMODE:
-        await install_externalrepo("https://github.com/jepthoniq/JepVc", "jepvc", "jepthonvc")
+        await install_externalrepo("https://github.com/VIPABH/ABH", "ABH", "ABH")
 
 ABH.loop.run_until_complete(externalrepo())
 ABH.loop.run_until_complete(startup_process())
