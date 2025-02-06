@@ -29,7 +29,7 @@ from .pluginmanager import load_module
 from .tools import create_supergroup
 LOGS = logging.getLogger("VIPABH")
 logging.getLogger('telethon').setLevel(logging.WARNING)
-##Reda hands here
+
 cmdhr = Config.COMMAND_HAND_LER
 bot = ABH
 ENV = bool(os.environ.get("ENV", False))
@@ -75,12 +75,11 @@ async def setup_bot():
         bot_details = await ABH.tgbot.get_me()
         Config.TG_BOT_USERNAME = f"@{bot_details.username}"
         
-        
         ABH.me = await ABH.get_me()
         ABH.uid = ABH.tgbot.uid = utils.get_peer_id(ABH.me)
         if Config.OWNER_ID == 0:
             Config.OWNER_ID = utils.get_peer_id(ABH.me)
-        if not check_dyno_type:
+        if not await check_dyno_type():
             LOGS.error("قد تحدث مشكلة ولن يعمل السورس لان نوع الداينو ليس بيسك قم بتحويله الى basic")
     except Exception as e:
         LOGS.error(f"كـود تيرمكس - {str(e)}")
@@ -90,17 +89,18 @@ async def startupmessage():
     """
     Start up message in telegram logger group
     """
-    try:
-        if BOTLOG:
-            Config.CATUBLOGO = await ABH.tgbot.send_file(
-                BOTLOG_CHATID,
-                "https://t.me/MemeSoundJep/24",
-                caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n  ᯽︙ لأستعمال بوت الأختراق عبر كود التيرمكس أرسل`.هاك`**",
-                buttons=[(Button.url("سورس الجوكر", "https://t.me/jepthon"),)],
-            )
-    except Exception as e:
-        LOGS.error(e)
-        return None
+try:
+    if BOTLOG:
+        Config.CATUBLOGO = await ABH.tgbot.send_file(
+            BOTLOG_CHATID,
+            "https://t.me/MemeSoundJep/24",
+            caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n᯽︙ لأستعمال بوت الجوكر",
+            buttons=[(Button.url("سورس الجوكر", "https://t.me/jepthon"),)]
+        )
+except Exception as e:
+    LOGS.error(f"Error sending start-up message: {e}")
+    return None
+
     try:
         msg_details = list(get_item_collectionlist("restart_update"))
         if msg_details:
@@ -257,7 +257,7 @@ async def load_plugins(folder, extfolder=None):
             failure.append("None")
         await ABH.tgbot.send_message(
             BOTLOG_CHATID,
-            f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`',
+            f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`[...]
         )
 
 #سورس الجوكر عمك
