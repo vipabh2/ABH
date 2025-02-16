@@ -4,7 +4,7 @@ from VIPABH import BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 from .Config import Config
 from .core.logger import logging
 from .core.session import ABH
-from .utils import (
+from utils import (
     add_bot_to_logger_group,
     install_externalrepo,
     load_plugins,
