@@ -58,24 +58,31 @@ async def check_dyno_type():
 async def setup_bot():
     """
     To set up bot for VIPABH
+    This function connects to the ABH API, checks DC configurations,
+    and updates session settings. It also retrieves the bot details.
     """
     try:
         await ABH.connect()
-        config = await ABH(functions.help.GetConfigRequest())
+        
+        config = await ABH(functions.help.GetConfigRequest())       
         for option in config.dc_options:
             if option.ip_address == ABH.session.server_address:
+                # If the DC ID in the session does not match, log a warning
                 if ABH.session.dc_id != option.id:
                     LOGS.warning(
                         f"⌯︙معرف ثابت في الجلسة من {ABH.session.dc_id}"
                         f"⌯︙لـ  {option.id}"
                     )
+                
                 ABH.session.set_dc(option.id, option.ip_address, option.port)
                 ABH.session.save()
                 break
+        
         bot_details = await ABH.tgbot.get_me()
         Config.TG_BOT_USERNAME = f"@{bot_details.username}"
         
-        
+    except Exception as e:
+        LOGS.error(f"Error while setting up bot: {e}")
         ABH.me = await ABH.get_me()
         ABH.uid = ABH.tgbot.uid = utils.get_peer_id(ABH.me)
         if Config.OWNER_ID == 0:
