@@ -81,8 +81,8 @@ async def startup_process():
 ABH.loop.run_until_complete(externalrepo())
 ABH.loop.run_until_complete(startup_process())
 
-if len(sys.argv) in {1, 3, 4}:
-    with contextlib.suppress(ConnectionError):
-        ABH.run_until_disconnected()
-else:
-    ABH.disconnect()
+# if len(sys.argv) in {1, 3, 4}:
+#     with contextlib.suppress(ConnectionError):
+#         ABH.run_until_disconnected()
+# else:
+#     ABH.disconnect()
