@@ -28,25 +28,13 @@ try:
         auto_reconnect=True,
         connection_retries=None,
     )
-except Exception as e:
-    LOGS.error(f"[STRING SESSION] - {str(e)}")
-    sys.exit()
 
-try:
-    tgbot_session = StringSession()
-    ABH.tgbot = HuReClient(
-        session=tgbot_session,
-        api_id=Config.APP_ID,
-        api_hash=Config.API_HASH,
-        loop=loop,
-        app_version=__version__,
-        connection=ConnectionTcpAbridged,
-        auto_reconnect=True,
-        connection_retries=None,
-    ).start(bot_token=Config.TG_BOT_TOKEN)
+    ABH.tgbot = ABH.start(bot_token=Config.TG_BOT_TOKEN)
+
 except AccessTokenExpiredError:
     LOGS.error("توكن البوت منتهي الصلاحية قم باستبداله ليعمل السورس")
 except AccessTokenInvalidError:
     LOGS.error("توكن البوت غير صحيح قم باستبداله ليعمل السورس")
 except Exception as e:
     LOGS.error(f"حدث خطأ في البوت: {str(e)}")
+    sys.exit()
