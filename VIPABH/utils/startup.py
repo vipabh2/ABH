@@ -93,9 +93,9 @@ try:
     if BOTLOG:
         Config.CATUBLOGO = await ABH.tgbot.send_file(
             BOTLOG_CHATID,
-            "https://t.me/MemeSoundJep/24",
+            "https://t.me/VIPABH/1187",
             caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n᯽︙ لأستعمال بوت الجوكر",
-            buttons=[(Button.url("سورس الجوكر", "https://t.me/jepthon"),)]
+            buttons=[(Button.url("سورس ABH", "https://t.me/VIPABH"),)]
         )
 except Exception as e:
     LOGS.error(f"Error sending start-up message: {e}")
