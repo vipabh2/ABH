@@ -252,10 +252,12 @@ async def load_plugins(folder, extfolder=None):
                 LOGS.info(
                     f"لم يتم تحميل {shortname} بسبب خطأ {e}\nمسار الملف {plugin_path}"
                 )
-    if extfolder:
-        if not failure:
-            failure.append("None")
-        await ABH.tgbot.send_message(
-            BOTLOG_CHATID,
-            f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`[...]
-        )
+                if extfolder:
+                    if not failuعre:
+                                failure.append("None")
+                                await ABH.tgbot.send_message(
+                                            BOTLOG_CHATID,
+                                                    f'- تم بنجاح استدعاء الاوامر الاضافيه \n'
+                                                            f'**عدد الملفات التي استدعيت:** `{success}`\n'
+                                                                    f'**فشل في استدعاء :** `{", ".join(failure)}`'
+    )
