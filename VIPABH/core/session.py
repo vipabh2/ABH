@@ -5,6 +5,7 @@ from telethon.sessions import StringSession
 from telethon.errors import AccessTokenExpiredError, AccessTokenInvalidError
 from ..Config import Config
 from .client import HuReClient
+
 LOGS = logging.getLogger(" ")
 
 __version__ = "2.10.6"
@@ -15,7 +16,7 @@ if Config.STRING_SESSION:
     session = StringSession(Config.STRING_SESSION)
 else:
     session = "ABH"
-    session1 = "VIBABH"
+    session1 = "VIPABH1"
 
 try:
     ABH = HuReClient(
@@ -29,11 +30,12 @@ try:
         connection_retries=None,
     )
 except Exception as e:
-    print(f"[STRING SESSION] - {str(e)}")
+    LOGS.error(f"[STRING SESSION] - {str(e)}")
     sys.exit()
+
 try:
-    ABH.tgbot = tgbot = HuReClient(
-        session="VIPABH1",
+    ABH.tgbot = HuReClient(
+        session=session1,
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
         loop=loop,
@@ -46,3 +48,5 @@ except AccessTokenExpiredError:
     LOGS.error("توكن البوت منتهي الصلاحية قم باستبداله ليعمل السورس")
 except AccessTokenInvalidError:
     LOGS.error("توكن البوت غير صحيح قم باستبداله ليعمل السورس")
+except Exception as e:
+    LOGS.error(f"حدث خطأ في البوت: {str(e)}")
