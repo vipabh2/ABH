@@ -89,17 +89,18 @@ async def startupmessage():
     """
     Start up message in telegram logger group
     """
-    try:
-        if BOTLOG:
-            Config.CATUBLOGO = await ABH.tgbot.send_file(
-                BOTLOG_CHATID,
-                "https://t.me/VIPABH/1187",
-                caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر` لرؤية اوامر السورس \n᯽︙ لأستعمال بوت الجوكر",
-                buttons=[(Button.url("سورس ABH", "https://t.me/VIPABH"),)]
-            )
-    except Exception as e:
-        LOGS.error(f"Error sending start-up message: {e}")
-        return None
+try:
+    if BOTLOG:
+        Config.CATUBLOGO = await ABH.tgbot.send_file(
+            BOTLOG_CHATID,
+            "https://t.me/MemeSoundJep/24",
+            caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n᯽︙ لأستعمال بوت الجوكر",
+            buttons=[(Button.url("سورس الجوكر", "https://t.me/jepthon"),)]
+        )
+except Exception as e:
+    LOGS.error(f"Error sending start-up message: {e}")
+    return None
+
     try:
         msg_details = list(get_item_collectionlist("restart_update"))
         if msg_details:
@@ -254,11 +255,7 @@ async def load_plugins(folder, extfolder=None):
     if extfolder:
         if not failure:
             failure.append("None")
-            
-    await ABH.tgbot.send_message(
-        BOTLOG_CHATID,
-        f"- تم بنجاح استدعاء الاوامر الاضافية \n"
-        f"**عدد الملفات التي استدعيت:** `{success}`\n"
-        f"**فشل في استدعاء :** `{', '.join(failure)}`"
-    )
-
+        await ABH.tgbot.send_message(
+            BOTLOG_CHATID,
+            f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`[...]
+        )
