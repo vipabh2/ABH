@@ -15,8 +15,7 @@ loop = None
 if Config.STRING_SESSION:
     session = StringSession(Config.STRING_SESSION)
 else:
-    session = "ABH"
-    session1 = "VIPABH1"
+    session = StringSession()
 
 try:
     ABH = HuReClient(
@@ -34,8 +33,9 @@ except Exception as e:
     sys.exit()
 
 try:
+    tgbot_session = StringSession()
     ABH.tgbot = HuReClient(
-        session=session1,
+        session=tgbot_session,
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
         loop=loop,
