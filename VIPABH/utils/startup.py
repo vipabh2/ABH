@@ -151,7 +151,6 @@ async def mybot():
                 print(f"Error during inline configuration: {e}")
     except Exception as e:
         print(f"Error in mybot: {e}")
-
 async def add_bot_to_logger_group(chat_id):
     """
     لإضافة البوت إلى مجموعات السجل
@@ -162,27 +161,28 @@ async def add_bot_to_logger_group(chat_id):
 
         if not bot_username:
             raise ValueError("اسم المستخدم للبوت غير موجود")
-try:
-    await ABH(
-        functions.messages.AddChatUserRequest(
-            chat_id=chat_id,
-            user_id=bot_username,
-            fwd_limit=1000000,
-        )
-    )
-    print(f"تمت إضافة البوت إلى المجموعة: {chat_id}")
-except Exception as e:
-    try:
-        await ABH(
-            functions.channels.InviteToChannelRequest(
-                channel=chat_id,
-                users=[bot_username],
+
+        try:
+            await ABH(
+                functions.messages.AddChatUserRequest(
+                    chat_id=chat_id,
+                    user_id=bot_username,
+                    fwd_limit=1000000,
+                )
             )
-        )
-        print(f"تمت دعوة البوت إلى القناة: {chat_id}")
-    except Exception as e:
-        print(f"Error in add_bot_to_logger_group: {e}")
-        LOGS.error(str(e))
+            print(f"تمت إضافة البوت إلى المجموعة: {chat_id}")
+        except Exception as e:
+            try:
+                await ABH(
+                    functions.channels.InviteToChannelRequest(
+                        channel=chat_id,
+                        users=[bot_username],
+                    )
+                )
+                print(f"تمت دعوة البوت إلى القناة: {chat_id}")
+            except Exception as e:
+                print(f"Error in add_bot_to_logger_group: {e}")
+                LOGS.error(str(e))
 
 VIPABH = {"@sszxl", "@x04ou", "@iamMUAOL"}
 async def saves():
