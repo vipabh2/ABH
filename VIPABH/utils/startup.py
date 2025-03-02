@@ -257,5 +257,5 @@ async def load_plugins(folder, extfolder=None):
             failure.append("None")
         await ABH.tgbot.send_message(
             BOTLOG_CHATID,
-            f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`[...]
+            f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`[...]'
         )
