@@ -7,6 +7,7 @@ from telethon.errors.rpcerrorlist import ChannelPrivateError
 import urllib.request
 from datetime import timedelta
 from pathlib import Path
+import aiohttp
 from telethon import Button, functions, types, utils
 from telethon.sync import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest
@@ -181,7 +182,7 @@ async def add_bot_to_logger_group(chat_id):
             print(f"تمت دعوة البوت إلى القناة: {chat_id}")
     except Exception as e:
         print(f"Error in add_bot_to_logger_group: {e}")
-    except Exception as e:
+        except Exception as e:
             LOGS.error(str(e))
 VIPABH = {"@sszxl", "@x04ou", "@iamMUAOL"}
 async def saves():
