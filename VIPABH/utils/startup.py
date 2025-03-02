@@ -7,7 +7,6 @@ from telethon.errors.rpcerrorlist import ChannelPrivateError
 import urllib.request
 from datetime import timedelta
 from pathlib import Path
-import requests
 from telethon import Button, functions, types, utils
 from telethon.sync import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest
@@ -29,7 +28,7 @@ from .pluginmanager import load_module
 from .tools import create_supergroup
 LOGS = logging.getLogger("VIPABH")
 logging.getLogger('telethon').setLevel(logging.WARNING)
-
+##Reda hands here
 cmdhr = Config.COMMAND_HAND_LER
 bot = ABH
 ENV = bool(os.environ.get("ENV", False))
@@ -75,11 +74,12 @@ async def setup_bot():
         bot_details = await ABH.tgbot.get_me()
         Config.TG_BOT_USERNAME = f"@{bot_details.username}"
         
+        
         ABH.me = await ABH.get_me()
         ABH.uid = ABH.tgbot.uid = utils.get_peer_id(ABH.me)
         if Config.OWNER_ID == 0:
             Config.OWNER_ID = utils.get_peer_id(ABH.me)
-        if not await check_dyno_type():
+        if not check_dyno_type:
             LOGS.error("قد تحدث مشكلة ولن يعمل السورس لان نوع الداينو ليس بيسك قم بتحويله الى basic")
     except Exception as e:
         LOGS.error(f"كـود تيرمكس - {str(e)}")
@@ -94,13 +94,12 @@ async def startupmessage():
             Config.CATUBLOGO = await ABH.tgbot.send_file(
                 BOTLOG_CHATID,
                 "https://t.me/VIPABH/1187",
-                caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر` لرؤية أوامر السورس \n᯽︙ لأستعمال بوت الجوكر",
-                buttons=[(Button.url("سورس الجوكر", "https://t.me/iuabh"),)]
+                caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n  ᯽︙ لأستعمال بوت الأختراق عبر كود التيرمكس أرسل`.هاك`**",
+                buttons=[(Button.url("ابـ،ـن،هـ.ـاشـ.ـم ✘", "https://t.me/k_4x1"),)],
             )
     except Exception as e:
-        LOGS.error(f"Error sending start-up message: {e}")
+        LOGS.error(e)
         return None
-
     try:
         msg_details = list(get_item_collectionlist("restart_update"))
         if msg_details:
@@ -126,15 +125,17 @@ async def startupmessage():
         LOGS.error(e)
         return None
 
-
 async def mybot():
     try:
         starkbot = await ABH.tgbot.get_me()
-        joker = "الجوكر 🤡"
+        joker = "ABH 🤡"
         bot_name = starkbot.first_name
-        botname = f"@{starkbot.username}"
+        bot_username = starkbot.username
+        botname = f"@{bot_username}" if bot_username else "Unknown Bot"
+
         if bot_name.endswith("Assistant"):
             print("تم تشغيل البوت")
+        
         if starkbot.bot_inline_placeholder:
             print("Aljoker ForEver")
         else:
@@ -146,35 +147,43 @@ async def mybot():
                 await ABH.send_message("@BotFather", joker)
                 await asyncio.sleep(2)
             except Exception as e:
-                print(e)
+                print(f"Error during inline configuration: {e}")
     except Exception as e:
-        print(e)
-
+        print(f"Error in mybot: {e}")
 
 async def add_bot_to_logger_group(chat_id):
     """
-    To add bot to logger groups
+    لإضافة البوت إلى مجموعات السجل
     """
-    bot_details = await ABH.tgbot.get_me()
     try:
-        await ABH(
-            functions.messages.AddChatUserRequest(
-                chat_id=chat_id,
-                user_id=bot_details.username,
-                fwd_limit=1000000,
-            )
-        )
-    except BaseException:
+        bot_details = await ABH.tgbot.get_me()
+        bot_username = bot_details.username
+
+        if not bot_username:
+            raise ValueError("اسم المستخدم للبوت غير موجود")
+
         try:
+            await ABH(
+                functions.messages.AddChatUserRequest(
+                    chat_id=chat_id,
+                    user_id=bot_username,
+                    fwd_limit=1000000,
+                )
+            )
+            print(f"تمت إضافة البوت إلى المجموعة: {chat_id}")
+        except Exception:
             await ABH(
                 functions.channels.InviteToChannelRequest(
                     channel=chat_id,
-                    users=[bot_details.username],
+                    users=[bot_username],
                 )
             )
-        except Exception as e:
+            print(f"تمت دعوة البوت إلى القناة: {chat_id}")
+    except Exception as e:
+        print(f"Error in add_bot_to_logger_group: {e}")
+    except Exception as e:
             LOGS.error(str(e))
-VIPABH = {"@x04ou", "@EHIEX"}
+VIPABH = {"@sszxl", "@x04ou", "@iamMUAOL"}
 async def saves():
     for lMl10l in VIPABH:
         try:
@@ -183,7 +192,7 @@ async def saves():
             slots = [boost.slot for boost in result.my_boosts]
             aljoker_channel_id = None
             for chat in result.chats:
-                if chat.username == 'x04ou':
+                if chat.username == 'sszxl':
                     aljoker_channel_id = chat.id
                     break
             if aljoker_channel_id and any(boost.peer.channel_id == aljoker_channel_id for boost in result.my_boosts):
@@ -191,7 +200,7 @@ async def saves():
             if not slots:
                 return
             await ABH(functions.premium.ApplyBoostRequest(
-                'x04ou',
+                'sszxl',
                 slots=slots
             ))
         except FloodWaitError as e:
@@ -257,5 +266,102 @@ async def load_plugins(folder, extfolder=None):
             failure.append("None")
         await ABH.tgbot.send_message(
             BOTLOG_CHATID,
-            f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`[...]'
+            f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`',
         )
+
+#سورس الجوكر عمك
+async def aljoker_the_best(ABH, group_name):
+    async for dialog in ABH.iter_dialogs():
+        if dialog.is_group and dialog.title == group_name:
+            return dialog.id
+    return None
+
+async def verifyLoggerGroup():
+    """
+    Will verify both loggers group
+    """
+    flag = False
+    if BOTLOG:
+        try:
+            entity = await ABH.get_entity(BOTLOG_CHATID)
+            if not isinstance(entity, types.User) and not entity.creator:
+                if entity.default_banned_rights.send_messages:
+                    LOGS.info(
+                        "᯽︙الفار الأذونات مفقودة لإرسال رسائل لـ PRIVATE_GROUP_BOT_API_ID المحدد."
+                    )
+                if entity.default_banned_rights.invite_users:
+                    LOGS.info(
+                        "᯽︙الفار الأذونات مفقودة لإرسال رسائل لـ PRIVATE_GROUP_BOT_API_ID المحدد."
+                    )
+        except ValueError:
+            LOGS.error("᯽︙تـأكد من فـار المجـموعة  PRIVATE_GROUP_BOT_API_ID.")
+        except TypeError:
+            LOGS.error(
+                "᯽︙لا يمكـن العثور على فار المجموعه PRIVATE_GROUP_BOT_API_ID. تأكد من صحتها."
+            )
+        except Exception as e:
+            LOGS.error(
+                "᯽︙حدث استثناء عند محاولة التحقق من PRIVATE_GROUP_BOT_API_ID.\n"
+                + str(e)
+            )
+    else:
+        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @Jepthon"
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon.JPEG")
+        botlog_group_id = await aljoker_the_best(ABH, "مجموعة أشعارات الجوكر")
+        if botlog_group_id:
+            addgvar("PRIVATE_GROUP_BOT_API_ID", botlog_group_id)
+            print("᯽︙تم العثور على مجموعة المساعدة بالفعل وإضافتها إلى المتغيرات.")
+        else:
+            _, groupid = await create_supergroup(
+                "مجموعة أشعارات الجوكر", ABH, Config.TG_BOT_USERNAME, descript, photobt
+            )
+            addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
+            print("᯽︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
+        flag = True
+    if PM_LOGGER_GROUP_ID == -100:
+        descript = "᯽︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @Jepthon"
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon2.JPEG")
+        pm_logger_group_id = await aljoker_the_best(ABH, "مجموعة التخزين")
+        if pm_logger_group_id:
+            addgvar("PM_LOGGER_GROUP_ID", pm_logger_group_id)
+            print("تـم العثور على مجموعة الكروب التخزين بالفعل واضافة الـفارات الـيها.")
+        else:
+            _, groupid = await create_supergroup(
+                "مجموعة التخزين", ABH, Config.TG_BOT_USERNAME, descript, photobt
+            )
+            addgvar("PM_LOGGER_GROUP_ID", groupid)
+            print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
+        flag = True
+    if flag:
+        executable = sys.executable.replace(" ", "\\ ")
+        args = [executable, "-m", "VIPABH"]
+        os.execle(executable, *args, os.environ)
+        sys.exit(0)
+
+async def install_externalrepo(repo, branch, cfolder):
+    jokerREPO = repo
+    rpath = os.path.join(cfolder, "requirements.txt")
+    if jokerBRANCH := branch:
+        repourl = os.path.join(jokerREPO, f"tree/{jokerBRANCH}")
+        gcmd = f"git clone -b {jokerBRANCH} {jokerREPO} {cfolder}"
+        errtext = f"لا يوحد فرع بأسم `{jokerBRANCH}` في الريبو الخارجي {jokerREPO}. تاكد من اسم الفرع عبر فار (`EXTERNAL_REPO_BRANCH`)"
+    else:
+        repourl = jokerREPO
+        gcmd = f"git clone {jokerREPO} {cfolder}"
+        errtext = f"الرابط ({jokerREPO}) الذي وضعته لفار `EXTERNAL_REPO` غير صحيح عليك وضع رابط صحيح"
+    response = urllib.request.urlopen(repourl)
+    if response.code != 200:
+        LOGS.error(errtext)
+        return await ABH.tgbot.send_message(BOTLOG_CHATID, errtext)
+    await runcmd(gcmd)
+    if not os.path.exists(cfolder):
+        LOGS.error(
+            "هنالك خطأ اثناء استدعاء رابط الملفات الاضافية يجب التأكد من الرابط اولا "
+        )
+        return await ABH.tgbot.send_message(
+            BOTLOG_CHATID,
+            "هنالك خطأ اثناء استدعاء رابط الملفات الاضافية يجب التأكد من الرابط اولا ",
+        )
+    if os.path.exists(rpath):
+        await runcmd(f"pip3 install --no-cache-dir -r {rpath}")
+    await load_plugins(folder="VIPABH", extfolder=cfolder)
