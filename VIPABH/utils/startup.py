@@ -1,4 +1,4 @@
-import time
+import aiohttp
 import asyncio
 import glob
 import os
@@ -89,17 +89,17 @@ async def startupmessage():
     """
     Start up message in telegram logger group
     """
-try:
-    if BOTLOG:
-        Config.CATUBLOGO = await ABH.tgbot.send_file(
-            BOTLOG_CHATID,
-            "https://t.me/MemeSoundJep/24",
-            caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n᯽︙ لأستعمال بوت الجوكر",
-            buttons=[(Button.url("سورس الجوكر", "https://t.me/jepthon"),)]
-        )
-except Exception as e:
-    LOGS.error(f"Error sending start-up message: {e}")
-    return None
+    try:
+        if BOTLOG:
+            Config.CATUBLOGO = await ABH.tgbot.send_file(
+                BOTLOG_CHATID,
+                "https://t.me/VIPABH/1187",
+                caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر` لرؤية أوامر السورس \n᯽︙ لأستعمال بوت الجوكر",
+                buttons=[(Button.url("سورس الجوكر", "https://t.me/iuabh"),)]
+            )
+    except Exception as e:
+        LOGS.error(f"Error sending start-up message: {e}")
+        return None
 
     try:
         msg_details = list(get_item_collectionlist("restart_update"))
