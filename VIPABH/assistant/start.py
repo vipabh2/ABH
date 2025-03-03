@@ -1,25 +1,23 @@
-#    جميع الحقوق لمطوري سورس جـيبثون حصريا لهم فقط
-#    اذا تخمط الملف اذك الحقوق وكاتبيه ومطوريه لا تحذف الحقوق وتصير فاشل 👍
-#    كتابة الشسد 
+ 
 import asyncio
 import io
 import re
 
 from telethon import Button, custom, events
 from telethon.tl.functions.users import GetFullUserRequest
-from JoKeRUB import bot
-from JoKeRUB.sql_helper.blacklist_assistant import (
+from VIPABH import bot
+from VIPABH.sql_helper.blacklist_assistant import (
     add_nibba_in_db,
     is_he_added,
     removenibba,
 )
-from JoKeRUB.sql_helper.botusers_sql import add_me_in_db, his_userid
-from JoKeRUB.sql_helper.idadder_sql import (
+from VIPABH.sql_helper.botusers_sql import add_me_in_db, his_userid
+from VIPABH.sql_helper.idadder_sql import (
     add_usersid_in_db,
     already_added,
     get_all_users,
 )
-from l313l.razan.resources.assistant import *
+from ABH.razan.resources.assistant import *
 #start 
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start(event):
@@ -81,7 +79,7 @@ async def users(event):
         for starked in total_users:
             users_list += ("==> {} \n").format(int(starked.chat_id))
         with io.BytesIO(str.encode(users_list)) as tedt_file:
-            tedt_file.name = "JoKeRUB.txt"
+            tedt_file.name = "VIPABH.txt"
             await tgbot.send_file(
                 event.chat_id,
                 tedt_file,
@@ -109,14 +107,7 @@ async def starkislub(event):
 async def starkislub(event):
     razan = "**𝘑𝘌𝘗𝘛𝘏𝘖𝘕 𝘜𝘚𝘌𝘙𝘉𝘖𝘛**\n•━═━═━═━═━━═━═━═━═━•‌‌\n**- حالة البوت **  يعمـل بنجـاح\n**- اصدار التليثون  **: 1.23.0\n**- اصدار البايثون **: 3.9.6\n**- يوزرك ** {mention}\n**- CH : @jepthon\n•━═━═━═━═━━═━═━═━═━•‌‌\n"
     await event.reply(razan)
-    
-    
 
-
-"""  حقوقي شرفك تغير شي تلعب بشرفك """
-
-# بـسـم الله الـرحمن الـرحيم  🤍
-# استغـفر ربـك وانت تاخـذ الملفـات النفسـك 🖤، 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rozzag"))) 
 async def settings(event):
     if event.sender_id == bot.uid:
