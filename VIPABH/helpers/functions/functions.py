@@ -37,7 +37,6 @@ mov_titles = [
     "localized title",
 ]
 
-# ----------------------------------------------## Scrap ##------------------------------------------------------------#
 
 
 async def get_cast(casttype, movie):
@@ -91,11 +90,6 @@ async def covidindia(state):
     req = requests.get(url).json()
     return next((req[states.index(i)] for i in states if i == state), None)
 
-
-# --------------------------------------------------------------------------------------------------------------------#
-
-
-# ----------------------------------------------## Media ##-----------------------------------------------------------#
 async def age_verification(event, reply_to_id):
     ALLOW_NSFW = gvarstatus("ALLOW_NSFW") or "False"
     if ALLOW_NSFW.lower() == "true":
@@ -149,11 +143,6 @@ async def animator(media, mainevent, textevent=None):
     return "animate.webm"
 
 
-# --------------------------------------------------------------------------------------------------------------------#
-
-
-# ----------------------------------------------## Bots ##------------------------------------------------------------#
-
 
 async def clippy(borg, msg, chat_id, reply_to_id):
     chat = "@clippy"
@@ -196,17 +185,10 @@ async def delete_conv(event, chat, from_message):
     await event.client.send_read_acknowledge(chat)
 
 
-# --------------------------------------------------------------------------------------------------------------------#
-
-
-# ----------------------------------------------## Tools ##------------------------------------------------------------#
-
-# https://www.tutorialspoint.com/How-do-you-split-a-list-into-evenly-sized-chunks-in-Python
 def sublists(input_list: list, width: int = 3):
     return [input_list[x : x + width] for x in range(0, len(input_list), width)]
 
 
-# unziping file
 async def unzip(downloaded_file_name):
     with zipfile.ZipFile(downloaded_file_name, "r") as zip_ref:
         zip_ref.extractall("./temp")
@@ -214,7 +196,6 @@ async def unzip(downloaded_file_name):
     return f"{downloaded_file_name}.gif"
 
 
-# https://github.com/ssut/py-googletrans/issues/234#issuecomment-722379788
 async def getTranslate(text, **kwargs):
     translator = Translator()
     result = None
@@ -295,11 +276,6 @@ def reddit_thumb_link(preview, thumb=None):
         thumb = preview.pop()
     return thumb.replace("\u0026", "&")
 
-
-# --------------------------------------------------------------------------------------------------------------------#
-
-
-# ----------------------------------------------## Image ##------------------------------------------------------------#
 
 
 def ellipse_create(filename, size, border):
