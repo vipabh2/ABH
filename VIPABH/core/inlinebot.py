@@ -9,9 +9,9 @@ from uuid import uuid4
 from telethon import Button, types
 from telethon.errors import QueryIdInvalidError
 from telethon.events import CallbackQuery, InlineQuery
-# from youtubesearchpython import VideosSearch
+from youtubesearchpython import VideosSearch
 
-from JoKeRUB import l313l
+from VIPABH import ABH
 
 from ..Config import Config
 from ..helpers.functions import rand_key
@@ -207,7 +207,7 @@ def paginate_help(
     return pairs
 
 
-@l313l.tgbot.on(InlineQuery)
+@ABH.tgbot.on(InlineQuery)
 async def inline_handler(event):  # sourcery no-metrics
     builder = event.builder
     result = None
@@ -224,11 +224,11 @@ async def inline_handler(event):  # sourcery no-metrics
         match2 = re.findall(inf, query)
         hid = re.compile("اخفاء (.*)")
         match3 = re.findall(hid, query)
-        if query.startswith("l313l"):
+        if query.startswith("ABH"):
             buttons = [
                 (
                     Button.inline("الحـالة ⚒️", data="stats"),
-                    Button.url(" JoKeRUB UsᴇʀBoᴛ", "https://t.me/jepthon"),
+                    Button.url(" VIPABH UsᴇʀBoᴛ", "https://t.me/jepthon"),
                 )
             ]
             ALIVE_PIC = gvarstatus("ALIVE_PIC")
@@ -300,7 +300,7 @@ async def inline_handler(event):  # sourcery no-metrics
             query = query[7:]
             user, txct = query.split(" ", 1)
             builder = event.builder
-            troll = os.path.join("./JoKeRUB", "troll.txt")
+            troll = os.path.join("./VIPABH", "troll.txt")
             try:
                 jsondata = json.load(open(troll))
             except Exception:
@@ -350,7 +350,7 @@ async def inline_handler(event):  # sourcery no-metrics
             query = query[7:]
             user, txct = query.split(" ", 1)
             builder = event.builder
-            secret = os.path.join("./JoKeRUB", "secrets.txt")
+            secret = os.path.join("./VIPABH", "secrets.txt")
             try:
                 jsondata = json.load(open(secret))
             except Exception:
@@ -399,7 +399,7 @@ async def inline_handler(event):  # sourcery no-metrics
         elif match3:
             query = query[5:]
             builder = event.builder
-            hide = os.path.join("./JoKeRUB", "hide.txt")
+            hide = os.path.join("./VIPABH", "hide.txt")
             try:
                 jsondata = json.load(open(hide))
             except Exception:
@@ -422,8 +422,8 @@ async def inline_handler(event):  # sourcery no-metrics
         elif string == "help":
             _result = main_menu()
             result = builder.article(
-                title="© JoKeRUB Help",
-                description="Help menu for JoKeRUB",
+                title="© VIPABH Help",
+                description="Help menu for VIPABH",
                 text=_result[0],
                 buttons=_result[1],
                 link_preview=False,
@@ -582,7 +582,7 @@ async def inline_handler(event):  # sourcery no-metrics
         result = types.InputBotInlineResult(
             id=str(uuid4()),
             type="photo",
-            title="l313l 🧸♥",
+            title="ABH 🧸♥",
             description="ادخـل كـروب المسـاعدة",
             url="https://t.me/jepthon1",
             thumb=photo,
@@ -594,7 +594,7 @@ async def inline_handler(event):  # sourcery no-metrics
         await event.answer([result] if result else None)
 
 
-@l313l.tgbot.on(CallbackQuery(data=re.compile(b"close")))
+@ABH.tgbot.on(CallbackQuery(data=re.compile(b"close")))
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     buttons = [
@@ -603,7 +603,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit("Menu Closed", buttons=buttons)
 
 
-@l313l.tgbot.on(CallbackQuery(data=re.compile(b"check")))
+@ABH.tgbot.on(CallbackQuery(data=re.compile(b"check")))
 async def on_plugin_callback_query_handler(event):
     text = f"𝙿𝚕𝚞𝚐𝚒𝚗𝚜: {len(PLG_INFO)}\
         \n𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜: {len(CMD_INFO)}\
@@ -614,7 +614,7 @@ async def on_plugin_callback_query_handler(event):
     await event.answer(text, cache_time=0, alert=True)
 
 
-@l313l.tgbot.on(CallbackQuery(data=re.compile(b"(.*)_menu")))
+@ABH.tgbot.on(CallbackQuery(data=re.compile(b"(.*)_menu")))
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     category = str(event.pattern_match.group(1).decode("UTF-8"))
@@ -625,7 +625,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(text, buttons=buttons)
 
 
-@l313l.tgbot.on(
+@ABH.tgbot.on(
     CallbackQuery(
         data=re.compile(b"back_([a-z]+)_([a-z1-9]+)_([0-9]+)_?([a-z1-9]+)?_?([0-9]+)?")
     )
@@ -657,14 +657,14 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(text, buttons=buttons)
 
 
-@l313l.tgbot.on(CallbackQuery(data=re.compile(rb"mainmenu")))
+@ABH.tgbot.on(CallbackQuery(data=re.compile(rb"mainmenu")))
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     _result = main_menu()
     await event.edit(_result[0], buttons=_result[1])
 
 
-@l313l.tgbot.on(
+@ABH.tgbot.on(
     CallbackQuery(data=re.compile(rb"(.*)_prev\((.+?)\)_([a-z]+)_?([a-z]+)?_?(.*)?"))
 )
 @check_owner
@@ -695,7 +695,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(buttons=buttons)
 
 
-@l313l.tgbot.on(
+@ABH.tgbot.on(
     CallbackQuery(data=re.compile(rb"(.*)_next\((.+?)\)_([a-z]+)_?([a-z]+)?_?(.*)?"))
 )
 @check_owner
@@ -723,7 +723,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(buttons=buttons)
 
 
-@l313l.tgbot.on(
+@ABH.tgbot.on(
     CallbackQuery(
         data=re.compile(b"(.*)_cmdhelp_([a-z1-9]+)_([0-9]+)_([a-z]+)_([0-9]+)")
     )
