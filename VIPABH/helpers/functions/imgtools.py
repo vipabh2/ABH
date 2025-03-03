@@ -24,9 +24,6 @@ def convert_tosticker(response, filename=None):
     return filename
 
 
-# http://effbot.org/imagingbook/imageops.html
-# https://stackoverflow.com/questions/2498875/how-to-invert-colors-of-image-with-pil-python-imaging/38378828
-
 
 async def invert_colors(imagefile, endname):
     image = Image.open(imagefile)
