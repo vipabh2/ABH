@@ -10,7 +10,7 @@ from ..Config import Config
 from ..core.data import _sudousers_list, blacklist_chats_list
 from ..core.events import MessageEdited, NewMessage
 from ..core.logger import logging
-from ..core.session import l313l
+from ..core.session import ABH
 from ..helpers.utils.format import paste_message
 from ..helpers.utils.utils import runcmd
 from ..sql_helper.globals import gvarstatus
@@ -225,8 +225,8 @@ def register(**args):
 
     def decorator(func):
         if not disable_edited:
-            l313l.add_event_handler(func, MessageEdited(**args))
-        l313l.add_event_handler(func, NewMessage(**args))
+            ABH.add_event_handler(func, MessageEdited(**args))
+        ABH.add_event_handler(func, NewMessage(**args))
         try:
             LOAD_PLUG[file_test].append(func)
         except Exception:
@@ -282,7 +282,7 @@ def command(**args):
 
     def decorator(func):
         if allow_edited_updates:
-            l313l.add_event_handler(func, MessageEdited(**args))
+            ABH.add_event_handler(func, MessageEdited(**args))
         
         try:
             LOAD_PLUG[file_test].append(func)
