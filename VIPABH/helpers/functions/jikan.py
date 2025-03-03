@@ -4,7 +4,6 @@ import textwrap
 import time
 from datetime import datetime
 from io import BytesIO, StringIO
-#Reda
 import bs4
 import jikanpy
 import requests
