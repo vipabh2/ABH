@@ -1,10 +1,3 @@
-# Ultroid - UserBot
-# Copyright (C) 2021-2023 TeamUltroid
-#
-# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
-# PLease read the GNU Affero General Public License in
-# <https://github.com/TeamUltroid/pyUltroid/blob/main/LICENSE>.
-
 import base64
 import ipaddress
 import os
@@ -15,11 +8,10 @@ from telethon.errors.rpcerrorlist import AuthKeyDuplicatedError
 from telethon.sessions.string import _STRUCT_PREFORMAT, CURRENT_VERSION, StringSession
 
 
-LOGS = logging.getLogger("الجوكر 🤡")
+LOGS = logging.getLogger("ABH ")
 
 _PYRO_FORM = {351: ">B?256sI?", 356: ">B?256sQ?", 362: ">BI?256sQ?"}
 
-# https://github.com/pyrogram/pyrogram/blob/master/docs/source/faq/what-are-the-ip-addresses-of-telegram-data-centers.rst
 
 DC_IPV4 = {
     1: "149.154.175.53",
@@ -33,14 +25,12 @@ DC_IPV4 = {
 def aljokerPyro(session, logger=LOGS, _exit=True):
 
     if session:
-        # Telethon Session
         if session.startswith(CURRENT_VERSION):
             if len(session.strip()) != 353:
                 logger.exception("كود التيرمكس خطأ تأكد منه عزيزي")
                 sys.exit()
             return StringSession(session)
 
-        # Pyrogram Session
         elif len(session) in _PYRO_FORM.keys():
             data_ = struct.unpack(
                 _PYRO_FORM[len(session)],
