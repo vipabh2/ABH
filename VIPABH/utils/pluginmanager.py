@@ -2,7 +2,7 @@ import importlib
 import sys
 from pathlib import Path
 
-from JoKeRUB import CMD_HELP, LOAD_PLUG
+from VIPABH import CMD_HELP, LOAD_PLUG
 
 from ..Config import Config
 from ..core import LOADED_CMDS, PLG_INFO
@@ -13,24 +13,24 @@ from ..helpers.tools import media_type
 from ..helpers.utils import _cattools, _catutils, _format, install_pip, reply_id
 from .decorators import admin_cmd, sudo_cmd
 
-LOGS = logging.getLogger("JoKeRUB")
+LOGS = logging.getLogger("VIPABH")
 
 
 def load_module(shortname, plugin_path=None):
     if shortname.startswith("__"):
         pass
     elif shortname.endswith("_"):
-        path = Path(f"JoKeRUB/plugins/{shortname}.py")
+        path = Path(f"VIPABH/plugins/{shortname}.py")
         checkplugins(path)
-        name = "JoKeRUB.plugins.{}".format(shortname)
+        name = "VIPABH.plugins.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         LOGS.info("᯽︙تم بنجاح تحميل ملف " + shortname)
     else:
         if plugin_path is None:
-            path = Path(f"JoKeRUB/plugins/{shortname}.py")
-            name = f"JoKeRUB.plugins.{shortname}"
+            path = Path(f"VIPABH/plugins/{shortname}.py")
+            name = f"VIPABH.plugins.{shortname}"
         else:
             path = Path((f"{plugin_path}/{shortname}.py"))
             name = f"{plugin_path}/{shortname}".replace("/", ".")
@@ -57,7 +57,7 @@ def load_module(shortname, plugin_path=None):
         mod.borg = l313l
         spec.loader.exec_module(mod)
         # for imports
-        sys.modules["JoKeRUB.plugins." + shortname] = mod
+        sys.modules["VIPABH.plugins." + shortname] = mod
         LOGS.info("᯽︙تم بنجاح تحميل ملف ✓" + shortname)
 
 
@@ -83,7 +83,7 @@ def remove_plugin(shortname):
     except BaseException:
         pass
     try:
-        name = f"JoKeRUB.plugins.{shortname}"
+        name = f"VIPABH.plugins.{shortname}"
         for i in reversed(range(len(l313l._event_builders))):
             ev, cb = l313l._event_builders[i]
             if cb.__module__ == name:
@@ -111,8 +111,8 @@ def start_assistant(shortname):
         import sys
         from pathlib import Path
 
-        path = Path(f"JoKeRUB/plugins/assistant/{shortname}.py")
-        name = "JoKeRUB.plugins.assistant.{}".format(shortname)
+        path = Path(f"VIPABH/plugins/assistant/{shortname}.py")
+        name = "VIPABH.plugins.assistant.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
@@ -123,11 +123,11 @@ def start_assistant(shortname):
         import sys
         from pathlib import Path
 
-        path = Path(f"JoKeRUB/plugins/assistant/{shortname}.py")
-        name = "JoKeRUB.plugins.assistant.{}".format(shortname)
+        path = Path(f"VIPABH/plugins/assistant/{shortname}.py")
+        name = "VIPABH.plugins.assistant.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         mod.tgbot = bot.tgbot
         spec.loader.exec_module(mod)
-        sys.modules["JoKeRUB.plugins.assistant" + shortname] = mod
+        sys.modules["VIPABH.plugins.assistant" + shortname] = mod
         print("بنجاح يتم تحميل " + shortname)
