@@ -129,7 +129,7 @@ async def startupmessage():
 async def mybot():
     try:
         starkbot = await ABH.tgbot.get_me()
-        joker = "ABH 🤡"
+        joker = "ABH"
         bot_name = starkbot.first_name
         botname = f"@{starkbot.username}"
         if bot_name.endswith("Assistant"):
@@ -200,6 +200,7 @@ async def saves():
             continue
         except ChannelPrivateError:
             continue
+
 async def load_plugins(folder, extfolder=None):
     """
     تحميل ملفات السورس
