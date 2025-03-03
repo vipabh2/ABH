@@ -4,7 +4,7 @@ import heroku3
 
 from .Config import Config
 from .core.logger import logging
-from .core.session import l313l
+from .core.session import ABH
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
 __version__ = "3.1.3"
@@ -12,10 +12,10 @@ __license__ = "تـعديل فريـق abh"
 __author__ = "abh <https://T.ME/k_4x1>"
 __copyright__ = "ABH TEAM (C) 2021 - 2023  " + __author__
 
-l313l.version = __version__
-l313l.tgbot.version = __version__
+ABH.version = __version__
+ABH.tgbot.version = __version__
 LOGS = logging.getLogger("abh")
-bot = l313l
+bot = ABH
 
 StartTime = time.time()
 JEPVERSION = "3.1.3"
