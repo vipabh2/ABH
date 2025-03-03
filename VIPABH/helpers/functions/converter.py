@@ -2,11 +2,11 @@ import os
 
 from PIL import Image
 
-from JoKeRUB.core.logger import logging
-from JoKeRUB.core.managers import edit_or_reply
-from JoKeRUB.helpers.functions.vidtools import take_screen_shot
-from JoKeRUB.helpers.tools import fileinfo, media_type, meme_type
-from JoKeRUB.helpers.utils.utils import runcmd
+from VIPABH.core.logger import logging
+from VIPABH.core.managers import edit_or_reply
+from VIPABH.helpers.functions.vidtools import take_screen_shot
+from VIPABH.helpers.tools import fileinfo, media_type, meme_type
+from VIPABH.helpers.utils.utils import runcmd
 
 LOGS = logging.getLogger(__name__)
 
