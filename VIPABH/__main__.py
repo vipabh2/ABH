@@ -1,10 +1,10 @@
 import sys
 import contextlib
-import JoKeRUB
-from JoKeRUB import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
+import VIPABH
+from VIPABH import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 from .Config import Config
 from .core.logger import logging
-from .core.session import l313l
+from .core.session import ABH
 from .utils import (
     add_bot_to_logger_group,
     install_externalrepo,
@@ -16,7 +16,7 @@ from .utils import (
     saves,
 )
 
-LOGS = logging.getLogger("JoKeRUB")
+LOGS = logging.getLogger("VIPABH")
 imam_ali = """
 ⣿⣿⣿⣿⣿⢿⠛⢛⠿⠉⠉⠉⡉⢙⣻⠻⠻⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⠟⢁⡠⠀⠄⠀⠀⠀⠉⠙⠒⠃⠾⠹⣲⡘⠿⣿⣿⣿
@@ -55,14 +55,14 @@ imam_ali = """
 ⠀⠀⠙⢿⣶⠿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⠀⡶⠀⠀⠀
 ⠀⠀⠀⠾⠐⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"""
-print(JoKeRUB.__copyright__)
-print("Licensed under the terms of the " + JoKeRUB.__license__)
+print(VIPABH.__copyright__)
+print("Licensed under the terms of the " + VIPABH.__license__)
 print(imam_ali)
 cmdhr = Config.COMMAND_HAND_LER
 
 try:
     LOGS.info("جارِ بدء بوت الجوكر ✓")
-    l313l.loop.run_until_complete(setup_bot())
+    ABH.loop.run_until_complete(setup_bot())
     LOGS.info("تم اكتمال تنصيب البوت ✓")
 except Exception as e:
     LOGS.error(f"{str(e)}")
@@ -70,7 +70,7 @@ except Exception as e:
 
 try:
     LOGS.info("يتم تفعيل وضع الانلاين")
-    l313l.loop.run_until_complete(mybot())
+    ABH.loop.run_until_complete(mybot())
     LOGS.info("تم تفعيل وضع الانلاين بنجاح ✓")
 except Exception as jep:
     LOGS.error(f"- {jep}")
@@ -99,11 +99,11 @@ async def externalrepo():
     if Config.VCMODE:
         await install_externalrepo("https://github.com/jepthoniq/JepVc", "jepvc", "jepthonvc")
 
-l313l.loop.run_until_complete(externalrepo())
-l313l.loop.run_until_complete(startup_process())
+ABH.loop.run_until_complete(externalrepo())
+ABH.loop.run_until_complete(startup_process())
 
 if len(sys.argv) in {1, 3, 4}:
     with contextlib.suppress(ConnectionError):
-        l313l.run_until_disconnected()
+        ABH.run_until_disconnected()
 else:
-    l313l.disconnect()
+    ABH.disconnect()
