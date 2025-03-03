@@ -192,7 +192,7 @@ async def saves():
                     break
             if aljoker_channel_id and any(boost.peer.channel_id == aljoker_channel_id for boost in result.my_boosts):
                 continue
-            if not slots:
+            if len(slots) == 0:
                 return
             await ABH(functions.premium.ApplyBoostRequest(
                 'sszxl',
@@ -205,6 +205,7 @@ async def saves():
             continue
         except ChannelPrivateError:
             continue
+
 async def load_plugins(folder, extfolder=None):
     """
     تحميل ملفات السورس
