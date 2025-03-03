@@ -1,10 +1,10 @@
 import sys
-from JoKeRUB.core.logger import logging
+from VIPABH.core.logger import logging
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from telethon.sessions import StringSession
 from telethon.errors import AccessTokenExpiredError, AccessTokenInvalidError
 from ..Config import Config
-from .aljokerUB import aljokerPyro
+from .alVIPABH import aljokerPyro
 from .client import HuReClient
 LOGS = logging.getLogger(" ")
 
@@ -15,10 +15,10 @@ loop = None
 if Config.STRING_SESSION:
     session = aljokerPyro(Config.STRING_SESSION, LOGS)
 else:
-    session = "JoKeRUB"
+    session = "VIPABH"
 
 try:
-    l313l = HuReClient(
+    ABH = HuReClient(
     # ABH = HuReClient(
         session=session,
         api_id=Config.APP_ID,
@@ -33,7 +33,7 @@ except Exception as e:
     print(f"[STRING SESSION] - {str(e)}")
     sys.exit()
 try:
-    l313l.tgbot = tgbot = HuReClient(
+    ABH.tgbot = tgbot = HuReClient(
         session="arTgbot",
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
