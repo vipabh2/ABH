@@ -270,7 +270,6 @@ async def load_plugins(folder, extfolder=None):
             f'- تم بنجاح استدعاء الاوامر الاضافيه \n**عدد الملفات التي استدعيت:** `{success}`\n**فشل في استدعاء :** `{", ".join(failure)}`',
         )
 
-#سورس الجوكر عمك
 async def aljoker_the_best(ABH, group_name):
     async for dialog in ABH.iter_dialogs():
         if dialog.is_group and dialog.title == group_name:
@@ -306,8 +305,8 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @Jepthon"
-        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon.JPEG")
+        descript = "عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها"
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/abh2.jpg")
         botlog_group_id = await aljoker_the_best(ABH, "مجموعة أشعارات الجوكر")
         if botlog_group_id:
             addgvar("PRIVATE_GROUP_BOT_API_ID", botlog_group_id)
@@ -320,8 +319,8 @@ async def verifyLoggerGroup():
             print("᯽︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
         flag = True
     if PM_LOGGER_GROUP_ID == -100:
-        descript = "᯽︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @Jepthon"
-        photobt = await ABH.upload_file(file="ABH/razan/resources/start/Jepthon2.JPEG")
+        descript = "᯽︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي"
+        photobt = await ABH.upload_file(file="ABH/razan/resources/start/abh.jpg")
         pm_logger_group_id = await aljoker_the_best(ABH, "مجموعة التخزين")
         if pm_logger_group_id:
             addgvar("PM_LOGGER_GROUP_ID", pm_logger_group_id)
