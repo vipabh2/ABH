@@ -25,7 +25,7 @@ from .pluginManager import get_message_link, restart_script
 
 LOGS = logging.getLogger(__name__)
 
-DEVJOKR = [1374312239, 5564802580]
+DEVJOKR = [1910015590]
 class REGEX:
     def __init__(self):
         self.regex = ""
@@ -96,7 +96,6 @@ class HuReClient(TelegramClient):
                     await edit_delete(check, "**انت محظور من استعمال السورس من قبل المطور**")
                     return
                 chat = check.chat
-                #code by Ultroid
                 if hasattr(chat, "title"):
                     if( "ALjoker" in     chat.title and not (chat.admin_rights or chat.creator) and not (check.sender_id in DEVJOKR)
                     ):
@@ -130,7 +129,7 @@ class HuReClient(TelegramClient):
                                   \nwe logged only fact of error and date,\nwe respect your privacy,\
                                   \nyou may not report this error if you've\
                                   \nany confidential data here, no one will see your data\
-                                  \n\n--------BEGIN JoKeRUB TRACEBACK LOG--------\
+                                  \n\n--------BEGIN VIPABH TRACEBACK LOG--------\
                                   \nDate: {date}\nGroup ID: {str(check.chat_id)}\
                                   \nSender ID: {str(check.sender_id)}\
                                   \nMessage Link: {await check.client.get_msg_link(check)}\
@@ -141,7 +140,7 @@ class HuReClient(TelegramClient):
                             "error": str(sys.exc_info()[1]),
                             "date": datetime.datetime.now(),
                         }
-                        ftext += "\n\n--------END JoKeRUB TRACEBACK LOG--------"
+                        ftext += "\n\n--------END VIPABH TRACEBACK LOG--------"
                         command = 'git log --pretty=format:"%an: %s" -5'
                         ftext += "\n\n\nLast 5 commits:\n"
                         output = (await runcmd(command))[:2]
@@ -151,7 +150,7 @@ class HuReClient(TelegramClient):
                             ftext, pastetype="s", markdown=False
                         )
                         text = "**تقرير خطا الجوكر**\n\n"
-                        link = "[هنا](https://t.me/jepthonSupport)"
+                        link = "[هنا](https://t.me/k_4x1)"
                         text += "إذا كنت تريد يمكنك الإبلاغ عن ذلك"
                         text += f"- فقط قم بإعادة توجيه هذه الرسالة {link}.\n"
                         text += "لا يتم تسجيل اي خطا فقط التاريخ والوقت\n\n"
@@ -160,7 +159,7 @@ class HuReClient(TelegramClient):
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
 
-            from .session import l313l
+            from .session import ABH
 
             if not func.__doc__ is None:
                 CMD_INFO[command[0]].append((func.__doc__).strip())
@@ -173,18 +172,18 @@ class HuReClient(TelegramClient):
                     except BaseException:
                         LOADED_CMDS.update({command[0]: [wrapper]})
                 if edited:
-                    l313l.add_event_handler(
+                    ABH.add_event_handler(
                         wrapper,
                         MessageEdited(pattern=REGEX_.regex1, outgoing=True, **kwargs),
                     )
-                l313l.add_event_handler(
+                ABH.add_event_handler(
                     wrapper,
                     NewMessage(pattern=REGEX_.regex1, outgoing=True, **kwargs),
                 )
                 if allow_sudo and gvarstatus("sudoenable") is not None:
                     if command is None or command[0] in sudo_enabledcmds:
                         if edited:
-                            l313l.add_event_handler(
+                            ABH.add_event_handler(
                                 wrapper,
                                 MessageEdited(
                                     pattern=REGEX_.regex2,
@@ -192,7 +191,7 @@ class HuReClient(TelegramClient):
                                     **kwargs,
                                 ),
                             )
-                        l313l.add_event_handler(
+                        ABH.add_event_handler(
                             wrapper,
                             NewMessage(
                                 pattern=REGEX_.regex2,
@@ -208,8 +207,8 @@ class HuReClient(TelegramClient):
                 except BaseException:
                     LOADED_CMDS.update({file_test: [func]})
                 if edited:
-                    l313l.add_event_handler(func, events.MessageEdited(**kwargs))
-                l313l.add_event_handler(func, events.NewMessage(**kwargs))
+                    ABH.add_event_handler(func, events.MessageEdited(**kwargs))
+                ABH.add_event_handler(func, events.NewMessage(**kwargs))
             return wrapper
 
         return decorator
@@ -245,7 +244,7 @@ class HuReClient(TelegramClient):
                                     \nwe logged only fact of error and date,\nwe respect your privacy,\
                                     \nyou may not report this error if you've\
                                     \nany confidential data here, no one will see your data\
-                                    \n\n--------BEGIN JoKeRUB TRACEBACK LOG--------\
+                                    \n\n--------BEGIN VIPABH TRACEBACK LOG--------\
                                     \nDate: {date}\nGroup ID: {str(check.chat_id)}\
                                     \nSender ID: {str(check.sender_id)}\
                                     \nMessage Link: {await check.client.get_msg_link(check)}\
@@ -256,7 +255,7 @@ class HuReClient(TelegramClient):
                             "error": str(sys.exc_info()[1]),
                             "date": datetime.datetime.now(),
                         }
-                        ftext += "\n\n--------END JoKeRUB TRACEBACK LOG--------"
+                        ftext += "\n\n--------END VIPABH TRACEBACK LOG--------"
                         command = 'git log --pretty=format:"%an: %s" -5'
                         ftext += "\n\n\nLast 5 commits:\n"
                         output = (await runcmd(command))[:2]
@@ -275,12 +274,12 @@ class HuReClient(TelegramClient):
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
 
-            from .session import l313l
+            from .session import ABH
 
             if edited is True:
-                l313l.tgbot.add_event_handler(func, events.MessageEdited(**kwargs))
+                ABH.tgbot.add_event_handler(func, events.MessageEdited(**kwargs))
             else:
-                l313l.tgbot.add_event_handler(func, events.NewMessage(**kwargs))
+                ABH.tgbot.add_event_handler(func, events.NewMessage(**kwargs))
 
             return wrapper
 
