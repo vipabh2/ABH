@@ -1,8 +1,7 @@
-from JoKeRUB import bot, l313l
-#By Source joker @jepthon
+from VIPABH import bot, ABH
 from telethon import events, functions, types, Button
 from datetime import timedelta
-from JoKeRUB.utils import admin_cmd
+from VIPABH.utils import admin_cmd
 import asyncio
 from ..Config import Config
 import os, asyncio, re
