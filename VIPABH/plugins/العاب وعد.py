@@ -29,7 +29,7 @@ async def w3d_joker(event):
                 await ABH.send_message(event.chat_id, "كلمات")
                 await asyncio.sleep(1)
 
-                last_message = await ABH.send_message(event.chat_id, limit=1, from_user=1421907917)
+                last_message = await ABH.send_message(event.chat_id, from_user=1421907917)
                 aljoker = aljoker[0].message  
 
                 try:
