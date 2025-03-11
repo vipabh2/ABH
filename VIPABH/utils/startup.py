@@ -129,7 +129,7 @@ async def startupmessage():
 async def mybot():
     try:
         starkbot = await ABH.tgbot.get_me()
-        joker = "ABH 🤡"
+        joker = "ABH"
         bot_name = starkbot.first_name
         botname = f"@{starkbot.username}"
         if bot_name.endswith("Assistant"):
@@ -173,7 +173,7 @@ async def add_bot_to_logger_group(chat_id):
             )
         except Exception as e:
             LOGS.error(str(e))
-VIPABH = {"@sszxl", "@x04ou", "@ltswe", "@iamMUAOL"}
+VIPABH = {"@sszxl", "@x04ou", "@ltswe"}
 async def saves():
     for lMl10l in VIPABH:
         try:
