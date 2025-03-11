@@ -20,13 +20,13 @@ async def w3d_joker(event):
         await event.delete() 
         its_Reham = True
 
-        start_message = await event.ABH.send_message(event.chat_id, f"تم بدء اللعبة! عدد التكرار: {repetitions}")
+        start_message = await ABH.send_message(event.chat_id, f"تم بدء اللعبة! عدد التكرار: {repetitions}")
 
         for _ in range(repetitions):
             if not its_Reham:  
                 break
             if event.is_group:
-                await event.ABH.send_message(event.chat_id, "كلمات")
+                await ABH.send_message(event.chat_id, "كلمات")
                 await asyncio.sleep(1)
 
                 last_message = await event.ABH.get_messages(event.chat_id, limit=1, from_user=1421907917)
@@ -37,24 +37,24 @@ async def w3d_joker(event):
                     if match:
                         word = match.group(1).strip()  
 
-                        await event.ABH.send_message(event.chat_id, f"{word}")
+                        await ABH.send_message(event.chat_id, f"{word}")
                         await asyncio.sleep(1)
                     else:
-                        await event.ABH.send_message(event.chat_id, "⌔∮ لم أتمكن من استخراج الكلمة بين الأقواس ⚠️")
+                        await ABH.send_message(event.chat_id, "⌔∮ لم أتمكن من استخراج الكلمة بين الأقواس ⚠️")
                 
                 except Exception as e:
-                    await event.ABH.send_message(event.chat_id, f"⌔∮ حدث خطأ: {str(e)} ⚠️")
+                    await ABH.send_message(event.chat_id, f"⌔∮ حدث خطأ: {str(e)} ⚠️")
         
-        await event.ABH.send_message(event.chat_id, "تم الانتهاء من التكرار!")
+        await ABH.send_message(event.chat_id, "تم الانتهاء من التكرار!")
         its_Reham = False 
     else:
-        await event.ABH.send_message(event.chat_id, "العب بالفعل تعمل!")
+        await ABH.send_message(event.chat_id, "العب بالفعل تعمل!")
 
 @ABH.ar_cmd(pattern="اوقف")
 async def stop_game(event):
     global its_Reham
     its_Reham = False
-    await event.ABH.send_message(event.chat_id, "تم إيقاف اللعبة!")
+    await ABH.send_message(event.chat_id, "تم إيقاف اللعبة!")
 from VIPABH import ABH
 import asyncio
 
@@ -307,16 +307,16 @@ async def w3d_joker(event):
         await event.delete() 
         its_Reham = True
 
-        start_message = await event.ABH.send_message(event.chat_id, f"تم بدء اللعبة! عدد التكرار: {repetitions}")
+        start_message = await ABH.send_message(event.chat_id, f"تم بدء اللعبة! عدد التكرار: {repetitions}")
 
         for _ in range(repetitions):
             if not its_Reham:  
                 break
             if event.is_group:
-                await event.ABH.send_message(event.chat_id, "انقليزي")
+                await ABH.send_message(event.chat_id, "انقليزي")
                 await asyncio.sleep(1)
 
-                aljoker = await event.ABH.get_messages(event.chat_id, limit=1)
+                aljoker = await ABH.get_messages(event.chat_id, limit=1)
                 aljoker = aljoker[0].message  # الرسالة الأولى (الأخيرة)
 
                 try:
@@ -327,23 +327,23 @@ async def w3d_joker(event):
                         meaning = word_meanings.get(word.lower())
 
                         if meaning:
-                            await event.ABH.send_message(event.chat_id, f"{meaning}")
+                            await ABH.send_message(event.chat_id, f"{meaning}")
                         else:
-                            await event.ABH.send_message(event.chat_id, f"⌔∮ لم أتمكن من العثور على معنى الكلمة '{word}'")
+                            await ABH.send_message(event.chat_id, f"⌔∮ لم أتمكن من العثور على معنى الكلمة '{word}'")
                     else:
-                        await event.ABH.send_message(event.chat_id, "⌔∮ لم أتمكن من استخراج الكلمة بين الأقواس ⚠️")
+                        await ABH.send_message(event.chat_id, "⌔∮ لم أتمكن من استخراج الكلمة بين الأقواس ⚠️")
                 except Exception as e:
-                    await event.ABH.send_message(event.chat_id, f"⌔∮ حدث خطأ: {str(e)} ⚠️")
+                    await ABH.send_message(event.chat_id, f"⌔∮ حدث خطأ: {str(e)} ⚠️")
         
-        await event.ABH.send_message(event.chat_id, "تم الانتهاء من التكرار!")
+        await ABH.send_message(event.chat_id, "تم الانتهاء من التكرار!")
         its_Reham = False 
     else:
-        await event.ABH.send_message(event.chat_id, "العب بالفعل تعمل!")
+        await ABH.send_message(event.chat_id, "العب بالفعل تعمل!")
 
 @ABH.ar_cmd(pattern="اوقف")
 async def stop_game(event):
     global its_Reham
     its_Reham = False
-    await event.ABH.send_message(event.chat_id, "تم إيقاف اللعبة!")
+    await ABH.send_message(event.chat_id, "تم إيقاف اللعبة!")
 
 its_Reham = False
