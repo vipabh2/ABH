@@ -16,7 +16,7 @@ uid = {
     201728276, 7497654775
 }
 
-@ABH.on(events.NewMessage(pattern=r"امسح(?:\s*|\d+)$"))  # إصلاح ال regex 
+@ABH.on(events.NewMessage(pattern=r".امسح(?:\s*|\d+)$"))  # إصلاح ال regex 
 async def delete_filtered_messages(event):
     id = event.sender_id
     if id in uid:
