@@ -29,7 +29,7 @@ uid = {1910015590,
 @ABH.on(events.NewMessage(pattern="امسح(\s*| \d+)$"))
 async def delete_filtered_messages(event):
     id = event.sender_id
-    if id in uid
+    if id in uid:
     try:
         filters = {
             "الملفات": InputMessagesFilterDocument,
