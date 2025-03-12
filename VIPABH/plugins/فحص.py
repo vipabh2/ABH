@@ -21,9 +21,17 @@ from ..core.managers import edit_or_reply
 from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
-from . import mention
- 
+
 plugin_category = "utils"
+
+temp = """{ALIVE_TEXT}
+**‎{EMOJI}‌‎𝙽𝙰𝙼𝙴 𖠄 {mention}** ٫
+**‌‎{EMOJI}‌‎𝙿𝚈𝚃𝙷𝙾𝙽 𖠄 `{pyver}`** ٫
+**‌‎{EMOJI}‌‎𝙰𝙱𝙷 𖠄 `{telever}`** ٫
+**‌‎{EMOJI}‌‎𝚄𝙿𝚃𝙸𝙼𝙴 𖠄 `{uptime}`** ٫
+‌‎**{EMOJI}‌‎‌‎𝙿𝙸𝙽𝙶 𖠄 `{ping}`** ٫
+‌‎**{EMOJI}‌‎‌‎𝚂𝙴𝚃𝚄𝙿 𝙳𝙰𝚃𝙴 𖠄 `{Tare5}`** ٫
+**𖠄 𝙰𝙱𝙷 𖠄**"""
 
 file_path = "installation_date.txt"
 if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
@@ -34,7 +42,7 @@ else:
     with open(file_path, "w") as file:
         file.write(installation_time)
 
-@ABH.ar_cmd(pattern="فحص(?:\\s|$)([\\s\\S]*)")
+@ABH.ar_cmd(pattern=r"فحص(?:\s|$)([\s\S]*)")
 async def amireallyalive(event):
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
@@ -43,14 +51,18 @@ async def amireallyalive(event):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
+    
     EMOJI = gvarstatus("ALIVE_EMOJI") or "⿻┊‌‎"
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**父[ ABH ✓ ](t.me/ltswe)父**"
     HuRe_IMG = gvarstatus("ALIVE_PIC") or Config.A_PIC
     ABH_caption = gvarstatus("ALIVE_TEMPLATE") or temp
+
+    mention_text = event.sender.first_name if event.sender else "مجهول"
+    
     caption = ABH_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
         EMOJI=EMOJI,
-        mention=mention,
+        mention=mention_text,
         uptime=uptime,
         telever=version.__version__,
         jepver=JEPVERSION,
@@ -59,10 +71,14 @@ async def amireallyalive(event):
         ping=ms,
         Tare5=installation_time,
     )
-    
-    if HuRe_IMG:
+
+    if HuRe_IMG.strip():
         VIPABH = [x for x in HuRe_IMG.split()]
-        PIC = random.choice(VIPABH)
+        PIC = random.choice(VIPABH) if VIPABH else None
+    else:
+        PIC = None
+
+    if PIC:
         try:
             await event.client.send_file(
                 event.chat_id, PIC, caption=caption, reply_to=reply_to_id
@@ -74,17 +90,4 @@ async def amireallyalive(event):
                 f"**الميـديا خـطأ **\nغـير الرابـط بأستـخدام الأمـر  \n `.اضف_فار ALIVE_PIC رابط صورتك`\n\n**لا يمـكن الحـصول عـلى صـورة من الـرابـط :-** `{PIC}`",
             )
     else:
-        await edit_or_reply(
-            event,
-            caption,
-        )
-
-
-temp = """{ALIVE_TEXT}
-**‎{EMOJI}‌‎𝙽𝙰𝙼𝙴 𖠄 {mention}** ٫
-**‌‎{EMOJI}‌‎𝙿𝚈𝚃𝙷𝙾𝙽 𖠄 `{pyver}`** ٫
-**‌‎{EMOJI}‌‎𝙰𝙱𝙷 𖠄 `{telever}`** ٫
-**‌‎{EMOJI}‌‎𝚄𝙿𝚃𝙸𝙼𝙴 𖠄 `{uptime}`** ٫
-‌‎**{EMOJI}‌‎‌‎𝙿𝙸𝙽𝙶 𖠄 `{ping}`** ٫
-‌‎**{EMOJI}‌‎‌‎𝚂𝙴𝚃𝚄𝙿 𝙳𝙰𝚃𝙴 𖠄 `{Tare5}`** ٫
-**𖠄 𝙰𝙱𝙷 𖠄**"""
+        await edit_or_reply(event, caption)
