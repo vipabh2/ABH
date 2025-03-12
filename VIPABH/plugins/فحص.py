@@ -34,7 +34,7 @@ else:
     with open(file_path, "w") as file:
         file.write(installation_time)
 
-@ABH.ar_cmd(pattern="فحص(?:\s|$)([\s\S]*)")
+@ABH.ar_cmd(pattern="فحص(?:\\s|$)([\\s\\S]*)")
 async def amireallyalive(event):
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
