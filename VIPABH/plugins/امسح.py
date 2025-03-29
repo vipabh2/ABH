@@ -7,7 +7,7 @@ from VIPABH import ABH
 
 plugin_category = "extra"
 
-excluded_user_ids = [793977288, 1421907917, 7308514832, 6387632922]
+excluded_user_ids = [793977288, 1421907917, 7308514832, 6387632922, 7908156943]
 
 @ABH.ar_cmd(
     pattern="امسح(\s*| \d+)$", 
