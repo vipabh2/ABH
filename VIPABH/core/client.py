@@ -8,7 +8,6 @@ from typing import Dict, List, Union
 from ..sql_helper.globals import gvarstatus
 from telethon import TelegramClient, events
 from telethon.errors import MessageIdInvalidError, MessageNotModifiedError
-
 from ..Config import Config
 from ..helpers.utils.events import checking
 from ..helpers.utils.format import paste_message
@@ -60,7 +59,7 @@ class HuReClient(TelegramClient):
         stack = inspect.stack()
         previous_stack_frame = stack[1]
         file_test = Path(previous_stack_frame.filename)
-        file_test = file_test.stem.replace(".py", "")
+        file_test = file test.stem.replace(".py", "")
         if command is not None:
             command = list(command)
             if not command[1] in BOT_INFO:
