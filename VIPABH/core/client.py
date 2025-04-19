@@ -59,7 +59,7 @@ class HuReClient(TelegramClient):
         stack = inspect.stack()
         previous_stack_frame = stack[1]
         file_test = Path(previous_stack_frame.filename)
-        file_test = file test.stem.replace(".py", "")
+        # file_test = file test.stem.replace(".py", "")
         if command is not None:
             command = list(command)
             if not command[1] in BOT_INFO:
